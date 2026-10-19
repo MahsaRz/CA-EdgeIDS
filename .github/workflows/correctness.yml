@@ -22,6 +22,8 @@ jobs:
       - run: python -m pip install -e '.[test,metis]'
       - run: python -m pytest -q
       - run: python -m ca_edgeids demo --out runs/synthetic-ci
+      - name: Require actual METIS coverage in the Linux smoke run
+        run: python -c "import json,pandas as pd; from pathlib import Path; assert json.loads(Path('runs/synthetic-ci/unavailable_runs.json').read_text()) == []; r=pd.read_csv('runs/synthetic-ci/benchmark_runs.csv'); assert set(r.method) == {'full','random','metis'}"
       - uses: actions/upload-artifact@v4
         with:
           name: synthetic-software-check-not-paper-results
