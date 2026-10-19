@@ -1,5 +1,6 @@
 """Label-free input summaries for linear mean messages; learned states stay live."""
-from dataclasses import dataclass
+from dataclasses import dataclass,field
+import hashlib
 
 import numpy as np
 from scipy import sparse
@@ -12,6 +13,10 @@ class InputSummary:
     adjacency: object
     mean_flow: np.ndarray
     has_incoming: np.ndarray
+    cache_enabled: bool = True
+    closure_cache_bytes: int = 64*1024**2
+    _memo: dict = field(default_factory=dict,repr=False)
+    _packed: object = field(default=None,repr=False)
 
 
 def summarize(g,max_bytes=256*1024**2,chunk_size=4096):
@@ -53,6 +58,39 @@ def summary_query_nodes(g,summary,q,depth):
     return nodes
 
 
+def fixed_inputs(g,summary,q,depth,device):
+    """Reuse immutable graph inputs only; never store weights or hidden states.
+
+    A summary belongs to one fixed snapshot. Build a new summary after changing
+    graph features/context. Closure memoization counts array/key bytes, not total
+    Python RAM. Only one packed tensor context is retained.
+    """
+    memo=summary._memo
+    key=(id(g),depth,q.tobytes())
+    nodes=memo.get('queries',{}).get(key) if summary.cache_enabled else None
+    if nodes is None:
+        nodes=summary_query_nodes(g,summary,q,depth)
+        if summary.cache_enabled and summary.closure_cache_bytes>0:
+            digest=hashlib.sha256(nodes.tobytes()).digest()
+            intern=memo.get('sets',{}).get(digest)
+            if intern is not None and not np.array_equal(intern,nodes): raise AssertionError('Closure digest collision')
+            cost=len(key[2])+16+(nodes.nbytes if intern is None else 0)
+            if memo.get('bytes',0)+cost<=summary.closure_cache_bytes:
+                if intern is None: memo.setdefault('sets',{})[digest]=nodes
+                else: nodes=intern
+                memo.setdefault('queries',{})[key]=nodes; memo['bytes']=memo.get('bytes',0)+cost
+    packed=summary._packed if summary.cache_enabled else None
+    if packed is not None and packed[0]==id(g) and packed[1]==str(device) and np.array_equal(packed[2],nodes):
+        return nodes,packed[3]
+    matrix=summary.adjacency[nodes][:,nodes].tocoo()
+    indices=torch.tensor(np.stack([matrix.row,matrix.col]),dtype=torch.long,device=device)
+    adjacency=torch.sparse_coo_tensor(indices,torch.tensor(matrix.data,device=device),matrix.shape).coalesce()
+    values=(adjacency,torch.tensor(g.node_x[nodes],device=device),torch.tensor(summary.mean_flow[nodes],device=device),
+        torch.tensor(summary.has_incoming[nodes],device=device).unsqueeze(1))
+    if summary.cache_enabled: summary._packed=(id(g),str(device),nodes,values)
+    return nodes,values
+
+
 def forward_summary(model,g,summary,q,ablation='full'):
     """Same K-hop node set/dropout draws; linear message terms are factored.
 
@@ -65,15 +103,9 @@ def forward_summary(model,g,summary,q,ablation='full'):
     q=np.asarray(q,dtype=np.int64)
     if not len(q): raise ValueError('Empty query batch')
     device=next(model.parameters()).device
-    nodes=summary_query_nodes(g,summary,q,model.depth)
-    matrix=summary.adjacency[nodes][:,nodes].tocoo()
-    indices=torch.tensor(np.stack([matrix.row,matrix.col]),dtype=torch.long,device=device)
-    adjacency=torch.sparse_coo_tensor(indices,torch.tensor(matrix.data,device=device),matrix.shape).coalesce()
-    h=torch.tensor(g.node_x[nodes],device=device)
+    nodes,(adjacency,h,features,mask)=fixed_inputs(g,summary,q,model.depth,device)
     if ablation=='no_degree': h=torch.zeros_like(h)
-    features=torch.tensor(summary.mean_flow[nodes],device=device)
     if ablation=='no_message_features': features=torch.zeros_like(features)
-    mask=torch.tensor(summary.has_incoming[nodes],device=device).unsqueeze(1)
     for msg,update in zip(model.messages,model.updates):
         width=h.shape[1]
         if ablation=='no_messages': neighbor=torch.zeros((len(nodes),msg.out_features),device=device)

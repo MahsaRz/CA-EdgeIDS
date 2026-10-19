@@ -39,13 +39,17 @@ def check(plan):
     for path,digest in plan['sources'].items():
         content=subprocess.run(['git','show',f"{plan['source_commit']}:{path}"],capture_output=True,check=True).stdout
         if hashlib.sha256(content).hexdigest()!=digest: raise ValueError('Uncommitted source')
+    for commit,version in plan.get('fit_source_versions',{}).items():
+        for path,digest in version['sources'].items():
+            content=subprocess.run(['git','show',f'{commit}:{path}'],capture_output=True,check=True).stdout
+            if hashlib.sha256(content).hexdigest()!=digest: raise ValueError('Earlier fit source mismatch')
 
 
 def inputs(d,pre=None):
     cfg=json.loads(Path(f'configs/{d}_binary_linux_100000.json').read_text())
     old=pd.read_csv(cfg['csv'],usecols=[SOURCE,DEST])
     hosts=set(old[SOURCE])|set(old[DEST]); cfg.update(csv=f'data/larger-uniform/{d}/{d}-uniform-1000000.csv',classes=2,
-        label_names=['Benign','Attack'],learning_rate=.003,epochs=10,patience=3,hidden=16,layers=2,dropout=.2,weight_decay=.0001,threads=1,max_edges_per_batch=512)
+        label_names=['Benign','Attack'],learning_rate=.003,epochs=10,patience=3,hidden=16,layers=2,dropout=.2,weight_decay=.0001,threads=1,max_edges_per_batch=512,progress_every=512)
     frame=pd.read_csv(cfg['csv'],low_memory=False); split,_,_=assign(frame,hosts)
     expected=next(r for r in json.loads(Path('artifacts/novel-host-preflight-1000000/protocols.json').read_text()) if r['dataset']==d)
     if sha256_file(cfg['csv'])!=expected['csv_sha256'] or not expected['feasible']: raise ValueError('Infeasible or changed preflight')
@@ -55,15 +59,46 @@ def inputs(d,pre=None):
     return cfg,data
 
 
-def train_all():
-    if ROOT.exists(): raise FileExistsError(ROOT)
+def train_all(resume=False):
+    previous=None; selected=[]; failures=[]; completed=set()
+    if resume and not ROOT.exists(): raise FileNotFoundError(ROOT)
+    if ROOT.exists():
+        if not resume: raise FileExistsError(ROOT)
+        if (ROOT/'test_gate.json').exists() or (ROOT/'test-evaluation').exists(): raise ValueError('Cannot resume after the test gate')
+        previous=json.loads((ROOT/'frozen_plan.json').read_text())
+        selected=json.loads((ROOT/'selected_models.json').read_text())
+        for d in previous['datasets']:
+            rows=[r for r in selected if r['dataset']==d]
+            expected={(f,s) for f in ['GNN','MLP','RF'] for s in SEEDS}
+            if rows and (len(rows)!=15 or {(r['family'],r['seed']) for r in rows}!=expected): raise ValueError('Resume only complete dataset cohorts')
+            if rows: completed.add(d)
+        allowed={'src/ca_edgeids/statistics_backend.py','src/ca_edgeids/controlled_training.py','scripts/run_novel_host_study.py','scripts/novel_host_protocol.py'}
+        for path,digest in previous['sources'].items():
+            content=subprocess.run(['git','show',f"{previous['source_commit']}:{path}"],capture_output=True,check=True).stdout
+            if hashlib.sha256(content).hexdigest()!=digest: raise ValueError('Earlier source mismatch')
+            if path not in allowed and sha256_file(path)!=digest: raise ValueError('Unrelated numerical inputs changed during continuation')
+        for r in selected:
+            if sha256_file(r['model_file'])!=r['model_sha256']: raise ValueError('Completed checkpoint changed')
+            r['fit_source_commit']=previous['source_commit']
+        for name in ['frozen_plan.json','selected_models.json']:
+            dest=ROOT/('before-input-reuse-'+name)
+            if dest.exists(): raise FileExistsError(dest)
+            dest.write_bytes((ROOT/name).read_bytes())
     protocols=json.loads(Path('artifacts/novel-host-preflight-1000000/protocols.json').read_text())
     plan=dict(datasets=[r['dataset'] for r in protocols if r['feasible']],infeasible=[r['dataset'] for r in protocols if not r['feasible']],
         source_commit=subprocess.run(['git','rev-parse','HEAD'],capture_output=True,text=True,check=True).stdout.strip(),sources=sources(),seeds=SEEDS,
         environment=environment(),preflight_sha256=sha256_file('artifacts/novel-host-preflight-1000000/protocols.json'),hyperparameter_search=False)
-    check(plan); ROOT.mkdir(parents=True); dump(ROOT/'frozen_plan.json',plan); selected=[]; failures=[]
+    plan['fit_source_versions']={plan['source_commit']:dict(sources=plan['sources'],environment=plan['environment'])}
+    if previous:
+        if plan['datasets']!=previous['datasets'] or plan['seeds']!=previous['seeds'] or plan['preflight_sha256']!=previous['preflight_sha256']: raise ValueError('Protocol changed')
+        plan['fit_source_versions'][previous['source_commit']]=dict(sources=previous['sources'],environment=previous['environment'])
+        plan['continuation']=dict(completed_datasets=sorted(completed),prior_selection_sha256=sha256_file(ROOT/'before-input-reuse-selected_models.json'),
+            reason='reuse fixed input tensors; identical arithmetic, batches, dropout ordering and training settings; no test predictions')
+    check(plan); ROOT.mkdir(parents=True,exist_ok=resume); dump(ROOT/'frozen_plan.json',plan)
+    if selected: dump(ROOT/'selected_models.json',selected)
     for d in plan['datasets']:
-        cfg,data=inputs(d); folder=ROOT/d; folder.mkdir()
+        if d in completed: continue
+        cfg,data=inputs(d); folder=ROOT/d; folder.mkdir(exist_ok=resume)
         joblib.dump(data.preprocessor,folder/'preprocessor.joblib'); dump(folder/'dataset_manifest.json',data.manifest); dump(folder/'resolved_config.json',cfg)
         graphs={p:build_graph(data,p,True) for p in ['train','validation']}
         owner=partition_nodes(graphs['train'],'random',4,7); batches=[q for _,q in query_batches(graphs['train'],owner,512)]
@@ -73,7 +108,9 @@ def train_all():
         for family in ['GNN','MLP','RF']:
             if family=='GNN' and summaries is None: continue
             for seed in SEEDS:
-                dest=folder/f'{family.lower()}-{seed}'; dest.mkdir(); seed_all(seed,1); start=time.perf_counter()
+                dest=folder/f'{family.lower()}-{seed}'
+                if dest.exists() and any(dest.iterdir()): raise FileExistsError(dest)
+                dest.mkdir(exist_ok=resume); seed_all(seed,1); start=time.perf_counter()
                 print(f'{d} {family} seed {seed}: training',flush=True)
                 if family=='GNN': model,history,metrics=fit(graphs['train'],graphs['validation'],summaries['train'],summaries['validation'],batches,cfg,seed,'full')
                 elif family=='MLP': model,history,metrics=fit_mlp(data.features[tr],data.labels[tr],data.features[va],data.labels[va],batches,cfg,seed)
@@ -86,7 +123,7 @@ def train_all():
                 else:
                     file=dest/'model.pt'; torch.save(dict(state_dict=model.state_dict(),config=cfg,seed=seed),file)
                     pd.DataFrame(history).to_csv(dest/'training_history.csv',index=False)
-                row=dict(dataset=d,family=family,seed=seed,fit_s=elapsed,model_file=str(file).replace('\\','/'),model_sha256=sha256_file(file),**metrics)
+                row=dict(dataset=d,family=family,seed=seed,fit_source_commit=plan['source_commit'],fit_s=elapsed,model_file=str(file).replace('\\','/'),model_sha256=sha256_file(file),**metrics)
                 selected.append(row); dump(dest/'selection.json',row); dump(ROOT/'selected_models.json',selected)
         dump(ROOT/'failures.json',failures)
     check(plan); out=PUBLIC/'selection'; out.mkdir(parents=True)
@@ -96,6 +133,7 @@ def train_all():
         for name in ['dataset_manifest.json','resolved_config.json']: (out/d/name).write_bytes((ROOT/d/name).read_bytes())
     for r in selected:
         src=Path(r['model_file']).parent; dest=out/r['dataset']/src.name; dest.mkdir()
+        dump(src/'selection.json',r)
         for name in ['training_history.csv','selection.json']:
             if (src/name).exists(): (dest/name).write_bytes((src/name).read_bytes())
     dump(ROOT/'test_gate.json',dict(selection_sha256=sha256_file(ROOT/'selected_models.json'),models=len(selected),test_predictions=0))
@@ -128,5 +166,8 @@ def evaluate_all():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(); p.add_argument('--stage',choices=['train','evaluate'],required=True); a=p.parse_args()
-    train_all() if a.stage=='train' else evaluate_all()
+    p=argparse.ArgumentParser(); p.add_argument('--stage',choices=['train','evaluate'],required=True)
+    p.add_argument('--run-root',default=str(ROOT)); p.add_argument('--public-root',default=str(PUBLIC)); p.add_argument('--resume-training',action='store_true')
+    a=p.parse_args(); ROOT=Path(a.run_root); PUBLIC=Path(a.public_root)
+    if a.resume_training and a.stage!='train': raise ValueError('Resume applies only before the test gate')
+    train_all(a.resume_training) if a.stage=='train' else evaluate_all()

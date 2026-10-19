@@ -1,4 +1,5 @@
 """Verify all new-host models against saved predictions and fixed supports."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -27,6 +28,11 @@ def execute():
     for path,digest in plan['sources'].items():
         data=subprocess.run(['git','show',f"{plan['source_commit']}:{path}"],capture_output=True,check=True).stdout
         if hashlib.sha256(data).hexdigest()!=digest: raise ValueError('Frozen source mismatch')
+    for commit,version in plan.get('fit_source_versions',{}).items():
+        for path,digest in version['sources'].items():
+            data=subprocess.run(['git','show',f'{commit}:{path}'],capture_output=True,check=True).stdout
+            if hashlib.sha256(data).hexdigest()!=digest: raise ValueError('Earlier fit source mismatch')
+    if any(r.get('fit_source_commit',plan['source_commit']) not in plan.get('fit_source_versions',{plan['source_commit']:None}) for r in selected): raise ValueError('Unknown fit source')
     expected={(d,f,s) for d in plan['datasets'] for f in ['GNN','MLP','RF'] for s in plan['seeds']}
     for fail in failures:
         expected-={(fail['dataset'],fail['family'],s) for s in plan['seeds']}
@@ -76,4 +82,6 @@ def execute():
     print(summary.to_string(index=False))
 
 
-if __name__=='__main__': execute()
+if __name__=='__main__':
+    p=argparse.ArgumentParser(); p.add_argument('--run-root',default=str(ROOT)); p.add_argument('--public-root',default=str(PUBLIC)); a=p.parse_args()
+    ROOT=Path(a.run_root); PUBLIC=Path(a.public_root); execute()

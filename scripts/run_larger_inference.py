@@ -112,5 +112,6 @@ def execute():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(); p.add_argument('--worker-job'); p.add_argument('--out'); p.add_argument('--process-started',type=float); a=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument('--worker-job'); p.add_argument('--out'); p.add_argument('--process-started',type=float)
+    p.add_argument('--run-root',default=str(ROOT)); a=p.parse_args(); ROOT=Path(a.run_root)
     worker(json.loads(a.worker_job),a.out,a.process_started) if a.worker_job else execute()

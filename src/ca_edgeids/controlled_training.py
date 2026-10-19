@@ -51,11 +51,13 @@ def fit(g,val_graph,summary,val_summary,batches,cfg,seed,variant):
     flag=variant if variant in {'no_degree','no_message_features','no_messages'} else 'full'
     for epoch in range(cfg['epochs']):
         order=list(batches); rng.shuffle(order); model.train(); total=0.
-        for q in order:
+        for step,q in enumerate(order,1):
             optimizer.zero_grad(set_to_none=True)
             loss=F.cross_entropy(forward_summary(model,g,summary,q,flag),torch.tensor(g.y[q]),weight=weights)
             loss.backward(); torch.nn.utils.clip_grad_norm_(model.parameters(),5.)
             optimizer.step(); total+=float(loss.item())*len(q)
+            if cfg.get('progress_every',0)>0 and step%cfg['progress_every']==0:
+                print(f'{variant} seed {seed} epoch {epoch+1}: {step}/{len(order)} updates complete',flush=True)
         score=evaluate(val_graph.y,predict(model,val_graph,val_summary,variant),cfg['label_names'])['macro_f1']
         history.append(dict(epoch=epoch+1,train_loss=total/len(g.src),validation_macro_f1=score))
         if score>best:

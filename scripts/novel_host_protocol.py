@@ -1,4 +1,5 @@
 """A prespecified incident-flow holdout on hosts absent from development."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -25,8 +26,8 @@ def assign(frame,development_hosts,seed=42):
     return split,held,novel
 
 
-def audit():
-    out=Path('artifacts/novel-host-preflight-1000000'); out.mkdir(parents=True,exist_ok=False)
+def audit(output='artifacts/novel-host-preflight-1000000'):
+    out=Path(output); out.mkdir(parents=True,exist_ok=False)
     reports=[]; rows=[]
     for d in ['ton','cse','bot']:
         cfg=json.loads(Path(f'configs/{d}_binary_linux_100000.json').read_text())
@@ -60,4 +61,5 @@ def audit():
     (out/'SCOPE.txt').write_text('Protocol frozen before larger-sample support inspection. No model fitting or test predictions.\nHeld-out novel nodes were absent from all original 100000 development flows.\nKnown infrastructure may be shared. Validation-test incident crossings excluded.\nNo raw flows, host identities or row IDs published.\n',encoding='utf-8')
 
 
-if __name__=='__main__': audit()
+if __name__=='__main__':
+    p=argparse.ArgumentParser(); p.add_argument('--out',default='artifacts/novel-host-preflight-1000000'); a=p.parse_args(); audit(a.out)

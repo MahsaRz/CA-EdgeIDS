@@ -144,4 +144,6 @@ def evaluate_all():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(); parser.add_argument('--stage',choices=['train','evaluate'],required=True)
-    args=parser.parse_args(); train_all() if args.stage=='train' else evaluate_all()
+    parser.add_argument('--run-root',default=str(ROOT))
+    args=parser.parse_args(); ROOT=Path(args.run_root)
+    train_all() if args.stage=='train' else evaluate_all()

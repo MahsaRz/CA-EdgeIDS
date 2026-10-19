@@ -1,4 +1,5 @@
 """Verify every larger workload, including rejected resource conditions."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -31,6 +32,8 @@ def execute():
     for d in plan['datasets']:
         original=Path('runs/linux-scaling-100000/training')/d
         inputs[d]=dict(checkpoint_sha256=sha256_file(original/'seed-7/model.pt'),preprocessor_sha256=sha256_file(original/'preprocessor.joblib'))
+        earlier=json.loads(Path(f'runs/linux-scaling-100000/batch-study/{d}/study_plan.json').read_text())
+        if earlier['checkpoint_sha256']!=inputs[d]['checkpoint_sha256']: raise ValueError('Systems checkpoint differs from its own prior baseline study')
         for n in plan['sample_sizes']:
             group=[r for r in results if r['dataset']==d and r['sample_size']==n]
             if not group: continue
@@ -47,13 +50,17 @@ def execute():
                 if r['target_row_ids_sha256']!=digest: raise ValueError('Test target digest changed')
                 with np.load(path(r),allow_pickle=False) as saved:
                     p=saved['probabilities']; np.testing.assert_array_equal(saved['row_ids'],ids)
-                    if not np.allclose(p,reference,rtol=1e-5,atol=1e-5) or not np.array_equal(p.argmax(1),reference.argmax(1)): raise ValueError('Prediction equivalence failed')
+                    if p.shape!=(len(ids),2) or not np.isfinite(p).all() or not np.allclose(p.sum(1),1,atol=1e-5): raise ValueError('Invalid probability outputs')
+                    probability_equivalent=bool(np.allclose(p,reference,rtol=1e-5,atol=1e-5))
+                    disagreements=int(np.sum(p.argmax(1)!=reference.argmax(1)))
                     delta=float(np.abs(p-reference).max())
                 if len(r['repeats'])!=3 or {a['repeat'] for a in r['repeats']}!={0,1,2}: raise ValueError('Missing warm repeat')
                 if any(a['coverage_min']!=1 or a['coverage_max']!=1 for a in r['repeats']): raise ValueError('Target coverage changed')
                 checks.append(dict(block=r['block'],dataset=d,sample_size=n,method=r['method'],anchor_method=anchor['method'],
-                    anchor_block=anchor['block'],maximum_probability_difference=delta,same_class_predictions=True,target_row_ids_sha256=digest))
+                    anchor_block=anchor['block'],maximum_probability_difference=delta,probability_equivalent=probability_equivalent,
+                    class_disagreements=disagreements,same_class_predictions=disagreements==0,target_row_ids_sha256=digest))
                 flat={k:v for k,v in r.items() if k!='repeats'}
+                flat.update(probability_equivalent=probability_equivalent,class_disagreements=disagreements,maximum_probability_difference=delta)
                 flat.update(warm_median_s=float(np.median([a['total_inference_s'] for a in r['repeats']])),
                     warm_min_s=min(a['total_inference_s'] for a in r['repeats']),warm_max_s=max(a['total_inference_s'] for a in r['repeats']))
                 rows.append(flat)
@@ -61,11 +68,19 @@ def execute():
     frame=pd.DataFrame(rows); frame.to_csv(PUBLIC/'condition_results.csv',index=False)
     summary=frame.groupby(['dataset','sample_size','method']).agg(blocks=('block','count'),test_flows=('test_flows','first'),test_nodes=('test_nodes','first'),
         transformed_width=('transformed_width','first'),mean_first_process_s=('first_prediction_process_s','mean'),sd_first_process_s=('first_prediction_process_s','std'),
-        mean_warm_s=('warm_median_s','mean'),sd_warm_s=('warm_median_s','std'),mean_whole_peak_rss_mb=('whole_process_peak_rss_mb_sampled','mean')).reset_index()
+        mean_warm_s=('warm_median_s','mean'),sd_warm_s=('warm_median_s','std'),mean_whole_peak_rss_mb=('whole_process_peak_rss_mb_sampled','mean'),
+        all_probabilities_equivalent=('probability_equivalent','all'),maximum_class_disagreements=('class_disagreements','max'),
+        maximum_probability_difference=('maximum_probability_difference','max')).reset_index()
     summary.to_csv(PUBLIC/'summary.csv',index=False); summary.to_latex(PUBLIC/'summary.tex',index=False,float_format='%.4f')
-    for name in ['frozen_plan.json','completion.json','failures.json']: shutil.copyfile(ROOT/name,PUBLIC/name)
+    for name in ['frozen_plan.json','completion.json']: shutil.copyfile(ROOT/name,PUBLIC/name)
+    # Keep complete diagnostics privately; publish errors without workstation paths.
+    dump(PUBLIC/'failures.json',[dict(**{k:v for k,v in r.items() if k!='error'},error=r['error'].strip().splitlines()[-1],
+        private_diagnostic_sha256=hashlib.sha256(r['error'].encode()).hexdigest()) for r in failures])
     dump(PUBLIC/'prediction_checks.json',checks); dump(PUBLIC/'inputs.json',inputs)
-    dump(PUBLIC/'verification.json',dict(requested=len(expected),verified=len(checks),failures=len(failures),same_frozen_models_across_sizes=True,
+    dump(PUBLIC/'verification.json',dict(requested=len(expected),audited_conditions=len(checks),
+        equivalent_conditions=sum(c['probability_equivalent'] and c['same_class_predictions'] for c in checks),
+        numerical_mismatch_conditions=sum(not(c['probability_equivalent'] and c['same_class_predictions']) for c in checks),
+        failures=len(failures),same_frozen_models_across_sizes=True,
         uncertainty='sample SD across three process-block medians; not three independent model fits or a population confidence interval'))
     plt.rcParams.update({'font.size':8,'pdf.fonttype':42,'ps.fonttype':42})
     labels={'full':'Full','random':'Random exact','metis':'METIS exact','cached':'Layer-wise','factored':'Factored mean'}
@@ -84,4 +99,6 @@ def execute():
     print(summary.to_string(index=False))
 
 
-if __name__=='__main__': execute()
+if __name__=='__main__':
+    p=argparse.ArgumentParser(); p.add_argument('--run-root',default=str(ROOT)); p.add_argument('--public-root',default=str(PUBLIC)); a=p.parse_args()
+    ROOT=Path(a.run_root); PUBLIC=Path(a.public_root); execute()

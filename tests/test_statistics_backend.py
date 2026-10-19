@@ -89,3 +89,35 @@ def test_compressed_closure_preserves_fitted_weights_exactly(monkeypatch):
     old,old_history,_=fit(g,g,summary,summary,batches,cfg,7,'full')
     assert history==old_history
     for key,value in new.state_dict().items(): assert torch.equal(value,old.state_dict()[key])
+
+
+def test_input_tensor_reuse_preserves_complete_fits_bitwise():
+    from test_resources import star
+    from ca_edgeids.controlled_training import fit
+    from ca_edgeids.statistics_backend import summarize
+    import numpy as np
+    import torch
+    g=star(); g.y=np.array([0,1,0])
+    cfg=dict(classes=2,hidden=4,layers=2,dropout=.2,learning_rate=.003,weight_decay=.0001,epochs=4,patience=3,label_names=['Benign','Attack'],threads=1)
+    batches=[np.array([0,1]),np.array([2])]
+    cached=summarize(g); plain=summarize(g); plain.cache_enabled=False
+    new,history,_=fit(g,g,cached,cached,batches,cfg,7,'full')
+    old,old_history,_=fit(g,g,plain,plain,batches,cfg,7,'full')
+    assert history==old_history
+    for key,value in new.state_dict().items(): assert torch.equal(value,old.state_dict()[key])
+
+
+def test_input_cache_is_bounded_and_contains_only_fixed_inputs():
+    from test_resources import star
+    from ca_edgeids.statistics_backend import fixed_inputs,summarize
+    import numpy as np
+    import torch
+    g=star(); summary=summarize(g)
+    _,a=fixed_inputs(g,summary,np.array([0]),2,'cpu')
+    _,b=fixed_inputs(g,summary,np.array([1]),2,'cpu')
+    assert a is b  # Same node closure across different flow batches.
+    assert all(not t.requires_grad for t in a)
+    assert summary._memo['bytes']<=summary.closure_cache_bytes
+    tiny=summarize(g); tiny.closure_cache_bytes=1
+    fixed_inputs(g,tiny,np.arange(3),2,'cpu')
+    assert not tiny._memo

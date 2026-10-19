@@ -167,6 +167,13 @@ def execute(complete=False):
                 f"{record['macro_precision']:.4f}",f"{record['macro_recall']:.4f}",f"{record['part_forward_ms']:.2f}",f"{record['total_ms']:.2f}",f"{record['rss_mib']:.1f}"])
     table('table_C_partition_counts',['Dataset','Method','$P$','Test $n$','Macro $F_1$','Weighted $F_1$','Macro P','Macro R','Part. forward ms','Total ms','RSS MiB'],rows)
     systems=pd.DataFrame(systems)
+    comparison=systems[(systems.method=='full')|((systems.method.isin(['random','metis']))&(systems.partitions==4))]
+    if len(comparison)!=9: raise ValueError('Missing fixed four-partition method comparison')
+    comparison.to_csv(OUT/'table_D_fixed_methods.csv',index=False)
+    printable=[]
+    for r in comparison.itertuples():
+        printable.append([r.dataset.upper(),r.method,str(r.partitions),str(r.test_n),f'{r.macro_f1:.4f}',f'{r.weighted_f1:.4f}',f'{r.total_ms:.2f}',f'{r.rss_mib:.1f}'])
+    table('table_D_fixed_methods',['Dataset','Method','$P$','Test $n$','Macro $F_1$','Weighted $F_1$','Total ms','RSS MiB'],printable)
     for kind in ['quality','time']:
         fig,axes=plt.subplots(1,3,figsize=(7.1,2.9))
         for ax,d in zip(axes,DATASETS):

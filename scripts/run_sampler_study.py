@@ -154,5 +154,7 @@ def evaluate_all():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(); p.add_argument('--stage',required=True,choices=['select','seeds','evaluate']); a=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument('--stage',required=True,choices=['select','seeds','evaluate'])
+    p.add_argument('--run-root',default=str(ROOT)); p.add_argument('--public-root',default=str(PUBLIC)); a=p.parse_args()
+    ROOT=Path(a.run_root); PUBLIC=Path(a.public_root)
     {'select':select,'seeds':seeds,'evaluate':evaluate_all}[a.stage]()

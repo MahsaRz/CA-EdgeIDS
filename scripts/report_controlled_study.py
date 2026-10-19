@@ -137,4 +137,6 @@ def test():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(); parser.add_argument('--stage',choices=['train','evaluate'],required=True)
-    args=parser.parse_args(); selection() if args.stage=='train' else test()
+    parser.add_argument('--run-root',default=str(ROOT)); parser.add_argument('--public-root',default=str(PUBLIC))
+    args=parser.parse_args(); ROOT=Path(args.run_root); PUBLIC=Path(args.public_root)
+    selection() if args.stage=='train' else test()

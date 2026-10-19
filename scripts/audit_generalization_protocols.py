@@ -1,4 +1,5 @@
 """Report host-disjoint and temporal feasibility without fitting a model."""
+import argparse
 import json
 from pathlib import Path
 
@@ -9,8 +10,8 @@ from ca_edgeids.data import SOURCE,DEST,normalize_labels,sha256_file,split_rows,
 from ca_edgeids.experiment import dump
 
 
-def inspect():
-    out=Path('artifacts/generalization-preflight-100000'); out.mkdir(parents=True,exist_ok=False)
+def inspect(output='artifacts/generalization-preflight-100000'):
+    out=Path(output); out.mkdir(parents=True,exist_ok=False)
     reports=[]; supports=[]
     for dataset in ['ton','cse','bot']:
         cfg=json.loads(Path(f'configs/{dataset}_binary_linux_100000.json').read_text())
@@ -52,4 +53,5 @@ def inspect():
     print(table.to_string(index=False))
 
 
-if __name__=='__main__': inspect()
+if __name__=='__main__':
+    p=argparse.ArgumentParser(); p.add_argument('--out',default='artifacts/generalization-preflight-100000'); a=p.parse_args(); inspect(a.out)

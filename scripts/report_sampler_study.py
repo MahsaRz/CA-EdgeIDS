@@ -1,4 +1,5 @@
 """Verify sampled-training selections, saved predictions and matched targets."""
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -93,4 +94,6 @@ def execute():
     print(summary.to_string(index=False))
 
 
-if __name__=='__main__': execute()
+if __name__=='__main__':
+    p=argparse.ArgumentParser(); p.add_argument('--run-root',default=str(ROOT)); p.add_argument('--public-root',default=str(PUBLIC)); a=p.parse_args()
+    ROOT=Path(a.run_root); PUBLIC=Path(a.public_root); execute()
