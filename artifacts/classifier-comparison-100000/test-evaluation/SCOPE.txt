@@ -1,0 +1,4 @@
+Selected-model evaluation on previously inspected 100000-flow pilot splits.
+One initialization seed; no model-seed confidence intervals or final unseen-host claim.
+Timing values in selected_results are shared-process single observations, not a latency or memory comparison.
+Test results do not authorize further candidate or threshold tuning on this holdout.

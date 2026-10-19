@@ -84,8 +84,8 @@ def select():
                         original_code=json.loads((original/'code_manifest.json').read_text())['package_source_sha256']
                         for name in ['model.py','experiment.py','graph.py','data.py']:
                             if sha256_file(Path('src/ca_edgeids')/name)!=original_code[name]: raise ValueError('Reused fit numerical source differs')
-                        prior_inputs=json.loads(Path('artifacts/cached-confirmation-100000/block-1/inputs.json').read_text())
-                        if sha256_file(original/'seed-7/model.pt')!=prior_inputs[dataset]['checkpoint_sha256']:
+                        prior_inputs=json.loads((Path('runs/linux-scaling-100000/batch-study')/dataset/'study_plan.json').read_text())
+                        if sha256_file(original/'seed-7/model.pt')!=prior_inputs['checkpoint_sha256']:
                             raise ValueError('Original checkpoint differs from its earlier frozen hash')
                         old=torch.load(original/'seed-7/model.pt',map_location='cpu',weights_only=False)
                         for key in ['epochs','patience','hidden','layers','dropout','learning_rate','weight_decay','max_edges_per_batch','train_parts','train_partition_method','features','categorical']:
