@@ -1,0 +1,134 @@
+{
+  "dataset": "ton",
+  "task": "multiclass",
+  "scope": "uniform_pilot",
+  "missing_classes": {
+    "train": [
+      "Backdoor",
+      "Ransomware"
+    ],
+    "validation": [
+      "Backdoor",
+      "MITM",
+      "Ransomware"
+    ],
+    "test": [
+      "MITM"
+    ]
+  },
+  "can_train_and_select_all_classes": false,
+  "can_evaluate_all_classes": false,
+  "nodes_per_split": {
+    "train": 353,
+    "validation": 160,
+    "test": 145
+  },
+  "shared_hosts_between_splits": {
+    "train/validation": 100,
+    "train/test": 94,
+    "validation/test": 54
+  },
+  "interpretation": "Host-pair isolation permits shared hosts. Counts indicate feasibility, not adequate statistical power. Do not choose seeds or merge classes to improve test outcomes.",
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 5819,
+      "train_host_pairs": 219,
+      "validation_flows": 2989,
+      "validation_host_pairs": 73,
+      "test_flows": 2166,
+      "test_host_pairs": 65,
+      "all_host_pairs": 357
+    },
+    {
+      "class": "Backdoor",
+      "train_flows": 0,
+      "train_host_pairs": 0,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 36,
+      "test_host_pairs": 2,
+      "all_host_pairs": 2
+    },
+    {
+      "class": "DDoS",
+      "train_flows": 1746,
+      "train_host_pairs": 15,
+      "validation_flows": 1317,
+      "validation_host_pairs": 8,
+      "test_flows": 474,
+      "test_host_pairs": 8,
+      "all_host_pairs": 31
+    },
+    {
+      "class": "DoS",
+      "train_flows": 1166,
+      "train_host_pairs": 15,
+      "validation_flows": 53,
+      "validation_host_pairs": 5,
+      "test_flows": 29,
+      "test_host_pairs": 4,
+      "all_host_pairs": 24
+    },
+    {
+      "class": "Injection",
+      "train_flows": 606,
+      "train_host_pairs": 27,
+      "validation_flows": 463,
+      "validation_host_pairs": 10,
+      "test_flows": 166,
+      "test_host_pairs": 7,
+      "all_host_pairs": 44
+    },
+    {
+      "class": "MITM",
+      "train_flows": 9,
+      "train_host_pairs": 2,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 0,
+      "test_host_pairs": 0,
+      "all_host_pairs": 2
+    },
+    {
+      "class": "Password",
+      "train_flows": 1438,
+      "train_host_pairs": 26,
+      "validation_flows": 184,
+      "validation_host_pairs": 8,
+      "test_flows": 347,
+      "test_host_pairs": 13,
+      "all_host_pairs": 47
+    },
+    {
+      "class": "Ransomware",
+      "train_flows": 0,
+      "train_host_pairs": 0,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 9,
+      "test_host_pairs": 2,
+      "all_host_pairs": 2
+    },
+    {
+      "class": "Scanning",
+      "train_flows": 3608,
+      "train_host_pairs": 346,
+      "validation_flows": 1551,
+      "validation_host_pairs": 111,
+      "test_flows": 1452,
+      "test_host_pairs": 100,
+      "all_host_pairs": 557
+    },
+    {
+      "class": "XSS",
+      "train_flows": 2408,
+      "train_host_pairs": 18,
+      "validation_flows": 446,
+      "validation_host_pairs": 5,
+      "test_flows": 1518,
+      "test_host_pairs": 5,
+      "all_host_pairs": 28
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "dataset": "bot",
+  "scope": "complete_source_split_feasibility_not_model_results",
+  "archive_sha256": "8208d46a22363368cc118e6a19bf7db235d22e6d48c38b337a86087802cb3342",
+  "csv_sha256_from_verified_provenance": "a94465c84ee393609db43464bc48bf84d01d1a68d1fe5b858071bf935d2e7a1b",
+  "source_rows": 37763497,
+  "split_seed": 42,
+  "split_protocol": "conversation",
+  "fractions": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "unique_host_pairs": 333,
+  "missing_classes": {
+    "train": [],
+    "validation": [
+      "Theft"
+    ],
+    "test": []
+  },
+  "can_train_and_select_all_classes": false,
+  "can_evaluate_all_classes": true,
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 79503,
+      "train_host_pairs": 215,
+      "validation_flows": 1775,
+      "validation_host_pairs": 52,
+      "test_flows": 53759,
+      "test_host_pairs": 66,
+      "all_host_pairs": 333
+    },
+    {
+      "class": "DDoS",
+      "train_flows": 12245311,
+      "train_host_pairs": 12,
+      "validation_flows": 561937,
+      "validation_host_pairs": 1,
+      "test_flows": 5524599,
+      "test_host_pairs": 3,
+      "all_host_pairs": 16
+    },
+    {
+      "class": "DoS",
+      "train_flows": 12979217,
+      "train_host_pairs": 12,
+      "validation_flows": 589641,
+      "validation_host_pairs": 1,
+      "test_flows": 3104325,
+      "test_host_pairs": 3,
+      "all_host_pairs": 16
+    },
+    {
+      "class": "Reconnaissance",
+      "train_flows": 1377675,
+      "train_host_pairs": 12,
+      "validation_flows": 29830,
+      "validation_host_pairs": 1,
+      "test_flows": 1213494,
+      "test_host_pairs": 3,
+      "all_host_pairs": 16
+    },
+    {
+      "class": "Theft",
+      "train_flows": 1514,
+      "train_host_pairs": 2,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 917,
+      "test_host_pairs": 1,
+      "all_host_pairs": 3
+    }
+  ],
+  "interpretation": "Frozen split audited before model fitting. Counts alone do not demonstrate statistical power or generalization; no seeds searched, no class merging, no test scores used."
+}

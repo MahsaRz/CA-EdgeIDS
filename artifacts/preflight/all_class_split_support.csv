@@ -1,0 +1,45 @@
+dataset,scope,class,train_flows,train_host_pairs,validation_flows,validation_host_pairs,test_flows,test_host_pairs,all_host_pairs
+ton,30000-flow uniform pilot,Benign,5819,219,2989,73,2166,65,357
+ton,30000-flow uniform pilot,Backdoor,0,0,0,0,36,2,2
+ton,30000-flow uniform pilot,DDoS,1746,15,1317,8,474,8,31
+ton,30000-flow uniform pilot,DoS,1166,15,53,5,29,4,24
+ton,30000-flow uniform pilot,Injection,606,27,463,10,166,7,44
+ton,30000-flow uniform pilot,MITM,9,2,0,0,0,0,2
+ton,30000-flow uniform pilot,Password,1438,26,184,8,347,13,47
+ton,30000-flow uniform pilot,Ransomware,0,0,0,0,9,2,2
+ton,30000-flow uniform pilot,Scanning,3608,346,1551,111,1452,100,557
+ton,30000-flow uniform pilot,XSS,2408,18,446,5,1518,5,28
+ton,Complete source,Benign,3213410,18427,1672127,5899,1213932,6009,30335
+ton,Complete source,Backdoor,98,9,51,2,16660,3,14
+ton,Complete source,DDoS,1012280,63,730180,22,283774,23,108
+ton,Complete source,DoS,671013,108,29035,27,12561,25,160
+ton,Complete source,Injection,348832,55,236658,26,98975,21,102
+ton,Complete source,MITM,7483,91,115,32,125,31,154
+ton,Complete source,Password,833531,72,113420,19,206372,28,119
+ton,Complete source,Ransomware,9,1,0,0,3416,2,3
+ton,Complete source,Scanning,2091098,468,863025,152,827296,142,762
+ton,Complete source,XSS,1385434,63,246102,16,823484,18,97
+bot,30000-flow uniform pilot,Benign,68,18,6,2,35,3,23
+bot,30000-flow uniform pilot,DDoS,9696,12,461,1,4401,3,16
+bot,30000-flow uniform pilot,DoS,10295,12,455,1,2491,3,16
+bot,30000-flow uniform pilot,Reconnaissance,1114,12,28,1,947,3,16
+bot,30000-flow uniform pilot,Theft,2,1,0,0,1,1,2
+bot,Complete source,Benign,79503,215,1775,52,53759,66,333
+bot,Complete source,DDoS,12245311,12,561937,1,5524599,3,16
+bot,Complete source,DoS,12979217,12,589641,1,3104325,3,16
+bot,Complete source,Reconnaissance,1377675,12,29830,1,1213494,3,16
+bot,Complete source,Theft,1514,2,0,0,917,1,3
+cse,30000-flow uniform pilot,Benign,15311,7838,5804,2538,5365,2635,13011
+cse,30000-flow uniform pilot,Bot,162,7,43,2,27,1,10
+cse,30000-flow uniform pilot,BruteForce,174,2,0,0,0,0,2
+cse,30000-flow uniform pilot,DDoS,1173,12,558,4,438,4,20
+cse,30000-flow uniform pilot,DoS,38,2,0,0,722,2,4
+cse,30000-flow uniform pilot,Infiltration,54,23,82,17,40,15,55
+cse,30000-flow uniform pilot,Web Attacks,9,1,0,0,0,0,1
+cse,Complete source,Benign,9590916,1118517,3685403,372782,3359248,372926,1864225
+cse,Complete source,Bot,96232,7,30973,2,15892,1,10
+cse,Complete source,BruteForce,120912,2,0,0,0,0,2
+cse,Complete source,DDoS,757269,12,355150,4,277851,4,20
+cse,Complete source,DoS,23628,2,0,0,460371,2,4
+cse,Complete source,Infiltration,35970,2838,54990,865,25401,901,4604
+cse,Complete source,Web Attacks,3446,5,26,1,30,1,7

@@ -58,6 +58,8 @@ METIS plus GraphSAGE alone is established engineering integration. A defensible 
 
 ## Near-term execution order
 
+**Measured gate update:** the complete-source audit now demonstrates missing validation classes in every multiclass dataset under the frozen pair split; CSE BruteForce spans only two pairs. Read [MULTICLASS_FEASIBILITY.md](MULTICLASS_FEASIBILITY.md) before launching Phase 3/4 multiclass runs. Keep this infeasibility outcome and revise the protocol explicitly. Binary scaling can continue independently; larger samples cannot fix the recorded full-source class absences.
+
 1. Finish correctness tests and synthetic smoke artifacts; publish the isolated branch.
 2. Resolve v2 download delivery, verify files and original label spellings.
 3. Run a small real binary pilot; inspect false positives and model inputs.

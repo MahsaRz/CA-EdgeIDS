@@ -1,0 +1,127 @@
+{
+  "dataset": "ton",
+  "scope": "complete_source_split_feasibility_not_model_results",
+  "archive_sha256": "69dd3b8bd59e23f0718dfc69b2757cb6ca08fe2c4c1d4fd126b8bbd204bbbad2",
+  "csv_sha256_from_verified_provenance": "7751fb955ca50a2c113ec455eddd39ca23fcfa99eb1ab488c4526c43c2a20081",
+  "source_rows": 16940496,
+  "split_seed": 42,
+  "split_protocol": "conversation",
+  "fractions": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "unique_host_pairs": 30798,
+  "missing_classes": {
+    "train": [],
+    "validation": [
+      "Ransomware"
+    ],
+    "test": []
+  },
+  "can_train_and_select_all_classes": false,
+  "can_evaluate_all_classes": true,
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 3213410,
+      "train_host_pairs": 18427,
+      "validation_flows": 1672127,
+      "validation_host_pairs": 5899,
+      "test_flows": 1213932,
+      "test_host_pairs": 6009,
+      "all_host_pairs": 30335
+    },
+    {
+      "class": "Backdoor",
+      "train_flows": 98,
+      "train_host_pairs": 9,
+      "validation_flows": 51,
+      "validation_host_pairs": 2,
+      "test_flows": 16660,
+      "test_host_pairs": 3,
+      "all_host_pairs": 14
+    },
+    {
+      "class": "DDoS",
+      "train_flows": 1012280,
+      "train_host_pairs": 63,
+      "validation_flows": 730180,
+      "validation_host_pairs": 22,
+      "test_flows": 283774,
+      "test_host_pairs": 23,
+      "all_host_pairs": 108
+    },
+    {
+      "class": "DoS",
+      "train_flows": 671013,
+      "train_host_pairs": 108,
+      "validation_flows": 29035,
+      "validation_host_pairs": 27,
+      "test_flows": 12561,
+      "test_host_pairs": 25,
+      "all_host_pairs": 160
+    },
+    {
+      "class": "Injection",
+      "train_flows": 348832,
+      "train_host_pairs": 55,
+      "validation_flows": 236658,
+      "validation_host_pairs": 26,
+      "test_flows": 98975,
+      "test_host_pairs": 21,
+      "all_host_pairs": 102
+    },
+    {
+      "class": "MITM",
+      "train_flows": 7483,
+      "train_host_pairs": 91,
+      "validation_flows": 115,
+      "validation_host_pairs": 32,
+      "test_flows": 125,
+      "test_host_pairs": 31,
+      "all_host_pairs": 154
+    },
+    {
+      "class": "Password",
+      "train_flows": 833531,
+      "train_host_pairs": 72,
+      "validation_flows": 113420,
+      "validation_host_pairs": 19,
+      "test_flows": 206372,
+      "test_host_pairs": 28,
+      "all_host_pairs": 119
+    },
+    {
+      "class": "Ransomware",
+      "train_flows": 9,
+      "train_host_pairs": 1,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 3416,
+      "test_host_pairs": 2,
+      "all_host_pairs": 3
+    },
+    {
+      "class": "Scanning",
+      "train_flows": 2091098,
+      "train_host_pairs": 468,
+      "validation_flows": 863025,
+      "validation_host_pairs": 152,
+      "test_flows": 827296,
+      "test_host_pairs": 142,
+      "all_host_pairs": 762
+    },
+    {
+      "class": "XSS",
+      "train_flows": 1385434,
+      "train_host_pairs": 63,
+      "validation_flows": 246102,
+      "validation_host_pairs": 16,
+      "test_flows": 823484,
+      "test_host_pairs": 18,
+      "all_host_pairs": 97
+    }
+  ],
+  "interpretation": "Frozen split audited before model fitting. Counts alone do not demonstrate statistical power or generalization; no seeds searched, no class merging, no test scores used."
+}

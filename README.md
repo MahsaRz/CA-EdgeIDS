@@ -36,6 +36,14 @@ The demo generates artificial flow records and marked plots. **Never copy demo v
 
 ## Real datasets
 
+**Multiclass feasibility update:** complete-source checks of the frozen host-pair split found missing validation classes in all three datasets; CSE BruteForce has only two host pairs in total. Multiclass fitting is paused at this protocol gate. See [the measured audit and next-step decision](docs/MULTICLASS_FEASIBILITY.md). Binary experiments remain a separate task.
+
+Check a proposed configuration before training:
+
+```text
+python -m ca_edgeids preflight --config configs/ton_multiclass_pilot.json --out runs/ton-multiclass-preflight
+```
+
 The older README links to the original dataset families. The standardized v2 files must be obtained from the dataset authors' [University of Queensland release page](https://www.cyber.uq.edu.au/project/machine-learning-based-nids-datasets). See [data provenance](docs/DATA_SOURCES.md). Keep raw data outside Git history. Never substitute original BoT/ToN schemas under the NetFlow-v2 name.
 
 `configs/nf_ton_binary.json` is an initial **protocol configuration**, not a tuned final model. It uses an explicit 10-column feature subset; it does not claim to use all 43 extended fields. Confirm the actual header, original attack labels, file hashes, and memory needs first. The same pipeline supports `dataset` values `ton`, `bot`, `cse` and `task` values `binary`, `multiclass`; use separate named configurations and run directories for each.

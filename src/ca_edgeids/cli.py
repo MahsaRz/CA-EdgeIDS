@@ -33,7 +33,11 @@ def main():
     demo=sub.add_parser("demo"); demo.add_argument("--out",required=True)
     real=sub.add_parser("run"); real.add_argument("--config",required=True); real.add_argument("--out",required=True)
     report=sub.add_parser("report"); report.add_argument("run_dir")
+    preflight=sub.add_parser("preflight"); preflight.add_argument("--config",required=True); preflight.add_argument("--out",required=True)
     args=p.parse_args()
+    if args.cmd=="preflight":
+        from .preflight import inspect
+        print(json.dumps(inspect(json.loads(Path(args.config).read_text()),args.out),indent=2)); return
     if args.cmd=="report":
         print(generate(args.run_dir)); return
     config=demo_config(Path(args.out).parent/(Path(args.out).name+"-fixture")) if args.cmd=="demo" else json.loads(Path(args.config).read_text())

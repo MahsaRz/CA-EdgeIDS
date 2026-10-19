@@ -23,10 +23,20 @@ The predefined larger 30,000-row BoT uniform sample was then run with unchanged 
 ## Open work
 
 1. METIS has no compatible PyMETIS wheel in the inspected Windows/Python environment. Those runs are explicitly unavailable. Validate on the provided Linux workflow or a suitable Linux machine; do not substitute another partitioner under its name.
-2. Complete real multiclass experiments, independently trained partition studies, controlled Cluster-GCN/GraphSAINT baselines, graph/edge-feature ablations, validation-only tuning and generalization studies.
+2. Resolve the multiclass feasibility gate before fitting multiclass models; then complete independently trained partition studies, controlled Cluster-GCN/GraphSAINT baselines, graph/edge-feature ablations, validation-only tuning and generalization studies.
 3. Profile memory/halo expansion on larger pilots before loading millions of flows into the current in-memory graph builder. Full dataset repetitions, five seeds, equal tuning budgets and final uncertainty remain outstanding.
 4. Rewrite the manuscript using verified new outputs. **Overleaf has not been modified.**
-5. Published on fork branch `mahsaraeiszadeh/DC-RCA:revision/ca-edgeids` and opened draft PR https://github.com/MahsaRz/DC-RCA/pull/1 . Direct write access to the original repository was unavailable, so the normal fork workflow was used. The original repository's main branch is unchanged.
+5. The prepared branch was also uploaded directly to `MahsaRz/DC-RCA:revision/ca-edgeids` after the owner authorized Git Credential Manager. Draft PR https://github.com/MahsaRz/DC-RCA/pull/1 remains the earlier fork-based review. The original repository's main branch is unchanged.
+
+## Next-phase findings
+
+**24 correctness tests pass.** A new `preflight` command reports class support, class-specific host-pair counts, shared-host counts, and split feasibility without fitting a model. The run guard now also rejects missing training classes before allocating graphs. A regression fixture checks complete-source pair counts, reverse-direction grouping, and provenance count mismatches.
+
+All three 30,000-flow multiclass samples fail the all-class selection gate. Complete-source streaming checks of **73,597,701 flows** confirm that the frozen seed-42 pair split has no validation Ransomware in ToN, no validation Theft in BoT, and no validation BruteForce or DoS in CSE. CSE has no test BruteForce either; that family occupies only two pairs across the entire source. Increasing sample size cannot resolve these complete-source absences. No multiclass models were trained and no seeds were searched. See [the measured feasibility report](MULTICLASS_FEASIBILITY.md) and `artifacts/preflight/` for exact supports and a reproducible figure.
+
+Binary scaling pilots can proceed independently where both training/validation classes exist. Full multiclass experiments require a documented protocol revision and appropriately limited claims. The new audit evidence must be reflected in the manuscript rather than hidden by changing seeds or labels.
+
+The **30,000-flow ToN and CSE binary scaling pilots are complete**. All fixed targets are scored exactly once and Full/Random probabilities agree; partitioned total inference is slower in both pilots. See [binary scaling evidence](BINARY_SCALING_PILOTS.md). The aggregate bundles retain metrics and timing components, with METIS explicitly unavailable. These are one-seed initial-setting experiments, not final paper results; no claim of a performance advantage is supported.
 
 **Linux verification passed:** https://github.com/mahsaraeiszadeh/DC-RCA/actions/runs/39277093598 (core commit `8e44c9b`). All tests and the synthetic smoke workflow passed. The downloaded aggregate CI tables were independently inspected: actual METIS results exist for 2, 4 and 8 partitions, with zero unavailable configurations. `docs/LINUX_VERIFICATION.json` records the scope. This validates the METIS software path on Linux, **not real-data METIS accuracy or performance**. Real-data experiments remain pending. The workflow additionally requires all three methods to appear, so missing METIS cannot silently yield a green smoke check.
 

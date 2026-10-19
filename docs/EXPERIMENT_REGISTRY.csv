@@ -1,11 +1,11 @@
 id,question,unit,controls,outputs,status
-A,What data and labels are actually used?,original flow,source SHA256 and split manifest,table_A_dataset_labels,pipeline implemented; real data audit pending
+A,What data and labels are actually used?,original flow,source SHA256 and split manifest,table_A_dataset_labels,complete source counts nodes labels and frozen pair-split feasibility audited
 B,Does the manuscript match code?,resolved run,config plus environment plus checkpoint,table_B_configuration,implemented
-C,How does inference partition count affect fixed-workload cost?,fixed checkpoint per seed,same target IDs and exact coverage,table_C_partition_benchmark and figures_2_3,implemented; real data pending
-D,Full versus Random versus METIS inference?,fixed checkpoint per seed,same weights inputs targets and timing definitions,table_D_full_random_metis and figure_4,implemented; METIS platform dependent
-E,How well does each class perform?,original flow,fixed class order and test supports,table_E_per_class and confusion matrix,implemented; real data pending
+C,How does inference partition count affect fixed-workload cost?,fixed checkpoint per seed,same target IDs and exact coverage,table_C_partition_benchmark and figures_2_3,binary 5000/30000 pilots complete; full matrix pending
+D,Full versus Random versus METIS inference?,fixed checkpoint per seed,same weights inputs targets and timing definitions,table_D_full_random_metis and figure_4,Full/Random real pilots complete; METIS Linux synthetic only
+E,How well does each class perform?,original flow,fixed class order and test supports,table_E_per_class and confusion matrix,binary pilot per-class reports complete; multiclass blocked by documented split feasibility
 F,Does partitioned training affect accuracy?,independently trained model,paired initialization equal validation budget and target coverage,training_partition_ablation,planned
 G,What do graph and edge features contribute?,independently trained model,same split seeds features and tuning budget,topology_and_feature_ablation,planned
 H,How does this compare with established graph samplers?,independently trained model,Cluster-GCN GraphSAINT and unpartitioned GraphSAGE under matched protocol,graph_baselines,planned
 I,Does it generalize beyond shared hosts?,held-out host or temporal split,documented exclusions and genuine timestamps only,generalization_study,split primitives implemented; experiment pending
-J,Are memory and latency comparisons controlled?,fresh process per configuration,same device resident-input accounting warmup and repetitions,isolated_system_benchmark,implemented; real scaling validation pending
+J,Are memory and latency comparisons controlled?,fresh process per configuration,same device resident-input accounting warmup and repetitions,isolated_system_benchmark,fresh-process binary pilots complete; full scaling and halo profiling pending

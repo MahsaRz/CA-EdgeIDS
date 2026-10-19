@@ -1,0 +1,77 @@
+{
+  "dataset": "bot",
+  "task": "multiclass",
+  "scope": "uniform_pilot",
+  "missing_classes": {
+    "train": [],
+    "validation": [
+      "Theft"
+    ],
+    "test": []
+  },
+  "can_train_and_select_all_classes": false,
+  "can_evaluate_all_classes": true,
+  "nodes_per_split": {
+    "train": 13,
+    "validation": 4,
+    "test": 4
+  },
+  "shared_hosts_between_splits": {
+    "train/validation": 3,
+    "train/test": 4,
+    "validation/test": 1
+  },
+  "interpretation": "Host-pair isolation permits shared hosts. Counts indicate feasibility, not adequate statistical power. Do not choose seeds or merge classes to improve test outcomes.",
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 68,
+      "train_host_pairs": 18,
+      "validation_flows": 6,
+      "validation_host_pairs": 2,
+      "test_flows": 35,
+      "test_host_pairs": 3,
+      "all_host_pairs": 23
+    },
+    {
+      "class": "DDoS",
+      "train_flows": 9696,
+      "train_host_pairs": 12,
+      "validation_flows": 461,
+      "validation_host_pairs": 1,
+      "test_flows": 4401,
+      "test_host_pairs": 3,
+      "all_host_pairs": 16
+    },
+    {
+      "class": "DoS",
+      "train_flows": 10295,
+      "train_host_pairs": 12,
+      "validation_flows": 455,
+      "validation_host_pairs": 1,
+      "test_flows": 2491,
+      "test_host_pairs": 3,
+      "all_host_pairs": 16
+    },
+    {
+      "class": "Reconnaissance",
+      "train_flows": 1114,
+      "train_host_pairs": 12,
+      "validation_flows": 28,
+      "validation_host_pairs": 1,
+      "test_flows": 947,
+      "test_host_pairs": 3,
+      "all_host_pairs": 16
+    },
+    {
+      "class": "Theft",
+      "train_flows": 2,
+      "train_host_pairs": 1,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 1,
+      "test_host_pairs": 1,
+      "all_host_pairs": 2
+    }
+  ]
+}

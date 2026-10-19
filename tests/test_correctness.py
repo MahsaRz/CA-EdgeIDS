@@ -180,3 +180,62 @@ def test_missing_validation_class_stops_before_training(dataset,tmp_path):
     with pytest.raises(ValueError,match="Validation split lacks"):
         run(cfg,tmp_path/"guard-run")
     assert not list((tmp_path/"guard-run").rglob("model.pt"))
+
+
+def test_preflight_detects_class_confined_to_one_host_pair(dataset,tmp_path):
+    from ca_edgeids.preflight import inspect
+    cfg,p=dataset
+    f=p.frame.copy()
+    f["Attack"]="Benign"; f["Label"]=0
+    pair=tuple(sorted((str(f.iloc[0].IPV4_SRC_ADDR),str(f.iloc[0].IPV4_DST_ADDR))))
+    selected=np.array([tuple(sorted((str(s),str(d))))==pair for s,d in zip(f.IPV4_SRC_ADDR,f.IPV4_DST_ADDR)])
+    f.loc[selected,"Attack"]="DDoS"; f.loc[selected,"Label"]=1
+    path=tmp_path/"one-pair-attack.csv"; f.to_csv(path,index=False)
+    result=inspect(dict(cfg,csv=str(path)),tmp_path/"preflight")
+    attack=next(r for r in result["class_support"] if r["class"]=="Attack")
+    assert attack["all_host_pairs"]==1
+    assert sum(attack[f"{s}_flows"]>0 for s in ["train","validation","test"])==1
+    assert not result["can_train_and_select_all_classes"]
+    assert not list((tmp_path/"preflight").rglob("model.pt"))
+    with pytest.raises(FileExistsError): inspect(cfg,tmp_path/"preflight")
+
+
+def test_missing_training_class_stops_before_graph_allocation(dataset,tmp_path):
+    from ca_edgeids.experiment import run
+    cfg,p=dataset
+    f=p.frame.copy()
+    f.loc[p.split=="train","Attack"]="Benign"
+    f.loc[p.split=="train","Label"]=0
+    path=tmp_path/"invalid-training.csv"; f.to_csv(path,index=False)
+    out=tmp_path/"training-guard"
+    with pytest.raises(ValueError,match="Training split lacks"):
+        run(dict(cfg,csv=str(path)),out)
+    assert not (out/"graph_statistics.json").exists()
+    assert json.loads((out/"protocol_checks.json").read_text())["missing_training_classes"]==["Attack"]
+
+
+def test_streaming_source_audit_preserves_reverse_pair_assignment(dataset,tmp_path):
+    import hashlib
+    import importlib.util
+    import zipfile
+    cfg,p=dataset
+    # Audit a fixture and its reversed records, with a real archive digest/count check.
+    f=p.frame[["IPV4_SRC_ADDR","IPV4_DST_ADDR","Label","Attack"]].copy()
+    reverse=f.rename(columns={"IPV4_SRC_ADDR":"IPV4_DST_ADDR","IPV4_DST_ADDR":"IPV4_SRC_ADDR"})
+    f=pd.concat([f,reverse],ignore_index=True)
+    archive=tmp_path/"fixture.zip"
+    with zipfile.ZipFile(archive,"w") as z: z.writestr("fixture.csv",f.to_csv(index=False))
+    provenance={"dataset":"fixture","archive_sha256":hashlib.sha256(archive.read_bytes()).hexdigest(),
+                "csv_sha256":"fixture-only","source_rows":len(f),"original_attack_counts":f.Attack.value_counts().to_dict()}
+    source=tmp_path/"provenance.json"; source.write_text(json.dumps(provenance))
+    spec=importlib.util.spec_from_file_location("audit_split",Path(__file__).parents[1]/"scripts/audit_split_feasibility.py")
+    module=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
+    out=tmp_path/"audit.json"; module.audit(archive,"bot",source,out)
+    result=json.loads(out.read_text())
+    for row in result["class_support"]:
+        for part in ["train","validation","test"]:
+            expected=int(np.sum((p.split==part) & (p.frame.Attack==row["class"])))
+            assert row[f"{part}_flows"]==2*expected
+    provenance["source_rows"]+=1; source.write_text(json.dumps(provenance))
+    with pytest.raises(ValueError,match="counts disagree"):
+        module.audit(archive,"bot",source,tmp_path/"bad-audit.json")

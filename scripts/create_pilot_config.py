@@ -21,7 +21,7 @@ def create(dataset,rows=5000,task="binary"):
     audit_path=directory/f"pilot{rows}_audit.json"
     audit_path.write_text(json.dumps(audit,indent=2),encoding="utf-8")
     cfg=json.loads(Path(f"configs/nf_{dataset}_{task}.json").read_text())
-    cfg.update(csv=str(csv),source_audit=str(audit_path),data_scope="uniform_pilot",seeds=[7],hidden=16,
+    cfg.update(csv=csv.as_posix(),source_audit=audit_path.as_posix(),data_scope="uniform_pilot",seeds=[7],hidden=16,
         epochs=10,patience=3,train_parts=4,max_edges_per_batch=512,partition_counts=[2,4,8],
         repeats=2,threads=1,isolated_benchmarks=True)
     output=Path(f"configs/{dataset}_{task}_pilot.json")

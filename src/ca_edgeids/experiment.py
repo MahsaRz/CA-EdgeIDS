@@ -131,9 +131,15 @@ def run(config,out):
     config.update(classes=len(data.names),label_names=data.names)
     dump(out/"resolved_config.json",config)
     dump(out/"dataset_manifest.json",data.manifest)
+    missing_training=[name for name,count in data.manifest["class_counts"]["train"].items() if count==0]
     missing_validation=[name for name,count in data.manifest["class_counts"]["validation"].items() if count==0]
-    dump(out/"protocol_checks.json",{"missing_validation_classes":missing_validation,
-        "valid_for_all_class_validation_selection":not missing_validation})
+    missing_test=[name for name,count in data.manifest["class_counts"]["test"].items() if count==0]
+    dump(out/"protocol_checks.json",{"missing_training_classes":missing_training,
+        "missing_validation_classes":missing_validation,"missing_test_classes":missing_test,
+        "valid_for_all_class_validation_selection":not missing_training and not missing_validation,
+        "valid_for_all_class_test_evaluation":not missing_test})
+    if missing_training:
+        raise ValueError(f"Training split lacks {missing_training}. Cannot fit a declared all-class classifier; review split feasibility before building graphs.")
     if missing_validation and config.get("require_validation_class_coverage",True):
         raise ValueError(f"Validation split lacks {missing_validation}. All-class model selection is unsupported; increase the label-independent pilot sample or review the split protocol. No test-driven seed search.")
     import joblib

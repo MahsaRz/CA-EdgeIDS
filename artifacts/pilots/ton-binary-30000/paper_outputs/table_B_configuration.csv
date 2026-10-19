@@ -1,0 +1,29 @@
+component,actual_implementation
+task,binary
+node_definition,original IP address
+target_edge,one original directed flow record
+message_direction,both directions
+node_features,"log1p(outgoing/incoming flow counts), computed separately per split snapshot"
+edge_features,L4_SRC_PORT; L4_DST_PORT; PROTOCOL; L7_PROTO; IN_BYTES; IN_PKTS; OUT_BYTES; OUT_PKTS; TCP_FLAGS; FLOW_DURATION_MILLISECONDS
+label_location,original target edges only; no label in messages
+model,edge-conditioned GraphSAGE-style mean aggregator + edge MLP
+layers,2
+hidden,16
+activation,ReLU
+dropout,0.2
+loss,weighted cross entropy; training frequencies only
+output,softmax probabilities; argmax decision
+optimizer,Adam
+learning_rate,0.001
+weight_decay,0.0001
+maximum_epochs,10
+selection,validation macro-F1; patience 3
+framework,PyTorch
+training_partitioning,random
+training_partitions,4
+seeds,[7]
+split_seed,42
+split_protocol,conversation
+test_context,K-hop incoming halo; no boundary edges discarded
+comparison,same trained weights across inference partition counts
+scope,PILOT SUBSET - NOT FULL DATASET
