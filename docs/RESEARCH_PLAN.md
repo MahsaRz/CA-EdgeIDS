@@ -10,6 +10,8 @@ The attached tables/figures checklist is useful and substantially appropriate af
 
 **Observed feasibility issue:** the 30,000-flow BoT pilot produces a test graph with just four original IP nodes. The brief's 100-2000 partition schedule cannot be applied indiscriminately. Establish actual node counts first; use valid per-dataset counts, report infeasible conditions, and separate large flow volume from large node topology. Do not randomize identities or change the graph definition merely to recover the former large-graph claim.
 
+The completed full-file IP audit found **29,245 ToN nodes, 293 BoT nodes, and 255,042 CSE nodes**, before splitting. In particular, 1000/2000 IP-node partitions are impossible for BoT even before splitting. The proposed full BoT configurations now use a smaller 2/4/8/16/32 inference sweep and eight training partitions, with feasibility checks on each actual split. These settings were adjusted using topology counts, not test classification performance.
+
 ## Phases, gates, and deliverables
 
 | Phase | Work | Exit gate | Planning allowance |

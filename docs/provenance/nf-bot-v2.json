@@ -72,5 +72,6 @@
     "Benign": 109,
     "Theft": 3
   },
-  "pilot_source_row_ids_sha256": "9fb5272a8dd9b407075623d270bd2c4e41f0b771afd9173d34fe59e133d39942"
+  "pilot_source_row_ids_sha256": "9fb5272a8dd9b407075623d270bd2c4e41f0b771afd9173d34fe59e133d39942",
+  "unique_ip_nodes": 293
 }

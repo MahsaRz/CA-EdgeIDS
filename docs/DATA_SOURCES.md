@@ -31,3 +31,5 @@ The actual archive has **15 original labels including Benign**; the UQ release p
 | Brute Force -Web; Brute Force -XSS; SQL Injection | Web Attacks |
 
 The archive audits are under `docs/provenance/`. Counts there come from full CSV scans, not from the pilot samples. ToN-v2 attack strings use lower case; BoT-v2 uses mixed case. Both retain their original strings while class IDs use an explicitly ordered canonical list.
+
+The full-file unique original IP counts are 29,245 (ToN), 293 (BoT), and 255,042 (CSE). These are all observed endpoints, not counts of causally faulty devices or independently verified physical assets. Split-specific graph counts must be reported separately.

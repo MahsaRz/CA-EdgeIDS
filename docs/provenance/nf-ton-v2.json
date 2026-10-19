@@ -82,5 +82,6 @@
     "mitm": 9,
     "ransomware": 9
   },
-  "pilot_source_row_ids_sha256": "a4125d6a52ab5e6943834427da729b6b6337d1deae488b85b87ea901a9eb00ec"
+  "pilot_source_row_ids_sha256": "a4125d6a52ab5e6943834427da729b6b6337d1deae488b85b87ea901a9eb00ec",
+  "unique_ip_nodes": 29245
 }

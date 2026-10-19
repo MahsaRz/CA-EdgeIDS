@@ -26,7 +26,9 @@ The predefined larger 30,000-row BoT uniform sample was then run with unchanged 
 2. Complete real multiclass experiments, independently trained partition studies, controlled Cluster-GCN/GraphSAINT baselines, graph/edge-feature ablations, validation-only tuning and generalization studies.
 3. Profile memory/halo expansion on larger pilots before loading millions of flows into the current in-memory graph builder. Full dataset repetitions, five seeds, equal tuning budgets and final uncertainty remain outstanding.
 4. Rewrite the manuscript using verified new outputs. **Overleaf has not been modified.**
-5. Direct upload to `MahsaRz/DC-RCA` returned HTTP 403 for the available account `mahsaraeiszadeh`. A normal fork has now been created at https://github.com/mahsaraeiszadeh/DC-RCA so the branch can be published and proposed through a draft pull request. The original repository's main branch is not changed by that workflow.
+5. Published on fork branch `mahsaraeiszadeh/DC-RCA:revision/ca-edgeids` and opened draft PR https://github.com/MahsaRz/DC-RCA/pull/1 . Direct write access to the original repository was unavailable, so the normal fork workflow was used. The original repository's main branch is unchanged. Linux CI is running; inspect its result before merging.
+
+The final full-file node audit found **29,245 ToN IP nodes; 293 BoT IP nodes; 255,042 CSE IP nodes** before splits. This confirms that the original 1000-2000 partition sweep is infeasible for BoT with genuine IP identities. Full BoT configs now propose 2/4/8/16/32 partitions and continue to reject any value above the actual split's node count.
 
 ## Time estimate
 
