@@ -61,3 +61,31 @@ def test_graph_controls_preserve_targets_and_rewiring_degrees():
     a=graph_variant(g,'rewired',77); b=graph_variant(g,'rewired',77)
     np.testing.assert_array_equal(a.message_dst,b.message_dst)
     np.testing.assert_array_equal(np.bincount(a.message_dst,minlength=4),np.bincount(g.message_dst,minlength=4))
+def test_compressed_neighbor_closure_is_identical_with_repeated_flows():
+    from test_resources import star
+    from ca_edgeids.statistics_backend import query_nodes,summary_query_nodes,summarize
+    from scipy import sparse
+    import numpy as np
+    g=star()
+    g.message_src=np.tile(g.message_src,31); g.message_dst=np.tile(g.message_dst,31); g.message_flow=np.tile(g.message_flow,31)
+    g.incoming=sparse.csr_matrix((np.arange(len(g.message_src)),(g.message_dst,np.arange(len(g.message_src)))),shape=(4,len(g.message_src)))
+    summary=summarize(g)
+    for depth in [1,2,3]:
+        for q in [np.array([0]),np.array([1,2]),np.arange(3)]:
+            np.testing.assert_array_equal(query_nodes(g,q,depth),summary_query_nodes(g,summary,q,depth))
+
+
+def test_compressed_closure_preserves_fitted_weights_exactly(monkeypatch):
+    from test_resources import star
+    from ca_edgeids.controlled_training import fit
+    import ca_edgeids.statistics_backend as backend
+    import numpy as np
+    import torch
+    g=star(); g.y=np.array([0,1,0]); summary=backend.summarize(g)
+    cfg=dict(classes=2,hidden=4,layers=2,dropout=.2,learning_rate=.003,weight_decay=.0001,epochs=3,patience=3,label_names=['Benign','Attack'],threads=1)
+    batches=[np.array([0,1]),np.array([2])]
+    new,history,_=fit(g,g,summary,summary,batches,cfg,7,'full')
+    monkeypatch.setattr(backend,'summary_query_nodes',lambda graph,summary,q,depth:backend.query_nodes(graph,q,depth))
+    old,old_history,_=fit(g,g,summary,summary,batches,cfg,7,'full')
+    assert history==old_history
+    for key,value in new.state_dict().items(): assert torch.equal(value,old.state_dict()[key])

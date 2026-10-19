@@ -42,6 +42,17 @@ def query_nodes(g,q,depth):
     return nodes
 
 
+def summary_query_nodes(g,summary,q,depth):
+    """Exact closure using unique neighbor pairs, without rescanning multiarcs."""
+    nodes=np.unique(np.r_[g.src[q],g.dst[q]]); frontier=nodes
+    for _ in range(depth):
+        expanded=np.unique(summary.adjacency[frontier].indices)
+        frontier=np.setdiff1d(expanded,nodes,assume_unique=True)
+        nodes=np.union1d(nodes,expanded)
+        if not len(frontier): break
+    return nodes
+
+
 def forward_summary(model,g,summary,q,ablation='full'):
     """Same K-hop node set/dropout draws; linear message terms are factored.
 
@@ -54,7 +65,7 @@ def forward_summary(model,g,summary,q,ablation='full'):
     q=np.asarray(q,dtype=np.int64)
     if not len(q): raise ValueError('Empty query batch')
     device=next(model.parameters()).device
-    nodes=query_nodes(g,q,model.depth)
+    nodes=summary_query_nodes(g,summary,q,model.depth)
     matrix=summary.adjacency[nodes][:,nodes].tocoo()
     indices=torch.tensor(np.stack([matrix.row,matrix.col]),dtype=torch.long,device=device)
     adjacency=torch.sparse_coo_tensor(indices,torch.tensor(matrix.data,device=device),matrix.shape).coalesce()
