@@ -7,6 +7,7 @@ data/
 runs/
 *.pt
 *.npz
+*.npy
 *.download
 *.zip
 *.csv.gz

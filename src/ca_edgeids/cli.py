@@ -35,7 +35,11 @@ def main():
     report=sub.add_parser("report"); report.add_argument("run_dir")
     preflight=sub.add_parser("preflight"); preflight.add_argument("--config",required=True); preflight.add_argument("--out",required=True)
     profile=sub.add_parser("profile"); profile.add_argument("--run-dir",required=True); profile.add_argument("--out",required=True)
+    study=sub.add_parser("batch-study"); study.add_argument("--run-dir",required=True); study.add_argument("--out",required=True)
     args=p.parse_args()
+    if args.cmd=="batch-study":
+        from .batch_study import run_study
+        print(run_study(args.run_dir,args.out)); return
     if args.cmd=="profile":
         from .profile import profile_run
         print(profile_run(args.run_dir,args.out)); return

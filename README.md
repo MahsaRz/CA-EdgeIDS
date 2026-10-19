@@ -1,4 +1,6 @@
-# CA-EdgeIDS - research rebuild
+# CA-EdgeIDS - cluster-aware flow intrusion detection
+
+Repository: [MahsaRz/CA-EdgeIDS](https://github.com/MahsaRz/CA-EdgeIDS). The repository was renamed from DC-RCA to match the revised intrusion-detection task. The working code is on `revision/ca-edgeids` while the draft review is open.
 
 **Working title:** *Cluster-Aware GraphSAGE for Flow-Level Intrusion Detection: Accuracy, Coverage, and End-to-End Cost*.
 
@@ -60,6 +62,14 @@ Runs also stop if a declared class is absent from validation, because checkpoint
 ## Interpretation and limitations
 
 [Graph-work measurements](docs/GRAPH_WORK.md) now separate small-batch repetition from partitioning. New graph files use read-only memory-mapped arrays. Default file-size and packed-tensor limits stop oversized in-memory jobs, but do not guarantee a total RAM bound. Older pilot results keep their original storage and timing definitions.
+
+Compare inference batch sizes with an existing one-seed binary run:
+
+```text
+python -m ca_edgeids batch-study --run-dir runs/ton-binary-scaling-30000 --out runs/ton-batch-study
+```
+
+This reuses the saved model and test rows. It runs a single full-graph pass and one-partition, Random and available METIS batches at 256/512/1024/2048 flows, with three timing repeats and a complete warm-up pass in a fresh process for each condition. It does not retrain the model or tune it using test results. Times exclude graph loading, process startup, partitioning and warm-up.
 
 The present partition sweep holds the checkpoint fixed. Exact halo inference should preserve accuracy; Tables C/D therefore examine **inference scheduling**, not accuracy improvements due to training partitions. Separate training-partition experiments, topology/edge-feature ablations, a direct Cluster-GCN training baseline, and GraphSAINT remain research tasks in the plan. The RF/MLP baselines have fixed initial settings and are not a final equal-budget tuned comparison.
 

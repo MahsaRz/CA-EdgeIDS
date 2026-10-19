@@ -23,9 +23,12 @@ def dump(path,value):
     Path(path).write_text(json.dumps(value,indent=2,allow_nan=False),encoding="utf-8")
 
 
-def infer(model,g,owner,config,full_graph=False):
+def infer(model,g,owner,config,full_graph=False,partition_count=None):
     """All original targets, including cut edges, exactly once. No label enters model."""
     device = config["device"]
+    requested_parts=int(owner.max())+1 if partition_count is None else partition_count
+    if requested_parts < int(owner.max())+1:
+        raise ValueError("Partition count is smaller than the ownership labels")
     model.eval()
     probabilities = np.empty((len(g.src),config["classes"]),dtype=np.float32)
     seen = np.zeros(len(g.src),dtype=np.int64)
@@ -59,7 +62,8 @@ def infer(model,g,owner,config,full_graph=False):
         raise AssertionError("Missing or duplicated flow predictions")
     return probabilities,{
         "model_forward_s":forward_s,"halo_and_transfer_s":packing_s,"total_inference_s":total,
-        "average_partition_forward_s":forward_s/(int(owner.max())+1),
+        "average_partition_forward_s":forward_s/requested_parts,
+        "requested_partition_count":requested_parts,
         "nonempty_target_partitions":len(partition_s),"batches":batch_count,
         "peak_cpu_rss_mb_sampled":mem.peak/2**20,"baseline_cpu_rss_mb":mem.baseline/2**20,
         "peak_gpu_allocated_mb":torch.cuda.max_memory_allocated(device)/2**20 if str(device).startswith("cuda") else None,
@@ -198,7 +202,7 @@ def run(config,out):
                             partition_s=timing.pop("partitioning_s")
                             warm_s=timing.pop("warmup_s")
                         else:
-                            p,timing = infer(model,g,owner,config,full_graph=method=="full")
+                            p,timing = infer(model,g,owner,config,full_graph=method=="full",partition_count=parts)
                             timing["memory_process"]="shared benchmark process; exploratory memory only"
                         if reference is None:
                             reference = p.copy()

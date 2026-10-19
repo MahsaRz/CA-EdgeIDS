@@ -1,5 +1,6 @@
 """Fresh-process inference worker for controlled configuration-local memory."""
 import argparse
+import copy
 import json
 from pathlib import Path
 import time
@@ -44,30 +45,37 @@ def load_graph(path):
     return FlowGraph(**a,incoming=incoming)
 
 
-def benchmark(graph_path,checkpoint,method,parts,out):
+def benchmark(graph_path,checkpoint,method,parts,out,batch_size=None,repeats=None):
+    if Path(str(out)+".json").exists() or Path(str(out)+".npz").exists():
+        raise FileExistsError("Refusing to overwrite prior worker output")
     # Only a checkpoint written by this project is loaded, never an external model.
     checkpoint=torch.load(checkpoint,map_location="cpu",weights_only=False)
-    cfg=checkpoint["config"]; seed=checkpoint["seed"]
+    cfg=copy.deepcopy(checkpoint["config"]); seed=checkpoint["seed"]
+    if batch_size is not None: cfg["max_edges_per_batch"]=batch_size
+    if repeats is not None: cfg["repeats"]=repeats
+    if cfg["max_edges_per_batch"]<1 or cfg["repeats"]<1:
+        raise ValueError("Batch size and repeat count must be positive")
     seed_all(seed,cfg.get("threads",1))
     g=load_graph(graph_path)
     model=EdgeSAGE(g.edge_x.shape[1],cfg["classes"],cfg["hidden"],cfg["layers"],cfg["dropout"]).to(cfg["device"])
     model.load_state_dict(checkpoint["state_dict"]); model.eval()
-    t=time.perf_counter(); owner=partition_nodes(g,method,parts,seed); partition_s=time.perf_counter()-t
+    t=time.perf_counter(); owner=partition_nodes(g,"full" if method=="chunked" else method,parts,seed); partition_s=time.perf_counter()-t
     warm=time.perf_counter()
-    first=next(query_batches(g,owner,len(g.src) if method=="full" else cfg["max_edges_per_batch"]))[1]
-    with torch.inference_mode(): model(halo_batch(g,first,model.depth,cfg["device"],cfg.get("max_batch_tensor_bytes",256*1024**2)))
+    infer(model,g,owner,cfg,full_graph=method=="full",partition_count=parts)
     sync(cfg["device"]); warm_s=time.perf_counter()-warm
     records=[]
     ref=None
     for repeat in range(cfg["repeats"]):
-        p,timing=infer(model,g,owner,cfg,full_graph=method=="full")
+        p,timing=infer(model,g,owner,cfg,full_graph=method=="full",partition_count=parts)
         if ref is None: ref=p
         elif not np.allclose(ref,p,atol=1e-6,rtol=1e-6): raise AssertionError("Repeated deterministic inference changed probabilities")
-        records.append(dict(repeat=repeat,partitioning_s=partition_s,warmup_s=warm_s,memory_process="fresh per method/partition configuration",**timing))
+        records.append(dict(repeat=repeat,partitioning_s=partition_s,warmup_s=warm_s,warmup_full_passes=1,
+                            max_edges_per_batch=cfg["max_edges_per_batch"],memory_process="fresh per method/partition/batch-size configuration",**timing))
     np.savez_compressed(str(out)+".npz",probabilities=ref,owner=owner)
     dump(str(out)+".json",records)
 
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser(); parser.add_argument("--graph",required=True); parser.add_argument("--checkpoint",required=True); parser.add_argument("--method",required=True); parser.add_argument("--parts",type=int,required=True); parser.add_argument("--out",required=True)
-    a=parser.parse_args(); benchmark(a.graph,a.checkpoint,a.method,a.parts,a.out)
+    parser.add_argument("--batch-size",type=int); parser.add_argument("--repeats",type=int)
+    a=parser.parse_args(); benchmark(a.graph,a.checkpoint,a.method,a.parts,a.out,a.batch_size,a.repeats)

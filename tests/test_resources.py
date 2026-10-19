@@ -8,7 +8,7 @@ from scipy import sparse
 
 from ca_edgeids.cli import demo_config
 from ca_edgeids.data import prepare
-from ca_edgeids.experiment import run
+from ca_edgeids.experiment import run, infer
 from ca_edgeids.graph import FlowGraph, build_graph, halo_batch
 from ca_edgeids.model import EdgeSAGE
 from ca_edgeids.profile import measure, profile_run
@@ -90,3 +90,33 @@ def test_new_graph_storage_runs_in_fresh_workers_and_profiles(tmp_path):
     assert set(work.method)=={"full","chunked","random"}
     assert work.loc[work.method=="full","message_work_factor"].item()==1
     assert not list(profile.glob("*.npy"))
+    from ca_edgeids.batch_study import run_study
+    study=run_study(out,tmp_path/"batch-study",batch_sizes=[64],partition_counts=[2],
+                    methods=["chunked","random"],repeats=1)
+    completion=json.loads((study/"completion.json").read_text())
+    assert completion["requested_conditions"]==completion["completed_conditions"]==3
+    assert completion["timing_rows"]==3 and not completion["model_retrained"]
+    timings=pd.read_csv(study/"timing_repeats.csv")
+    assert timings.loc[timings.method=="full","batches"].item()==1
+    assert timings.loc[timings.method=="chunked","batches"].item()>1
+    assert set(timings.warmup_full_passes)=={1}
+    assert all(r["same_class_predictions"] for r in json.loads((study/"prediction_checks.json").read_text()))
+
+
+def test_batch_plan_keeps_full_pass_separate_from_batch_cap():
+    from ca_edgeids.batch_study import conditions
+    jobs=conditions([256,512],[2,4],["chunked","random"])
+    assert jobs.count(("full",1,0))==1
+    assert ("chunked",1,256) in jobs and ("random",4,512) in jobs
+    assert len(jobs)==7
+    with pytest.raises(ValueError): conditions([0],[2],["chunked"])
+    with pytest.raises(ValueError): conditions([256,256],[2],["chunked"])
+
+
+def test_partition_average_includes_empty_trailing_partitions():
+    g=star(); model=EdgeSAGE(1,2,8,2,0).eval()
+    cfg={"device":"cpu","classes":2,"max_edges_per_batch":2}
+    _,timing=infer(model,g,np.zeros(4,dtype=int),cfg,partition_count=4)
+    assert timing["requested_partition_count"]==4
+    assert timing["nonempty_target_partitions"]==1
+    assert timing["average_partition_forward_s"]==timing["model_forward_s"]/4
