@@ -17,9 +17,9 @@ from ca_edgeids.runtime import environment
 from ca_edgeids.worker import load_graph
 
 
-def execute():
+def execute(output='runs/cached-inference-100000',order_seed=20261020):
     if platform.system()!='Linux': raise RuntimeError('Use the recorded Linux environment')
-    out=Path('runs/cached-inference-100000')
+    out=Path(output)
     if out.exists(): raise FileExistsError(out)
     commit=subprocess.run(['git','rev-parse','HEAD'],capture_output=True,text=True,check=True).stdout.strip()
     sources={p.name:sha256_file(p) for p in sorted(Path('src/ca_edgeids').glob('*.py'))}
@@ -31,11 +31,11 @@ def execute():
           for d in ['ton','cse','bot']
           for method,message,query in [('full',0,0),('chunked',0,512)]+
           [('cached',message,query) for message in [4096,16384] for query in [512,2048]]]
-    np.random.default_rng(20261020).shuffle(jobs)
+    np.random.default_rng(order_seed).shuffle(jobs)
     out.mkdir(parents=True,exist_ok=False)
     dump(out/'frozen_plan.json',dict(git_commit=commit,package_source_sha256=sources,
         driver_sha256=sha256_file(__file__),environment=environment(),threads=1,
-        execution_order=jobs,timing_repeats=3,order_seed=20261020,
+        execution_order=jobs,timing_repeats=3,order_seed=order_seed,
         cpu_model=next(line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name')),
         logical_cpus=os.cpu_count(),linux_memory_kib=int(next(line.split()[1] for line in Path('/proc/meminfo').read_text().splitlines() if line.startswith('MemTotal:'))),
         scope='same saved seed-7 binary models and 100000-flow sample test populations; no fitting or tuning',
@@ -97,4 +97,9 @@ def execute():
     print(out,flush=True)
 
 
-if __name__=='__main__': execute()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--out',default='runs/cached-inference-100000')
+    parser.add_argument('--order-seed',type=int,default=20261020)
+    args=parser.parse_args(); execute(args.out,args.order_seed)

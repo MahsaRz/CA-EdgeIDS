@@ -21,3 +21,9 @@ Use the three saved seed-7 binary models from the 100,000-flow Linux pilot and t
 - Retain failures and avoid selecting a winning chunk size as a tuned final configuration. These are fixed-model systems measurements, not independent trained seeds or final journal evidence.
 
 Run `python scripts/run_cached_study.py` in the prepared Linux environment. Private outputs go to `runs/cached-inference-100000/`; source, graph-array, checkpoint and reference hashes accompany the plan. The correctness tests compare against Full at depths 1-3 in both graph directions, test self-loops, parallel flows and isolated nodes, check actual message-module visits, and ensure graph/model changes recompute the states. Cached inference does not read graph labels.
+
+## Confirmation protocol
+
+The first 18-condition run completed with zero probability differences. One ToN chunk setting was unusually fast relative to the other settings, so a second stage repeats the full matrix in three new independent process blocks before interpreting speed differences. Keep the first run as exploratory evidence; do not combine it selectively with confirmation results.
+
+The confirmation blocks use the same six conditions per dataset, three warm timing repeats per fresh worker, unchanged numerical code/checkpoints, and fixed order seeds 20261021, 20261022 and 20261023. Output roots are `runs/cached-confirmation-100000/block-1` through `block-3`. Report each process mean, then aggregate across the three process means. These are independent process starts for one trained model per dataset, not additional model seeds. Retain all settings and failures. Each process still recomputes node states for every prediction.
