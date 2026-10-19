@@ -15,3 +15,19 @@ The UQ page describes 43 extended NetFlow features and academic-use/citation req
 The delivery pages are JavaScript applications; downloading their HTML is **not** downloading data. Use their Download File control and verify the actual resulting archive/CSV. Do not commit raw records to GitHub. Record source URL, retrieval time, archive and extracted file SHA-256, original header, unmodified label frequencies, and any extraction/sampling operations. Published source counts above are not experimental counts.
 
 Put files under ignored `data/` and update the CSV configuration. Never manufacture time columns. If the CSV lacks timestamps, temporal leakage cannot be excluded by a claimed chronological split. Inspect original `Attack` label strings before accepting a multiclass label map. The initial adapters reject unknown labels rather than discarding them.
+
+## Verified CSE-v2 attack-family map
+
+The actual archive has **15 original labels including Benign**; the UQ release page summarizes **seven families including Benign**. The code implements the following explicit family aggregation and preserves the original strings in Table A and source manifests. Do not call these seven-family results a 15-class experiment.
+
+| Original CSV label(s) | Revised family |
+|---|---|
+| Benign | Benign |
+| Bot | Bot |
+| Infilteration (original spelling) | Infiltration |
+| FTP-BruteForce; SSH-Bruteforce | BruteForce |
+| DDOS attack-HOIC; DDoS attacks-LOIC-HTTP; DDOS attack-LOIC-UDP | DDoS |
+| DoS attacks-Hulk; DoS attacks-GoldenEye; DoS attacks-SlowHTTPTest; DoS attacks-Slowloris | DoS |
+| Brute Force -Web; Brute Force -XSS; SQL Injection | Web Attacks |
+
+The archive audits are under `docs/provenance/`. Counts there come from full CSV scans, not from the pilot samples. ToN-v2 attack strings use lower case; BoT-v2 uses mixed case. Both retain their original strings while class IDs use an explicitly ordered canonical list.

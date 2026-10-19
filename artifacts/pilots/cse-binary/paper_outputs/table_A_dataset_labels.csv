@@ -1,0 +1,2 @@
+dataset,prediction_unit,original_labels,task,classes,train_n,validation_n,test_n,scope
+cse,original flow / edge,Benign; Bot; Brute Force -Web; Brute Force -XSS; DDOS attack-HOIC; DDoS attacks-LOIC-HTTP; DoS attacks-GoldenEye; DoS attacks-Hulk; DoS attacks-SlowHTTPTest; DoS attacks-Slowloris; FTP-BruteForce; Infilteration; SSH-Bruteforce,binary,Benign; Attack,2845,1061,1094,PILOT SUBSET - NOT FULL DATASET

@@ -47,6 +47,8 @@ python -m ca_edgeids report runs/ton-binary-seed-study
 
 Configs can use `max_rows` for **explicitly marked prefix pilots only**. Prefix pilots are not representative random samples and must not be reported as full-dataset results. If label spelling differs, stop and review the schema/mapping rather than discarding classes.
 
+Runs also stop if a declared class is absent from validation, because checkpoint selection could not assess that class. The retained 5,000-row BoT pilot predates this guard and has no Benign validation samples; it is a documented protocol failure, not a valid study result.
+
 ## Interpretation and limitations
 
 The present partition sweep holds the checkpoint fixed. Exact halo inference should preserve accuracy; Tables C/D therefore examine **inference scheduling**, not accuracy improvements due to training partitions. Separate training-partition experiments, topology/edge-feature ablations, a direct Cluster-GCN training baseline, and GraphSAINT remain research tasks in the plan. The RF/MLP baselines have fixed initial settings and are not a final equal-budget tuned comparison.

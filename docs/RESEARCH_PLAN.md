@@ -8,6 +8,8 @@ The supervisor's advice identifies the correct order: change the research task, 
 
 The attached tables/figures checklist is useful and substantially appropriate after reframing. It is a minimum evidence list, not evidence that acceptance is assured. In particular, Table D cannot establish novelty merely by showing METIS versus random; the paper must distinguish existing Cluster-GCN ideas and justify what the study contributes.
 
+**Observed feasibility issue:** the 30,000-flow BoT pilot produces a test graph with just four original IP nodes. The brief's 100-2000 partition schedule cannot be applied indiscriminately. Establish actual node counts first; use valid per-dataset counts, report infeasible conditions, and separate large flow volume from large node topology. Do not randomize identities or change the graph definition merely to recover the former large-graph claim.
+
 ## Phases, gates, and deliverables
 
 | Phase | Work | Exit gate | Planning allowance |

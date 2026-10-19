@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="739.8pt" height="180.72pt" viewBox="0 0 739.8 180.72" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-19T11:12:47.472550</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.7, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 180.72 
+L 739.8 180.72 
+L 739.8 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.8064 104.22 
+L 140.6736 104.22 
+Q 146.4768 104.22 146.4768 98.676 
+L 146.4768 40.464 
+Q 146.4768 34.92 140.6736 34.92 
+L 18.8064 34.92 
+Q 13.0032 34.92 13.0032 40.464 
+L 13.0032 98.676 
+Q 13.0032 104.22 18.8064 104.22 
+z
+" clip-path="url(#p1f8a3bfdb1)" style="fill: #e9f1f8; stroke: #215a86; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 163.8864 104.22 
+L 285.7536 104.22 
+Q 291.5568 104.22 291.5568 98.676 
+L 291.5568 40.464 
+Q 291.5568 34.92 285.7536 34.92 
+L 163.8864 34.92 
+Q 158.0832 34.92 158.0832 40.464 
+L 158.0832 98.676 
+Q 158.0832 104.22 163.8864 104.22 
+z
+" clip-path="url(#p1f8a3bfdb1)" style="fill: #e9f1f8; stroke: #215a86; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 308.9664 104.22 
+L 430.8336 104.22 
+Q 436.6368 104.22 436.6368 98.676 
+L 436.6368 40.464 
+Q 436.6368 34.92 430.8336 34.92 
+L 308.9664 34.92 
+Q 303.1632 34.92 303.1632 40.464 
+L 303.1632 98.676 
+Q 303.1632 104.22 308.9664 104.22 
+z
+" clip-path="url(#p1f8a3bfdb1)" style="fill: #e9f1f8; stroke: #215a86; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 454.0464 104.22 
+L 575.9136 104.22 
+Q 581.7168 104.22 581.7168 98.676 
+L 581.7168 40.464 
+Q 581.7168 34.92 575.9136 34.92 
+L 454.0464 34.92 
+Q 448.2432 34.92 448.2432 40.464 
+L 448.2432 98.676 
+Q 448.2432 104.22 454.0464 104.22 
+z
+" clip-path="url(#p1f8a3bfdb1)" style="fill: #e9f1f8; stroke: #215a86; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 599.1264 104.22 
+L 720.9936 104.22 
+Q 726.7968 104.22 726.7968 98.676 
+L 726.7968 40.464 
+Q 726.7968 34.92 720.9936 34.92 
+L 599.1264 34.92 
+Q 593.3232 34.92 593.3232 40.464 
+L 593.3232 98.676 
+Q 593.3232 104.22 599.1264 104.22 
+z
+" clip-path="url(#p1f8a3bfdb1)" style="fill: #e9f1f8; stroke: #215a86; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(41.205625 67.298375)">NetFlow-v2 records</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(34.9425 76.256625)">IP identities preserved</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 150.217144 69.57 
+Q 152.858579 69.57 154.38198 69.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+    <path d="M 150.38198 67.57 
+L 154.38198 69.57 
+L 150.38198 71.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(190.849375 62.81925)">Split by host pair</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(190.74875 71.7775)">Fit preprocessing</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(192.789375 80.73575)">on training data</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 295.297144 69.57 
+Q 297.938579 69.57 299.46198 69.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+    <path d="M 295.46198 67.57 
+L 299.46198 69.57 
+L 295.46198 71.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(330.435 62.81925)">Directed flow graph</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(342.038125 71.7775)">Edge features</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(326.376875 80.73575)">Node degree features</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 440.377144 69.57 
+Q 443.018579 69.57 444.54198 69.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+    <path d="M 440.54198 67.57 
+L 444.54198 69.57 
+L 440.54198 71.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(468.745625 67.298375)">Own every target edge</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(471.661875 76.256625)">Full / Random / METIS</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 585.457144 69.57 
+Q 588.098579 69.57 589.62198 69.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+    <path d="M 585.62198 67.57 
+L 589.62198 69.57 
+L 585.62198 71.57 
+" style="fill: none; stroke: #215a86; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(615.4925 67.298375)">GraphSAGE-style GNN</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans'" transform="translate(631.055625 76.256625)">Edge classifier</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="369.9" y="130.2768" transform="rotate(-0 369.9 130.2768)">Cross-partition K-hop context retained; every original flow predicted exactly once</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle" x="369.9" y="157.9968" transform="rotate(-0 369.9 157.9968)">Training: edge labels -&gt; weighted cross-entropy     |     Inference: softmax -&gt; Benign / Attack or attack type</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1f8a3bfdb1">
+   <rect x="7.2" y="7.2" width="725.4" height="166.32"/>
+  </clipPath>
+ </defs>
+</svg>

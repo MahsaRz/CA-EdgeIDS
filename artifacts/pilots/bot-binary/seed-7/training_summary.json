@@ -1,0 +1,9 @@
+{
+  "best_epoch": 2,
+  "epochs_run": 5,
+  "validation_macro_f1": 0.4882154882154882,
+  "class_weights": [
+    137.07691955566406,
+    0.5018304586410522
+  ]
+}

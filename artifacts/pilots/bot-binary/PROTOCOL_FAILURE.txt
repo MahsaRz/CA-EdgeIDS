@@ -1,0 +1,8 @@
+INVALID FOR ALL-CLASS MODEL SELECTION
+
+The retained 5,000-row pilot used the fixed host-pair split and has:
+Train: 13 Benign / 3551 Attack
+Validation: 0 Benign / 152 Attack
+Test: 7 Benign / 1277 Attack
+
+These pre-guard diagnostic outputs cannot support an all-class validation-selected comparison. They are retained to make the failure visible. The pipeline now stops by default for missing validation classes. A larger label-independent sample or a reviewed split protocol is required. Do not use these numbers as final paper results.

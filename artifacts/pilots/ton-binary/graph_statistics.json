@@ -1,0 +1,17 @@
+{
+  "train": {
+    "nodes": 155,
+    "target_flows": 2835,
+    "message_arcs": 5670
+  },
+  "validation": {
+    "nodes": 67,
+    "target_flows": 1169,
+    "message_arcs": 2338
+  },
+  "test": {
+    "nodes": 55,
+    "target_flows": 996,
+    "message_arcs": 1992
+  }
+}

@@ -121,12 +121,21 @@ def run(config,out):
     seed_all(config["seeds"][0],config.get("threads",1))
     dump(out/"requested_config.json",config)
     dump(out/"environment.json",environment())
+    # Snapshot hashes of the actual Python sources, including uncommitted edits.
+    source_files={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path(__file__).parent.glob("*.py"))}
+    dump(out/"code_manifest.json",{"package_source_sha256":source_files,
+        "combined_sha256":hashlib.sha256(json.dumps(source_files,sort_keys=True).encode()).hexdigest()})
     t = time.perf_counter()
     data = prepare(config)
     prep_s = time.perf_counter()-t
     config.update(classes=len(data.names),label_names=data.names)
     dump(out/"resolved_config.json",config)
     dump(out/"dataset_manifest.json",data.manifest)
+    missing_validation=[name for name,count in data.manifest["class_counts"]["validation"].items() if count==0]
+    dump(out/"protocol_checks.json",{"missing_validation_classes":missing_validation,
+        "valid_for_all_class_validation_selection":not missing_validation})
+    if missing_validation and config.get("require_validation_class_coverage",True):
+        raise ValueError(f"Validation split lacks {missing_validation}. All-class model selection is unsupported; increase the label-independent pilot sample or review the split protocol. No test-driven seed search.")
     import joblib
     joblib.dump(data.preprocessor,out/"preprocessor.joblib")
     pd.DataFrame({"row_id":data.frame["source_row_id"] if "source_row_id" in data.frame else np.arange(len(data.frame)),"split":data.split,"class_id":data.labels}).to_csv(out/"split_manifest.csv.gz",index=False)

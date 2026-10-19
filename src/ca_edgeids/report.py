@@ -1,5 +1,6 @@
 """Tables A-E and vector/PNG figures from actual run artifacts only."""
 import json
+import hashlib
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -71,9 +72,17 @@ def generate(run_dir):
        "optimizer":"Adam","learning_rate":cfg["learning_rate"],"weight_decay":cfg["weight_decay"],"maximum_epochs":cfg["epochs"],"selection":"validation macro-F1; patience "+str(cfg["patience"]),"framework":"PyTorch","training_partitioning":cfg["train_partition_method"],"training_partitions":cfg["train_parts"],"seeds":str(cfg["seeds"]),"split_seed":cfg["split_seed"],"split_protocol":cfg["split_protocol"],"test_context":"K-hop incoming halo; no boundary edges discarded","comparison":"same trained weights across inference partition counts","scope":banner}
     table(pd.DataFrame({"component":list(b),"actual_implementation":list(b.values())}),out/"table_B_configuration")
     s=summary(runs)
-    table(s,out/"table_C_partition_benchmark")
-    # This is an inference comparison. It must not be relabelled as three independently trained methods.
-    table(s,out/"table_D_full_random_metis")
+    s.to_csv(out/"complete_seed_summary.csv",index=False)
+    compact={"method":"Method","partitions":"C","test_n":"Test n","macro_f1":"Macro F1","weighted_f1":"Weighted F1",
+             "macro_precision":"Macro precision","macro_recall":"Macro recall","average_partition_forward_s":"Avg part forward (s)",
+             "total_inference_s":"Total inference (s)","peak_cpu_rss_mb_sampled":"Peak CPU RSS (MiB)"}
+    table(s.loc[s.method!="full",list(compact)].rename(columns=compact),out/"table_C_partition_benchmark")
+    # This is an inference comparison, not three independently trained methods.
+    nonfull=s[s.method!="full"]
+    compare_parts=int(nonfull.partitions.min()) if len(nonfull) else 1
+    comp=s[(s.method=="full")|(s.partitions==compare_parts)]
+    columns=["method","partitions","test_n","macro_f1","weighted_f1","total_inference_s","peak_cpu_rss_mb_sampled"]
+    table(comp[columns].rename(columns=compact),out/"table_D_full_random_metis")
     class_rows=[]
     seed_metrics=[]
     for seed in cfg["seeds"]:
@@ -102,9 +111,6 @@ def generate(run_dir):
         for ax in axes: ax.grid(alpha=.2)
         fig.suptitle(banner,fontsize=8); fig.tight_layout(); save_figure(fig,out/f"figure_3_partition_latency_{method}")
     # Pick the smallest common non-full partition count, declared in the figure data.
-    nonfull=s[s.method!="full"]
-    compare_parts=int(nonfull.partitions.min()) if len(nonfull) else 1
-    comp=s[(s.method=="full")|(s.partitions==compare_parts)]
     fig,axes=plt.subplots(1,3,figsize=(10,3.8))
     for ax,(metric,label) in zip(axes,[("macro_f1","Macro-F1"),("total_inference_s","Total inference (s)"),("peak_cpu_rss_mb_sampled","Sampled peak CPU RSS (MiB)")]):
         ax.bar(comp.method,comp[metric],color=["#255b84","#d8882a","#3c8b6b"][:len(comp)])
@@ -123,5 +129,8 @@ def generate(run_dir):
         ax.set(xlabel="Predicted class",ylabel="True class",title="Row-normalized confusion matrix, first seed")
         fig.colorbar(im,ax=ax); fig.suptitle(banner,fontsize=8); fig.tight_layout(); save_figure(fig,out/"figure_5_confusion_matrix")
     failures=json.loads((root/"unavailable_runs.json").read_text())
+    (out/"report_manifest.json").write_text(json.dumps({"report_source_sha256":hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "benchmark_csv_sha256":hashlib.sha256((root/"benchmark_runs.csv").read_bytes()).hexdigest(),
+        "scope":banner},indent=2),encoding="utf-8")
     (out/"READ_ME_FIRST.txt").write_text(banner+"\n\nTables C and D use the same checkpoint per seed. Exact K-hop halos should keep F1 invariant. This is an inference-system comparison, not evidence of superior training accuracy.\n\n95% intervals are Student-t intervals over training seeds after averaging timing repetitions within seed. Missing intervals indicate one seed. Memory is sampled process RSS, including resident input graphs; not an allocator-exact CPU peak.\n\nUnavailable runs (never replaced with invented values):\n"+json.dumps(failures,indent=2),encoding="utf-8")
     return out

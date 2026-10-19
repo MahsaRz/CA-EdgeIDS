@@ -20,6 +20,15 @@ SCHEMAS = {
     "bot": ["Benign", "DDoS", "DoS", "Reconnaissance", "Theft"],
     "cse": ["Benign", "Bot", "BruteForce", "DDoS", "DoS", "Infiltration", "Web Attacks"],
 }
+# Explicit mapping verified against the official CSE v2 archive and UQ's seven-family summary.
+# The original CSV names remain in manifests; this is family classification, not 15-way classification.
+CSE_V2_LABEL_MAP = {
+    "Benign":"Benign", "Bot":"Bot", "Infilteration":"Infiltration",
+    "SSH-Bruteforce":"BruteForce", "FTP-BruteForce":"BruteForce",
+    "DDOS attack-HOIC":"DDoS", "DDoS attacks-LOIC-HTTP":"DDoS", "DDOS attack-LOIC-UDP":"DDoS",
+    "DoS attacks-Hulk":"DoS", "DoS attacks-GoldenEye":"DoS", "DoS attacks-SlowHTTPTest":"DoS", "DoS attacks-Slowloris":"DoS",
+    "Brute Force -Web":"Web Attacks", "Brute Force -XSS":"Web Attacks", "SQL Injection":"Web Attacks",
+}
 
 
 def sha256_file(path):
@@ -45,6 +54,8 @@ def normalize_labels(frame, dataset, task):
             ipaddress.ip_address(str(value))
     canonical = {x.casefold(): x for x in SCHEMAS[dataset]}
     canonical.update({"normal": "Benign", "benign": "Benign"})
+    if dataset=="cse":
+        canonical.update({k.casefold():v for k,v in CSE_V2_LABEL_MAP.items()})
     raw = frame["Attack"].astype(str).str.strip()
     mapped = raw.str.casefold().map(canonical)
     if mapped.isna().any():
@@ -54,7 +65,7 @@ def normalize_labels(frame, dataset, task):
         raise ValueError("Binary Label and Attack annotations disagree.")
     names = ["Benign", "Attack"] if task == "binary" else SCHEMAS[dataset]
     labels = binary.astype(np.int64) if task == "binary" else mapped.map(dict(zip(names, range(len(names))))).to_numpy(np.int64)
-    return labels, names, mapped.to_numpy()
+    return labels, names, raw.to_numpy()
 
 
 def split_rows(frame, seed=42, protocol="conversation", train=0.6, validation=0.2, timestamp=None):
@@ -152,6 +163,7 @@ def prepare(config):
         "rows_read":len(frame), "max_rows":config.get("max_rows"), "feature_columns":features,
         "categorical_columns":categorical, "transformed_width":z.shape[1], "label_names":names,
         "original_labels":sorted(set(original)), "split_protocol":config["split_protocol"],
+        "explicit_family_mapping":CSE_V2_LABEL_MAP if config["dataset"]=="cse" else "case normalization only; original names preserved",
         "split_seed":config["split_seed"], "duplicate_overlap":overlap,
         "split_counts":{p:int(np.sum(split==p)) for p in np.unique(split)},
         "class_counts":{p:dict(zip(names,np.bincount(y[split==p],minlength=len(names)).tolist())) for p in ["train","validation","test"]},

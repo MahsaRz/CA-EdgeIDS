@@ -1,0 +1,14 @@
+{
+  "python": "3.11.8",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+  "torch": "2.9.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "2.3.3",
+  "sklearn": "1.8.0",
+  "scipy": "1.17.0",
+  "matplotlib": "3.10.7",
+  "cuda_available": false,
+  "cuda": null,
+  "gpu": null
+}

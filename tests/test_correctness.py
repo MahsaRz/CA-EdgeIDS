@@ -35,6 +35,9 @@ def test_multiclass_uses_attack_names(dataset):
     y,names,_=normalize_labels(p.frame,"bot","multiclass")
     assert names.index("DDoS") in y
     assert np.all(y[p.frame.Attack=="DDoS"]==names.index("DDoS"))
+    f=p.frame.copy(); f["Attack"]=f.Attack.replace({"DDoS":"ddos"})
+    _,_,original=normalize_labels(f,"bot","multiclass")
+    assert "ddos" in original
 
 
 def test_split_pair_isolation_and_reverse_direction(dataset):
@@ -137,6 +140,16 @@ def test_memory_measurement_is_available():
     assert current_rss()>0
 
 
+def test_cse_family_mapping_preserves_original_labels():
+    from ca_edgeids.data import CSE_V2_LABEL_MAP
+    raw=list(CSE_V2_LABEL_MAP)
+    f=pd.DataFrame({"IPV4_SRC_ADDR":["10.0.0.1"]*len(raw),"IPV4_DST_ADDR":["10.0.0.2"]*len(raw),
+                    "Label":[int(x!="Benign") for x in raw],"Attack":raw})
+    y,names,original=normalize_labels(f,"cse","multiclass")
+    assert list(original)==raw
+    assert [names[i] for i in y]==[CSE_V2_LABEL_MAP[x] for x in raw]
+
+
 def test_graph_roundtrip_without_pickle(dataset,tmp_path):
     from ca_edgeids.worker import save_graph,load_graph
     _,p=dataset
@@ -154,3 +167,16 @@ def test_full_inference_is_one_batch(dataset):
     model=EdgeSAGE(g.edge_x.shape[1],2,hidden=8)
     _,timing=infer(model,g,partition_nodes(g,"full",1,7),cfg,full_graph=True)
     assert timing["batches"]==1
+
+
+def test_missing_validation_class_stops_before_training(dataset,tmp_path):
+    from ca_edgeids.experiment import run
+    cfg,p=dataset
+    f=p.frame.copy()
+    f.loc[p.split=="validation","Attack"]="DDoS"
+    f.loc[p.split=="validation","Label"]=1
+    path=tmp_path/"invalid-validation.csv"; f.to_csv(path,index=False)
+    cfg=dict(cfg,csv=str(path))
+    with pytest.raises(ValueError,match="Validation split lacks"):
+        run(cfg,tmp_path/"guard-run")
+    assert not list((tmp_path/"guard-run").rglob("model.pt"))
