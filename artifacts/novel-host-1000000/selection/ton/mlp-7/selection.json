@@ -1,0 +1,18 @@
+{
+  "dataset": "ton",
+  "family": "MLP",
+  "seed": 7,
+  "fit_s": 12.322339770000099,
+  "model_file": "runs/novel-host-1000000/ton/mlp-7/model.pt",
+  "model_sha256": "42290fc13575e8aac48dc9762f5e199666d033b7cd0e6c4f3eef0f6bbf95c0d8",
+  "best_epoch": 5,
+  "epochs_run": 8,
+  "validation_macro_f1": 0.42478109783791207,
+  "gradient_updates": 15616,
+  "class_weights": [
+    1.3897007703781128,
+    0.7809933423995972
+  ],
+  "parameters": 2866,
+  "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "cse",
+  "family": "MLP",
+  "seed": 59,
+  "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+  "fit_s": 17.43717435399958,
+  "model_file": "runs/novel-host-1000000/cse/mlp-59/model.pt",
+  "model_sha256": "ed1159fe7bd993bfc1ea69e29449b67bb78c7524e983b1cccdb5bd29c59a5050",
+  "best_epoch": 7,
+  "epochs_run": 10,
+  "validation_macro_f1": 0.533878144333552,
+  "gradient_updates": 18950,
+  "class_weights": [
+    0.5703337788581848,
+    4.054479598999023
+  ],
+  "parameters": 3826
+}

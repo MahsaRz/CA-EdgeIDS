@@ -1,0 +1,60 @@
+{
+  "dataset": "ton",
+  "csv_sha256": "569daf61a6173963e354989d1208eed24b293b90b3ec99b4d7d8ee36a25e3ffc",
+  "rows_read": 1000000,
+  "feature_columns": [
+    "L4_SRC_PORT",
+    "L4_DST_PORT",
+    "PROTOCOL",
+    "L7_PROTO",
+    "IN_BYTES",
+    "IN_PKTS",
+    "OUT_BYTES",
+    "OUT_PKTS",
+    "TCP_FLAGS",
+    "FLOW_DURATION_MILLISECONDS"
+  ],
+  "transformed_width": 159,
+  "label_names": [
+    "Benign",
+    "Attack"
+  ],
+  "original_labels": [
+    "Benign",
+    "backdoor",
+    "ddos",
+    "dos",
+    "injection",
+    "mitm",
+    "password",
+    "ransomware",
+    "scanning",
+    "xss"
+  ],
+  "preprocessor_fit_on_current_training": true,
+  "class_counts": {
+    "train": {
+      "Benign": 359268,
+      "Attack": 639282
+    },
+    "validation": {
+      "Benign": 767,
+      "Attack": 11
+    },
+    "test": {
+      "Benign": 660,
+      "Attack": 12
+    }
+  },
+  "split_counts": {
+    "test": 672,
+    "train": 998550,
+    "validation": 778
+  },
+  "duplicate_overlap": {
+    "train/validation": 0,
+    "train/test": 0,
+    "validation/test": 0
+  },
+  "test_row_ids_sha256": "cee5d5612886646a0748dab42d9a2ccd6b6c000ac2a3384f7e44678c2ab1efdb"
+}
