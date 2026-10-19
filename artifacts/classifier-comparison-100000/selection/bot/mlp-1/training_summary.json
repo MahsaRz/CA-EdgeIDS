@@ -1,0 +1,11 @@
+{
+  "best_epoch": 6,
+  "epochs_run": 9,
+  "validation_macro_f1": 0.8564899025232032,
+  "gradient_updates": 1260,
+  "class_weights": [
+    179.2360382080078,
+    0.5013986825942993
+  ],
+  "parameters": 1410
+}

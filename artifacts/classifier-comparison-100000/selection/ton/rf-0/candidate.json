@@ -1,0 +1,19 @@
+{
+  "trees": 100,
+  "tree_nodes": 98754,
+  "dataset": "ton",
+  "family": "RF",
+  "candidate_id": "rf-0",
+  "settings": {
+    "max_depth": 16,
+    "trees": 100
+  },
+  "validation_macro_f1": 0.9921049810821934,
+  "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+  "validation_flows": 22997,
+  "training_flows": 56312,
+  "fit_s": 3.021245100999977,
+  "reused_original_fit": false,
+  "model_sha256": "64f93b92bb61a1190b3faa1647e38ae01302851988e51e288bb80036e0d26ff7",
+  "model_file": "runs/classifier-comparison-100000/ton/rf-0/model.joblib"
+}

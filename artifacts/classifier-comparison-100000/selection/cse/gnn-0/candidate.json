@@ -1,0 +1,24 @@
+{
+  "best_epoch": 5,
+  "epochs_run": 8,
+  "validation_macro_f1": 0.9605596063085853,
+  "class_weights": [
+    0.5540545582771301,
+    5.1249542236328125
+  ],
+  "gradient_updates": 888,
+  "parameters": 8530,
+  "dataset": "cse",
+  "family": "GNN",
+  "candidate_id": "gnn-0",
+  "settings": {
+    "learning_rate": 0.001
+  },
+  "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+  "validation_flows": 21940,
+  "training_flows": 56190,
+  "fit_s": 339.334840751,
+  "reused_original_fit": true,
+  "model_sha256": "d6759b0d89a3c48e53e07f4777e97dfbbf077e6f8b559f53afec9d9adb2ab968",
+  "model_file": "runs/classifier-comparison-100000/cse/gnn-0/model.pt"
+}

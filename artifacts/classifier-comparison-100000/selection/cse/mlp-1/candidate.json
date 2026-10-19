@@ -1,0 +1,24 @@
+{
+  "best_epoch": 4,
+  "epochs_run": 7,
+  "validation_macro_f1": 0.9486018349642198,
+  "gradient_updates": 777,
+  "class_weights": [
+    0.5540545582771301,
+    5.1249542236328125
+  ],
+  "parameters": 2594,
+  "dataset": "cse",
+  "family": "MLP",
+  "candidate_id": "mlp-1",
+  "settings": {
+    "learning_rate": 0.003
+  },
+  "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+  "validation_flows": 21940,
+  "training_flows": 56190,
+  "fit_s": 0.9457253770000307,
+  "reused_original_fit": false,
+  "model_sha256": "0dd31920c0cfb69ec8e4d0a4555a871cbb72604478b659497c015e99bd9da86a",
+  "model_file": "runs/classifier-comparison-100000/cse/mlp-1/model.pt"
+}
