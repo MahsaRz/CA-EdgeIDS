@@ -1,0 +1,46 @@
+{
+  "dataset": "cse",
+  "scope": "uniform_pilot",
+  "source_csv_sha256": "991377e926d76cb5e24e4d8540ff38c28275482ccff36268114bc830eddbb861",
+  "target_row_ids_sha256": "0235bde8a7c45319be3aaa3127dab1b2fadd1d52f0367032f604dff9fd14ed4c",
+  "source_code_sha256": "0f830ed421f965851547b9a4cde9334f9313c01509c2a526b08b2efd8e587f63",
+  "graph_storage": "legacy NPZ loaded into memory",
+  "graph_array_bytes": 3589860,
+  "layers": 2,
+  "batch_size": 512,
+  "partition_seed": 7,
+  "max_batch_tensor_bytes": 268435456,
+  "unavailable": [
+    {
+      "method": "metis",
+      "partitions": 2,
+      "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+    },
+    {
+      "method": "metis",
+      "partitions": 4,
+      "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+    }
+  ],
+  "environment": {
+    "python": "3.11.8",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "meaning": "Exact integer workload counts, not model performance. Factors sum context visits across all batches relative to one full graph. Repeated arcs are repeated work, not duplicated prediction targets. Packing times use a shared process and are not a controlled inference benchmark.",
+  "limits": "Packed tensors exclude graph storage, index temporaries, model activations, gradients and optimizer state. File and packed-tensor limits do not guarantee a total RAM bound."
+}

@@ -59,6 +59,8 @@ Runs also stop if a declared class is absent from validation, because checkpoint
 
 ## Interpretation and limitations
 
+[Graph-work measurements](docs/GRAPH_WORK.md) now separate small-batch repetition from partitioning. New graph files use read-only memory-mapped arrays. Default file-size and packed-tensor limits stop oversized in-memory jobs, but do not guarantee a total RAM bound. Older pilot results keep their original storage and timing definitions.
+
 The present partition sweep holds the checkpoint fixed. Exact halo inference should preserve accuracy; Tables C/D therefore examine **inference scheduling**, not accuracy improvements due to training partitions. Separate training-partition experiments, topology/edge-feature ablations, a direct Cluster-GCN training baseline, and GraphSAINT remain research tasks in the plan. The RF/MLP baselines have fixed initial settings and are not a final equal-budget tuned comparison.
 
 Graphs are built independently for train/validation/test and use all features of a split snapshot jointly. Test labels never enter representations, but test features participate in message passing. This is an **offline snapshot evaluation**. It is not causal streaming inference. No timestamp is invented where the NetFlow release lacks one.

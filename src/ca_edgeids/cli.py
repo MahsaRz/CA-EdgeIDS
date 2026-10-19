@@ -34,7 +34,11 @@ def main():
     real=sub.add_parser("run"); real.add_argument("--config",required=True); real.add_argument("--out",required=True)
     report=sub.add_parser("report"); report.add_argument("run_dir")
     preflight=sub.add_parser("preflight"); preflight.add_argument("--config",required=True); preflight.add_argument("--out",required=True)
+    profile=sub.add_parser("profile"); profile.add_argument("--run-dir",required=True); profile.add_argument("--out",required=True)
     args=p.parse_args()
+    if args.cmd=="profile":
+        from .profile import profile_run
+        print(profile_run(args.run_dir,args.out)); return
     if args.cmd=="preflight":
         from .preflight import inspect
         print(json.dumps(inspect(json.loads(Path(args.config).read_text()),args.out),indent=2)); return

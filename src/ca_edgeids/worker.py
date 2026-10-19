@@ -13,10 +13,30 @@ from .experiment import infer,dump
 
 
 def save_graph(g,path):
-    np.savez(path,**{k:getattr(g,k) for k in ["src","dst","edge_x","node_x","y","row_ids","hosts","message_src","message_dst","message_flow"]})
+    path=Path(path)
+    if path.exists(): raise FileExistsError(f"Refusing to overwrite saved graph: {path}")
+    arrays={k:getattr(g,k) for k in ["src","dst","edge_x","node_x","y","row_ids","hosts","message_src","message_dst","message_flow"]}
+    if path.suffix==".npz":
+        np.savez(path,**arrays)
+        return
+    path.mkdir(parents=True,exist_ok=False)
+    arrays.update(incoming_data=g.incoming.data,incoming_indices=g.incoming.indices,incoming_indptr=g.incoming.indptr)
+    for name,value in arrays.items(): np.save(path/(name+".npy"),value,allow_pickle=False)
+    dump(path/"format.json",{"version":1,"storage":"read-only memory-mapped NumPy arrays","nodes":len(g.hosts),"message_arcs":len(g.message_src)})
 
 
 def load_graph(path):
+    path=Path(path)
+    if path.is_dir():
+        meta=json.loads((path/"format.json").read_text())
+        if meta["version"]!=1: raise ValueError("Unknown graph storage version")
+        a={k:np.load(path/(k+".npy"),mmap_mode="r",allow_pickle=False) for k in
+           ["src","dst","edge_x","node_x","y","row_ids","hosts","message_src","message_dst","message_flow"]}
+        csr=[np.load(path/("incoming_"+k+".npy"),mmap_mode="r",allow_pickle=False) for k in ["data","indices","indptr"]]
+        incoming=sparse.csr_matrix(tuple(csr),shape=(meta["nodes"],meta["message_arcs"]),copy=False)
+        if len(a["hosts"])!=meta["nodes"] or len(a["message_src"])!=meta["message_arcs"]:
+            raise ValueError("Graph arrays do not match stored dimensions")
+        return FlowGraph(**a,incoming=incoming)
     with np.load(path,allow_pickle=False) as z:
         a={k:z[k] for k in z.files}
     n=len(a["hosts"]); m=len(a["message_src"])
@@ -35,7 +55,7 @@ def benchmark(graph_path,checkpoint,method,parts,out):
     t=time.perf_counter(); owner=partition_nodes(g,method,parts,seed); partition_s=time.perf_counter()-t
     warm=time.perf_counter()
     first=next(query_batches(g,owner,len(g.src) if method=="full" else cfg["max_edges_per_batch"]))[1]
-    with torch.inference_mode(): model(halo_batch(g,first,model.depth,cfg["device"]))
+    with torch.inference_mode(): model(halo_batch(g,first,model.depth,cfg["device"],cfg.get("max_batch_tensor_bytes",256*1024**2)))
     sync(cfg["device"]); warm_s=time.perf_counter()-warm
     records=[]
     ref=None

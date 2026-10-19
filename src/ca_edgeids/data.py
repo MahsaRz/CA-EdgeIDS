@@ -116,6 +116,11 @@ class Prepared:
 
 def prepare(config):
     path = Path(config["csv"])
+    file_limit=config.get("max_input_bytes",512*1024**2)
+    if file_limit <= 0:
+        raise ValueError("max_input_bytes must be positive")
+    if path.stat().st_size > file_limit:
+        raise MemoryError("Input CSV exceeds the configured in-memory file limit. Run the streaming source audit and a scaling pilot before increasing max_input_bytes. File bytes are not a RAM estimate.")
     frame = pd.read_csv(path, low_memory=False, nrows=config.get("max_rows"))
     frame.columns = frame.columns.str.strip()
     if not frame.columns.is_unique:
@@ -169,6 +174,7 @@ def prepare(config):
         "class_counts":{p:dict(zip(names,np.bincount(y[split==p],minlength=len(names)).tolist())) for p in ["train","validation","test"]},
         "test_row_ids_sha256":hashlib.sha256(original_ids[split=="test"].astype("<i8").tobytes()).hexdigest(),
         "data_scope":config.get("data_scope","full_dataset"),
+        "max_input_bytes":file_limit,
         "scope":"offline joint snapshot classification; no online, causal, or unseen-host claim unless separately tested",
     }
     if config.get("source_audit"):

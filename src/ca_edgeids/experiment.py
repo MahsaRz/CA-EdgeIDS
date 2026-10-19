@@ -41,7 +41,7 @@ def infer(model,g,owner,config,full_graph=False):
     with PeakRSS() as mem, torch.inference_mode():
         for part,q in query_batches(g,owner,len(g.src) if full_graph else config["max_edges_per_batch"]):
             a = time.perf_counter()
-            b = halo_batch(g,q,model.depth,device)
+            b = halo_batch(g,q,model.depth,device,config.get("max_batch_tensor_bytes",256*1024**2))
             sync(device)
             packing_s += time.perf_counter()-a
             a = time.perf_counter()
@@ -88,7 +88,7 @@ def train(train_graph,val_graph,config,seed,out):
         rng.shuffle(batches)
         total_loss = 0.0
         for _,q in batches:
-            batch = halo_batch(train_graph,q,model.depth,config["device"])
+            batch = halo_batch(train_graph,q,model.depth,config["device"],config.get("max_batch_tensor_bytes",256*1024**2))
             opt.zero_grad(set_to_none=True)
             # Weights really enter the loss; unlike the legacy notebooks.
             loss = F.cross_entropy(model(batch),batch.y,weight=weights)
@@ -120,6 +120,8 @@ def run(config,out):
     config = copy.deepcopy(config)
     seed_all(config["seeds"][0],config.get("threads",1))
     dump(out/"requested_config.json",config)
+    config.setdefault("max_input_bytes",512*1024**2)
+    config.setdefault("max_batch_tensor_bytes",256*1024**2)
     dump(out/"environment.json",environment())
     # Snapshot hashes of the actual Python sources, including uncommitted edits.
     source_files={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path(__file__).parent.glob("*.py"))}
@@ -153,7 +155,7 @@ def run(config,out):
     g = graphs["test"]
     if config.get("isolated_benchmarks",False):
         from .worker import save_graph
-        save_graph(g,out/"test_graph.npz")
+        save_graph(g,out/"test_graph")
     for seed in config["seeds"]:
         seed_out = out/f"seed-{seed}"
         seed_out.mkdir()
@@ -173,7 +175,7 @@ def run(config,out):
                     isolated_records=None
                     if config.get("isolated_benchmarks",False):
                         worker_out=seed_out/f"{tag}-worker"
-                        child=subprocess.run([sys.executable,"-m","ca_edgeids.worker","--graph",str((out/"test_graph.npz").resolve()),"--checkpoint",str((seed_out/"model.pt").resolve()),"--method",method,"--parts",str(parts),"--out",str(worker_out.resolve())],capture_output=True,text=True)
+                        child=subprocess.run([sys.executable,"-m","ca_edgeids.worker","--graph",str((out/"test_graph").resolve()),"--checkpoint",str((seed_out/"model.pt").resolve()),"--method",method,"--parts",str(parts),"--out",str(worker_out.resolve())],capture_output=True,text=True)
                         if child.returncode:
                             raise RuntimeError(child.stderr)
                         isolated_records=json.loads(Path(str(worker_out)+".json").read_text())
@@ -185,7 +187,7 @@ def run(config,out):
                         first_q = next(query_batches(g,owner,len(g.src) if method=="full" else config["max_edges_per_batch"]))[1]
                         with torch.inference_mode():
                             model.eval()
-                            model(halo_batch(g,first_q,model.depth,config["device"]))
+                            model(halo_batch(g,first_q,model.depth,config["device"],config.get("max_batch_tensor_bytes",256*1024**2)))
                         sync(config["device"])
                         warm_s = time.perf_counter()-warm
                     for repeat in range(config["repeats"]):
@@ -216,7 +218,7 @@ def run(config,out):
                             dump(seed_out/f"{tag}-metrics.json",scores)
                             np.savez_compressed(seed_out/f"{tag}-predictions.npz",row_ids=g.row_ids,y=g.y,probabilities=p)
                 except (RuntimeError,ValueError,MemoryError) as exc:
-                    if isinstance(exc,RuntimeError) and "out of memory" not in str(exc).lower() and "METIS unavailable" not in str(exc):
+                    if isinstance(exc,RuntimeError) and not any(marker in str(exc) for marker in ["out of memory", "METIS unavailable", "Configured batch tensor limit exceeded"]):
                         raise
                     failures.append({"seed":seed,"method":method,"partitions":parts,"error":str(exc)})
                     if str(config["device"]).startswith("cuda"):

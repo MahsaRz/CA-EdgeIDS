@@ -1,0 +1,51 @@
+{
+  "dataset": "bot",
+  "scope": "uniform_pilot",
+  "source_csv_sha256": "2dd17fe22675e7cf1095a81b603b7a92bc5ba1a30ba877d6d3e13f6ae2d729be",
+  "target_row_ids_sha256": "0cb624486393f0afc062f3304d239f59600ebe191c238070226b891044c75e1c",
+  "source_code_sha256": "0f830ed421f965851547b9a4cde9334f9313c01509c2a526b08b2efd8e587f63",
+  "graph_storage": "legacy NPZ loaded into memory",
+  "graph_array_bytes": 2047792,
+  "layers": 2,
+  "batch_size": 512,
+  "partition_seed": 7,
+  "max_batch_tensor_bytes": 268435456,
+  "unavailable": [
+    {
+      "method": "random",
+      "partitions": 8,
+      "error": "Requested 8 partitions for 4 nodes"
+    },
+    {
+      "method": "metis",
+      "partitions": 2,
+      "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+    },
+    {
+      "method": "metis",
+      "partitions": 4,
+      "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "error": "Requested 8 partitions for 4 nodes"
+    }
+  ],
+  "environment": {
+    "python": "3.11.8",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "meaning": "Exact integer workload counts, not model performance. Factors sum context visits across all batches relative to one full graph. Repeated arcs are repeated work, not duplicated prediction targets. Packing times use a shared process and are not a controlled inference benchmark.",
+  "limits": "Packed tensors exclude graph storage, index temporaries, model activations, gradients and optimizer state. File and packed-tensor limits do not guarantee a total RAM bound."
+}

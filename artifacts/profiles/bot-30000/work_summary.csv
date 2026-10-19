@@ -1,0 +1,5 @@
+method,partitioning_profile_s,requested_partitions,target_flows,graph_nodes,graph_message_arcs,batches,coverage_min,coverage_max,cut_flow_fraction,empty_node_partitions,empty_target_partitions,min_partition_target_flows,max_partition_target_flows,total_context_node_visits,total_message_arc_visits,message_work_factor,node_work_factor,max_packed_tensor_bytes,total_extra_context_node_visits,packing_profile_s
+chunked,4.900037311017513e-06,1,7875,4,15750,16,1,1,0.0,0,0,7875,7875,64,252000,16.0,16.0,1698692,0,0.024075800029095262
+full,3.900029696524143e-06,1,7875,4,15750,1,1,1,0.0,0,0,7875,7875,4,15750,1.0,1.0,3024032,0,0.002267500036396086
+random,0.00018259999342262745,2,7875,4,15750,17,1,1,1.0,0,0,30,7845,68,267750,17.0,17.0,1698692,0,0.02458839997416362
+random,9.259994840249419e-05,4,7875,4,15750,18,1,1,1.0,0,0,1,4785,72,283500,18.0,18.0,1698692,25,0.026230800023768097

@@ -83,7 +83,7 @@ class Batch:
     y: torch.Tensor
 
 
-def halo_batch(g, query_ids, layers, device="cpu"):
+def halo_batch(g, query_ids, layers, device="cpu", max_tensor_bytes=None):
     """K-hop incoming closure of BOTH query endpoints preserves full-graph logits.
 
     Context can cross partition boundaries. This deliberately trades extra work for
@@ -104,6 +104,15 @@ def halo_batch(g, query_ids, layers, device="cpu"):
     arcs = g.incoming[nodes].indices
     arcs = arcs[np.isin(g.message_src[arcs],nodes,assume_unique=False)]
     flow_ids, inverse = np.unique(g.message_flow[arcs],return_inverse=True)
+    # Check packed input storage before copying feature rows or moving to a GPU.
+    # Activations, gradients, graph storage and temporary index arrays are additional.
+    tensor_bytes = (len(nodes)*g.node_x.shape[1]*4 + len(flow_ids)*g.edge_x.shape[1]*4
+                    + len(arcs)*3*8 + len(q)*(3*8+g.edge_x.shape[1]*4))
+    if max_tensor_bytes is not None:
+        if max_tensor_bytes <= 0:
+            raise ValueError("max_batch_tensor_bytes must be positive")
+        if tensor_bytes > max_tensor_bytes:
+            raise MemoryError(f"Configured batch tensor limit exceeded: {tensor_bytes} bytes > {max_tensor_bytes}. Exact context cannot be discarded to fit the limit.")
     tensor = lambda x, dtype: torch.as_tensor(x,dtype=dtype,device=device)
     return Batch(
         tensor(g.node_x[nodes],torch.float32), tensor(g.edge_x[flow_ids],torch.float32),
