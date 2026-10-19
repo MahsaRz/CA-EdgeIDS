@@ -1,0 +1,19 @@
+{
+  "datasets": ["ton", "cse", "bot"],
+  "seed": 7,
+  "candidates_per_family": 2,
+  "neural_learning_rates": [0.001, 0.003],
+  "rf_depths": [16, null],
+  "rf_trees": 100,
+  "neural_epochs": 10,
+  "patience": 3,
+  "hidden": 16,
+  "dropout": 0.2,
+  "weight_decay": 0.0001,
+  "batch_size": 512,
+  "threads": 1,
+  "selection": "validation macro F1; first candidate wins exact ties",
+  "threshold": "fixed argmax for every model; no test-driven threshold tuning",
+  "reuse_original_gnn_candidate": true,
+  "scope": "single-seed development comparison on previously inspected 100000-flow pilot splits; equal candidate count, not equal compute or parameter count"
+}
