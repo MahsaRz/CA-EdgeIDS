@@ -1,0 +1,4 @@
+Protocol frozen before larger-sample support inspection. No model fitting or test predictions.
+Held-out novel nodes were absent from all original 100000 development flows.
+Known infrastructure may be shared. Validation-test incident crossings excluded.
+No raw flows, host identities or row IDs published.

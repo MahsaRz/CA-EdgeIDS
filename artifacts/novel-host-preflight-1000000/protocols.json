@@ -1,0 +1,162 @@
+[
+  {
+    "dataset": "ton",
+    "rows": 1000000,
+    "csv_sha256": "569daf61a6173963e354989d1208eed24b293b90b3ec99b4d7d8ee36a25e3ffc",
+    "development_csv_sha256": "1ab80627902a50ec9a683a743bc5eb839d1219238936c5397da0387352f2f2f3",
+    "development_nodes": 782,
+    "new_nodes": 2768,
+    "split_seed": 42,
+    "class_counts": {
+      "train": {
+        "Benign": 359268,
+        "Attack": 639282
+      },
+      "validation": {
+        "Benign": 767,
+        "Attack": 11
+      },
+      "test": {
+        "Benign": 660,
+        "Attack": 12
+      },
+      "excluded_validation_test": {
+        "Benign": 0,
+        "Attack": 0
+      }
+    },
+    "missing_classes": {
+      "train": [],
+      "validation": [],
+      "test": []
+    },
+    "feasible": true,
+    "held_out_novel_nodes": {
+      "validation": 571,
+      "test": 521
+    },
+    "nodes": {
+      "train": 2456,
+      "validation": 583,
+      "test": 541
+    },
+    "shared_all_nodes": {
+      "train/validation": 12,
+      "train/test": 18,
+      "validation/test": 12
+    },
+    "held_out_test_nodes_seen_in_development": 0,
+    "held_out_test_nodes_seen_in_training": 0,
+    "original_development_rows_in_new_holdouts": 0,
+    "test_row_ids_sha256": "cee5d5612886646a0748dab42d9a2ccd6b6c000ac2a3384f7e44678c2ab1efdb",
+    "scope": "new-host incident-flow holdout; known infrastructure may be shared; offline context; no strict all-host-disjoint, temporal, episode or causal claim"
+  },
+  {
+    "dataset": "cse",
+    "rows": 1000000,
+    "csv_sha256": "0940cad7e5c18d354a807886b0a8dafeaa62837447d53883f9a0612da9c97d44",
+    "development_csv_sha256": "fc1244b9554d85ee2fe6774e400e4b2baf6a78e8d64d9b25fa75dde959975fc5",
+    "development_nodes": 12187,
+    "new_nodes": 42660,
+    "split_seed": 42,
+    "class_counts": {
+      "train": {
+        "Benign": 849940,
+        "Attack": 119559
+      },
+      "validation": {
+        "Benign": 14905,
+        "Attack": 35
+      },
+      "test": {
+        "Benign": 15539,
+        "Attack": 22
+      },
+      "excluded_validation_test": {
+        "Benign": 0,
+        "Attack": 0
+      }
+    },
+    "missing_classes": {
+      "train": [],
+      "validation": [],
+      "test": []
+    },
+    "feasible": true,
+    "held_out_novel_nodes": {
+      "validation": 8484,
+      "test": 8651
+    },
+    "nodes": {
+      "train": 37712,
+      "validation": 8936,
+      "test": 9103
+    },
+    "shared_all_nodes": {
+      "train/validation": 452,
+      "train/test": 452,
+      "validation/test": 452
+    },
+    "held_out_test_nodes_seen_in_development": 0,
+    "held_out_test_nodes_seen_in_training": 0,
+    "original_development_rows_in_new_holdouts": 0,
+    "test_row_ids_sha256": "3b2d99fa08fa621b29cf6588f646e371cadd7f5b0488f61b4fadf6c6be367a1d",
+    "scope": "new-host incident-flow holdout; known infrastructure may be shared; offline context; no strict all-host-disjoint, temporal, episode or causal claim"
+  },
+  {
+    "dataset": "bot",
+    "rows": 1000000,
+    "csv_sha256": "ded6acff4c7c66d218d7c0bc035ef0e0b3dcaa8b777e2e619ae0701ed4222150",
+    "development_csv_sha256": "8282bcac56cc7c81d1112078424045f1c3aa40cef9c189266c70a8ddaf692704",
+    "development_nodes": 24,
+    "new_nodes": 31,
+    "split_seed": 42,
+    "class_counts": {
+      "train": {
+        "Benign": 3467,
+        "Attack": 996508
+      },
+      "validation": {
+        "Benign": 15,
+        "Attack": 0
+      },
+      "test": {
+        "Benign": 10,
+        "Attack": 0
+      },
+      "excluded_validation_test": {
+        "Benign": 0,
+        "Attack": 0
+      }
+    },
+    "missing_classes": {
+      "train": [],
+      "validation": [
+        "Attack"
+      ],
+      "test": [
+        "Attack"
+      ]
+    },
+    "feasible": false,
+    "held_out_novel_nodes": {
+      "validation": 13,
+      "test": 6
+    },
+    "nodes": {
+      "train": 36,
+      "validation": 16,
+      "test": 7
+    },
+    "shared_all_nodes": {
+      "train/validation": 3,
+      "train/test": 1,
+      "validation/test": 1
+    },
+    "held_out_test_nodes_seen_in_development": 0,
+    "held_out_test_nodes_seen_in_training": 0,
+    "original_development_rows_in_new_holdouts": 0,
+    "test_row_ids_sha256": "0c5a860a842b6dbc721c124cb2501843780d03c903632d087f84ae6a3932b5cb",
+    "scope": "new-host incident-flow holdout; known infrastructure may be shared; offline context; no strict all-host-disjoint, temporal, episode or causal claim"
+  }
+]
