@@ -81,6 +81,7 @@ def worker(job,out,start):
             transform_and_audit_s=transform_and_audit_s,graph_construction_s=graph_s,checkpoint_and_model_s=checkpoint_and_model_s,
             partitioning_s=partition_s,first_inference_s=first_inference_s,first_prediction_process_s=first_process_s,
             test_flows=len(g.src),test_nodes=len(g.node_x),message_arcs=len(g.message_src),transformed_width=g.edge_x.shape[1],
+            input_csv_bytes=input_path.stat().st_size,
             checkpoint_sha256=sha256_file(checkpoint),preprocessor_sha256=sha256_file(preprocessing),csv_sha256=data.manifest['csv_sha256'],
             target_row_ids_sha256=data.manifest['test_row_ids_sha256'],repeats=repeats)
     record.update(whole_process_peak_rss_mb_sampled=whole.peak/2**20,whole_process_baseline_rss_mb=whole.baseline/2**20)
