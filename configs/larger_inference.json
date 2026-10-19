@@ -1,0 +1,19 @@
+{
+  "datasets": ["ton", "cse", "bot"],
+  "sample_sizes": [100000, 300000, 1000000],
+  "methods": ["full", "random", "metis", "cached", "factored"],
+  "blocks": [1, 2, 3],
+  "query_batch_size": 2048,
+  "message_batch_size": 4096,
+  "partitions": 4,
+  "warm_repeats": 3,
+  "threads": 1,
+  "order_seed": 20261023,
+  "worker_timeout_seconds": 300,
+  "scope": "same original 100000-flow preprocessing and seed-7 checkpoint within each dataset; no fitting or test-quality selection",
+  "input_limit_bytes": 536870912,
+  "tensor_screen_bytes": 268435456,
+  "feature_screen_bytes": 3221225472,
+  "timing": "fresh process per condition; CSV parse, fixed transform, split construction, graph construction, checkpoint loading, partitioning and first complete prediction; three additional full warm predictions; OS cache need not be cold",
+  "failures": "retain declared timeout, resource guard and infeasible conditions without raising limits after results"
+}
