@@ -34,3 +34,19 @@ This is algebraic factorization of the existing linear mean message, not a new G
 Run `python scripts/run_controlled_study.py --stage train`, publish/check the frozen selections, then run `--stage evaluate`. Private outputs are under `runs/controlled-binary-100000/`; raw flows, checkpoints and per-flow predictions remain outside Git. Run folders refuse to overwrite earlier results.
 
 Report every training seed, mean/sample standard deviation/minimum/maximum across the five models, complete per-class supports and paired ablation differences against Full at the same seed. Keep initialization variation distinct from data-split or population uncertainty. The same sample/split is reused; rewired graphs are not extra independent topology replicates. Do not select seeds, graph settings or thresholds using the resulting test metrics. Later generalization, sampler and scaling studies require separately frozen protocols.
+
+## Completed results
+
+All 120 fits and all 120 test evaluations completed. Numerical sources were frozen at `31d515c`; all checkpoint selections were published at `9e1da4b` before evaluation. The verified aggregate bundle is `artifacts/controlled-binary-100000/test-evaluation/`. Every comparison retains the same original target IDs and labels within each dataset. Both result figures were visually inspected.
+
+Test macro F1 below is mean plus/minus sample standard deviation over five training seeds on one fixed split.
+
+| Dataset | Edge-conditioned GNN | Flow MLP | Random Forest |
+|---|---:|---:|---:|
+| ToN | 0.7405 +/- 0.0780 | 0.8755 +/- 0.0120 | 0.9745 +/- 0.0004 |
+| CSE | 0.9874 +/- 0.0021 | 0.9375 +/- 0.0323 | 0.7436 +/- 0.0015 |
+| BoT | 0.9449 +/- 0.0175 | 0.8228 +/- 0.0732 | 0.9785 +/- 0.0025 |
+
+The GNN performs best on CSE; Forest performs best on ToN and BoT. The graph controls do not support a universal message-passing benefit. Relative to the full GNN at the same seed, removing messages changes mean macro F1 by +0.1290 on ToN, -0.0076 on CSE and +0.0083 on BoT. This control retains degree features. Removing degree features reduces BoT macro F1 by 0.2810, while removing message flow features improves ToN by 0.1349. Directed-only context is unstable on CSE (mean change -0.1744, SD 0.1505). Rewired context can improve ToN while hurting BoT; this is evidence of dataset-dependent sensitivity, not reliable causal information.
+
+Keep the predefined full model and every negative result in the report. These observations do not authorize choosing a better-looking ablation on test data. BoT's small benign support and the reused development holdouts limit the interpretation. No result establishes causal localization, online adaptation or distributed execution.
