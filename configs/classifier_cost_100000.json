@@ -1,0 +1,15 @@
+{
+  "datasets": ["ton", "cse", "bot"],
+  "methods": ["gnn_full", "gnn_layerwise", "mlp", "rf"],
+  "blocks": [1, 2, 3],
+  "model_seed": 7,
+  "query_batch_size": 2048,
+  "message_batch_size": 4096,
+  "warm_repeats": 3,
+  "order_seed": 20261024,
+  "threads": 1,
+  "worker_timeout_seconds": 120,
+  "scope": "same frozen seed-7 models from the five-seed classifier study; method-specific imports; no model or threshold selection",
+  "timing": "worker launch through first probabilities in memory; then three complete warm predictions; no graph cost charged to flow-only models",
+  "memory": "worker RSS sampled every 5 ms through imports, setup and predictions; not an allocator-exact or whole-system peak"
+}

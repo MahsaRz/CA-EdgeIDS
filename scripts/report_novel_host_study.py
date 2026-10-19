@@ -65,7 +65,9 @@ def execute():
         benign_support=('benign_support','first'),attack_support=('attack_support','first')).reset_index()
     if not (summary.seeds==5).all(): raise ValueError('Missing seed')
     summary.to_csv(out/'summary.csv',index=False); summary.to_latex(out/'summary.tex',index=False,float_format='%.4f')
-    dump(out/'verification.json',dict(models=len(rows),target_id_and_label_hashes=targets,metrics_recomputed=True,retuned=False))
+    dump(out/'verification.json',dict(models=len(rows),selection_sha256=gate['selection_sha256'],
+        fit_source_commits=sorted({r.get('fit_source_commit',plan['source_commit']) for r in selected}),
+        target_id_and_label_hashes=targets,metrics_recomputed=True,retuned=False))
     plt.rcParams.update({'font.size':8,'pdf.fonttype':42,'ps.fonttype':42})
     fig,axes=plt.subplots(1,len(plan['datasets']),figsize=(7.1,2.8),sharey=True,squeeze=False)
     for ax,d in zip(axes.flat,plan['datasets']):

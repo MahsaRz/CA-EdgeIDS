@@ -1,0 +1,49 @@
+dataset,split,original_attack_name,flows
+ton,train,Benign,359268
+ton,train,scanning,223209
+ton,train,xss,144700
+ton,train,ddos,119336
+ton,train,password,67974
+ton,train,dos,41927
+ton,train,injection,40528
+ton,train,backdoor,987
+ton,train,mitm,434
+ton,train,ransomware,187
+ton,validation,Benign,767
+ton,validation,backdoor,5
+ton,validation,mitm,4
+ton,validation,password,1
+ton,validation,dos,1
+ton,test,Benign,660
+ton,test,backdoor,4
+ton,test,dos,3
+ton,test,mitm,2
+ton,test,ddos,1
+ton,test,xss,1
+ton,test,injection,1
+cse,train,Benign,849940
+cse,train,DDOS attack-HOIC,57071
+cse,train,DoS attacks-Hulk,23036
+cse,train,DDoS attacks-LOIC-HTTP,16479
+cse,train,Bot,7592
+cse,train,Infilteration,6076
+cse,train,SSH-Bruteforce,4964
+cse,train,DoS attacks-GoldenEye,1464
+cse,train,FTP-BruteForce,1322
+cse,train,DoS attacks-SlowHTTPTest,726
+cse,train,DoS attacks-Slowloris,529
+cse,train,DDOS attack-LOIC-UDP,117
+cse,train,Brute Force -Web,107
+cse,train,Brute Force -XSS,55
+cse,train,SQL Injection,21
+cse,validation,Benign,14905
+cse,validation,Infilteration,35
+cse,test,Benign,15539
+cse,test,Infilteration,22
+bot,train,DDoS,484593
+bot,train,DoS,442407
+bot,train,Reconnaissance,69433
+bot,train,Benign,3467
+bot,train,Theft,75
+bot,validation,Benign,15
+bot,test,Benign,10

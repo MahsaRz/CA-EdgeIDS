@@ -1,0 +1,11 @@
+# Classifier processing costs
+
+This protocol is frozen before timing. It uses the already selected seed-7 GNN, flow MLP and Random Forest models from the five-seed classifier study. Choosing seed 7 does not choose the best test seed. There are four inference conditions: GNN Full, GNN layer-wise (4,096 message arcs / 2,048 target flows per chunk), MLP and Forest (2,048-flow prediction chunks). Three independently ordered fresh-process blocks produce 36 conditions, each with a complete first prediction and three additional complete warm predictions.
+
+Every condition retains the same original test population and fixed training-fitted preprocessing. Flow-only methods skip graph construction. The Forest worker avoids importing unused Torch code, so its startup and RSS are not inflated by the GNN framework. Method-specific imports, preprocessing, checkpoint loading, required graph construction and the first complete prediction enter worker-launch-to-first-prediction time. Serialization, metric/report generation, the parent driver and WSL startup remain outside that timer. Warm totals include every target's probabilities becoming available in memory.
+
+RSS is sampled every 5 ms through imports/setup/prediction and separately through warm prediction; it is not an allocator-exact peak or a measurement of the whole machine. Collapse warm repetitions within each block before computing mean/sample SD over the three blocks. These are fixed-weight process repetitions, not extra training seeds. Never pool them into the five-seed quality uncertainty.
+
+Check output row IDs, model hashes, probability differences and class decisions against the selected-model predictions. Keep every declared condition and any failures. These models differ in capacity and compute; the table reports that difference rather than asserting a matched parameter or execution budget. This classifier-cost cohort is distinct from the older 0.001-learning-rate systems checkpoint used by the larger inference study.
+
+Run `python scripts/run_classifier_cost.py` only after training/source scans finish, then `python scripts/report_classifier_cost.py`. The latter exports verified aggregate evidence without raw records or model files. Private runs are under `runs/classifier-cost-100000/`; publication outputs use `artifacts/classifier-cost-100000/`.

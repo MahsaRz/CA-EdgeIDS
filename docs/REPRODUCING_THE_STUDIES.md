@@ -35,9 +35,9 @@ This creates `runs/linux-scaling-100000/`, including each dataset's original pil
 
 ```text
 python scripts/run_controlled_study.py --stage train
-python scripts/report_controlled_study.py --stage train --public-root runs/reproduction-exports/controlled
+python scripts/report_controlled_study.py --stage train --public-root runs/reproduction-exports/controlled-binary-100000
 python scripts/run_controlled_study.py --stage evaluate
-python scripts/report_controlled_study.py --stage evaluate --public-root runs/reproduction-exports/controlled
+python scripts/report_controlled_study.py --stage evaluate --public-root runs/reproduction-exports/controlled-binary-100000
 ```
 
 Inspect/freeze the exported selection manifest before the evaluate command. It must contain all 120 models and checkpoint hashes. The settings are the already declared validation-selected settings; this stage performs no new hyperparameter search. The default private folder is `runs/controlled-binary-100000/`. `--run-root` can choose another folder when replaying in an existing checkout; pass the same value to both runner and reporter.
@@ -45,10 +45,10 @@ Inspect/freeze the exported selection manifest before the evaluate command. It m
 ## Training procedures
 
 ```text
-python scripts/run_sampler_study.py --stage select --public-root runs/reproduction-exports/sampler
-python scripts/run_sampler_study.py --stage seeds --public-root runs/reproduction-exports/sampler
-python scripts/run_sampler_study.py --stage evaluate --public-root runs/reproduction-exports/sampler
-python scripts/report_sampler_study.py --public-root runs/reproduction-exports/sampler
+python scripts/run_sampler_study.py --stage select --public-root runs/reproduction-exports/sampler-binary-100000
+python scripts/run_sampler_study.py --stage seeds --public-root runs/reproduction-exports/sampler-binary-100000
+python scripts/run_sampler_study.py --stage evaluate --public-root runs/reproduction-exports/sampler-binary-100000
+python scripts/report_sampler_study.py --public-root runs/reproduction-exports/sampler-binary-100000
 ```
 
 Freeze the 30 validation candidates/15 choices before `seeds`, then all 75 selected checkpoint hashes before `evaluate`. Full-snapshot validation/test context and identical original targets are used by all five procedures. Exposure and empty-update counts remain part of the comparison. Use the same `--run-root`/`--public-root` on every stage if overriding them.
@@ -58,12 +58,23 @@ Freeze the 30 validation candidates/15 choices before `seeds`, then all 75 selec
 ```text
 python scripts/create_larger_samples.py --archive-map /path/to/private-archives.json
 python scripts/novel_host_protocol.py --out runs/reproduction-exports/novel-host-preflight
-python scripts/run_novel_host_study.py --stage train --public-root runs/reproduction-exports/novel-host
-python scripts/run_novel_host_study.py --stage evaluate --public-root runs/reproduction-exports/novel-host
-python scripts/report_novel_host_study.py --public-root runs/reproduction-exports/novel-host
+python scripts/run_novel_host_study.py --stage train --public-root runs/reproduction-exports/novel-host-1000000
+python scripts/run_novel_host_study.py --stage evaluate --public-root runs/reproduction-exports/novel-host-1000000
+python scripts/report_novel_host_study.py --public-root runs/reproduction-exports/novel-host-1000000
 ```
 
 The sample stage verifies all complete sources again and reproduces the original development row priorities. New-host inputs are checked against the declared preflight's CSV/target digests and supports. Freeze selected checkpoints between train and evaluate. ToN/CSE are feasible but have only 12/22 attack test flows; BoT fails and is not fitted. No seed search, class dropping or temporal labels are used to repair this. `--run-root` and export overrides work as above.
+
+## Classifier processing costs
+
+Finish fitting and source scans before timing, and run the timing studies separately:
+
+```text
+python scripts/run_classifier_cost.py
+python scripts/report_classifier_cost.py --public-root runs/reproduction-exports/classifier-cost-100000
+```
+
+The 36-condition grid uses the frozen seed-7 full GNN, MLP and Forest from the five-seed study, including a layer-wise GNN condition. Flow-only workers skip graph construction; Forest avoids unused Torch imports. Predictions are checked against each selected model's earlier test output. This is a different checkpoint cohort from the older systems baseline below.
 
 ## Larger processing study
 
@@ -75,6 +86,14 @@ python scripts/report_larger_inference.py --public-root runs/reproduction-export
 ```
 
 This uses the locally regenerated baseline's own checkpoint/preprocessor anchors and a fixed 135-condition grid. All three process blocks, every success and every resource failure must remain. The report checks numerical differences and class decisions against Full, or the independent layer-wise implementation where Full is rejected. It never relabels a mismatched condition equivalent. New model-file hashes and wall times can differ across hardware; the local run's own provenance is the anchor, not a requirement to possess the original private checkpoints.
+
+## Precision-recall areas
+
+```text
+python scripts/report_pr_areas.py --require-novel --verification-root runs/reproduction-exports --out runs/reproduction-exports/precision-recall-areas
+```
+
+This reads the verified test outputs of all 225 selected models and reports non-interpolated average precision and trapezoidal PR-AUC separately for both binary classes. It does not fit, tune a threshold or choose another checkpoint. The canonical export folder names above let this check match each report to its checkpoint-selection digest.
 
 ## Figures and published numbers
 
