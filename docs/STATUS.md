@@ -26,7 +26,7 @@ The predefined larger 30,000-row BoT uniform sample was then run with unchanged 
 2. Resolve the multiclass feasibility gate before fitting multiclass models; then complete independently trained partition studies, controlled Cluster-GCN/GraphSAINT baselines, graph/edge-feature ablations, validation-only tuning and generalization studies.
 3. Profile memory/halo expansion on larger pilots before loading millions of flows into the current in-memory graph builder. Full dataset repetitions, five seeds, equal tuning budgets and final uncertainty remain outstanding.
 4. Rewrite the manuscript using verified new outputs. **Overleaf has not been modified.**
-5. The prepared branch was also uploaded directly to `MahsaRz/DC-RCA:revision/ca-edgeids` after the owner authorized Git Credential Manager. Draft PR https://github.com/MahsaRz/DC-RCA/pull/1 remains the earlier fork-based review. The original repository's main branch is unchanged.
+5. The branch is published directly as `MahsaRz/DC-RCA:revision/ca-edgeids` after the owner authorized Git Credential Manager. Current draft review: https://github.com/MahsaRz/DC-RCA/pull/2 . It supersedes the closed fork-based draft #1. The original repository's main branch is unchanged.
 
 ## Next-phase findings
 
