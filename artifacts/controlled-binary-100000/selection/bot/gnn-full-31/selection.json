@@ -1,0 +1,21 @@
+{
+  "dataset": "bot",
+  "family": "GNN",
+  "variant": "full",
+  "seed": 31,
+  "fit_s": 6.394709621000061,
+  "summary_preparation_s": 0.36249271100007263,
+  "model_file": "runs/controlled-binary-100000/bot/gnn-full-31/model.pt",
+  "model_sha256": "9520ea98b370955ceb9cca4bb9410d109ce36682de006ffed442d3e0c0cd674b",
+  "training_message_arcs": 141238,
+  "validation_message_arcs": 6154,
+  "validation_macro_f1": 0.8440928923293456,
+  "best_epoch": 9,
+  "epochs_run": 10,
+  "gradient_updates": 1400,
+  "parameters": 4978,
+  "class_weights": [
+    179.2360382080078,
+    0.5013986825942993
+  ]
+}

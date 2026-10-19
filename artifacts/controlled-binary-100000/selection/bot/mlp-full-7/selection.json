@@ -1,0 +1,18 @@
+{
+  "dataset": "bot",
+  "family": "MLP",
+  "variant": "full",
+  "seed": 7,
+  "fit_s": 1.080797250000046,
+  "model_file": "runs/controlled-binary-100000/bot/mlp-full-7/model.pt",
+  "model_sha256": "66fedfa44781f81622536de04498baa3f3f39ec2add06bb4b0fd8c6172477248",
+  "best_epoch": 6,
+  "epochs_run": 9,
+  "validation_macro_f1": 0.8564899025232032,
+  "gradient_updates": 1260,
+  "class_weights": [
+    179.2360382080078,
+    0.5013986825942993
+  ],
+  "parameters": 1410
+}

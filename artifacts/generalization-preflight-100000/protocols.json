@@ -1,0 +1,152 @@
+[
+  {
+    "dataset": "ton",
+    "sample_rows": 100000,
+    "source_csv_sha256": "1ab80627902a50ec9a683a743bc5eb839d1219238936c5397da0387352f2f2f3",
+    "split_seed": 42,
+    "split_counts": {
+      "train": 11737,
+      "validation": 16530,
+      "test": 1648,
+      "excluded_cross_host": 70085
+    },
+    "class_counts": {
+      "train": {
+        "Benign": 5975,
+        "Attack": 5762
+      },
+      "validation": {
+        "Benign": 4815,
+        "Attack": 11715
+      },
+      "test": {
+        "Benign": 143,
+        "Attack": 1505
+      },
+      "excluded_cross_host": {
+        "Benign": 25395,
+        "Attack": 44690
+      }
+    },
+    "missing_classes": {
+      "train": [],
+      "validation": [],
+      "test": []
+    },
+    "shared_hosts": {
+      "train/validation": 0,
+      "train/test": 0,
+      "validation/test": 0
+    },
+    "nodes_per_split": {
+      "train": 198,
+      "validation": 121,
+      "test": 24
+    },
+    "feasible_binary_all_class": true,
+    "timestamp_candidates": [],
+    "temporal_protocol": "requires genuine timestamp metadata; row order and duration are not event time",
+    "interpretation": "host-disjoint feasibility is not accuracy; cross-host flows are explicitly excluded"
+  },
+  {
+    "dataset": "cse",
+    "sample_rows": 100000,
+    "source_csv_sha256": "fc1244b9554d85ee2fe6774e400e4b2baf6a78e8d64d9b25fa75dde959975fc5",
+    "split_seed": 42,
+    "split_counts": {
+      "train": 18830,
+      "validation": 11219,
+      "test": 2176,
+      "excluded_cross_host": 67775
+    },
+    "class_counts": {
+      "train": {
+        "Benign": 16513,
+        "Attack": 2317
+      },
+      "validation": {
+        "Benign": 10603,
+        "Attack": 616
+      },
+      "test": {
+        "Benign": 2171,
+        "Attack": 5
+      },
+      "excluded_cross_host": {
+        "Benign": 58784,
+        "Attack": 8991
+      }
+    },
+    "missing_classes": {
+      "train": [],
+      "validation": [],
+      "test": []
+    },
+    "shared_hosts": {
+      "train/validation": 0,
+      "train/test": 0,
+      "validation/test": 0
+    },
+    "nodes_per_split": {
+      "train": 4957,
+      "validation": 848,
+      "test": 793
+    },
+    "feasible_binary_all_class": true,
+    "timestamp_candidates": [],
+    "temporal_protocol": "requires genuine timestamp metadata; row order and duration are not event time",
+    "interpretation": "host-disjoint feasibility is not accuracy; cross-host flows are explicitly excluded"
+  },
+  {
+    "dataset": "bot",
+    "sample_rows": 100000,
+    "source_csv_sha256": "8282bcac56cc7c81d1112078424045f1c3aa40cef9c189266c70a8ddaf692704",
+    "split_seed": 42,
+    "split_counts": {
+      "train": 58165,
+      "validation": 6863,
+      "test": 0,
+      "excluded_cross_host": 34972
+    },
+    "class_counts": {
+      "train": {
+        "Benign": 224,
+        "Attack": 57941
+      },
+      "validation": {
+        "Benign": 3,
+        "Attack": 6860
+      },
+      "test": {
+        "Benign": 0,
+        "Attack": 0
+      },
+      "excluded_cross_host": {
+        "Benign": 110,
+        "Attack": 34862
+      }
+    },
+    "missing_classes": {
+      "train": [],
+      "validation": [],
+      "test": [
+        "Benign",
+        "Attack"
+      ]
+    },
+    "shared_hosts": {
+      "train/validation": 0,
+      "train/test": 0,
+      "validation/test": 0
+    },
+    "nodes_per_split": {
+      "train": 12,
+      "validation": 2,
+      "test": 0
+    },
+    "feasible_binary_all_class": false,
+    "timestamp_candidates": [],
+    "temporal_protocol": "requires genuine timestamp metadata; row order and duration are not event time",
+    "interpretation": "host-disjoint feasibility is not accuracy; cross-host flows are explicitly excluded"
+  }
+]

@@ -1,0 +1,3 @@
+Host-disjoint feasibility on the frozen 100000-flow samples; no fitted models or accuracy measurements.
+All excluded cross-host flows counted; no seed search. No timestamps invented from source row IDs or durations.
+Raw flows and host identities excluded.
