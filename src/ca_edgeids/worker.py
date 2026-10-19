@@ -45,7 +45,7 @@ def load_graph(path):
     return FlowGraph(**a,incoming=incoming)
 
 
-def benchmark(graph_path,checkpoint,method,parts,out,batch_size=None,repeats=None,process_started_at=None):
+def benchmark(graph_path,checkpoint,method,parts,out,batch_size=None,repeats=None,process_started_at=None,message_batch_size=4096):
     setup_started=time.perf_counter()
     if Path(str(out)+".json").exists() or Path(str(out)+".npz").exists():
         raise FileExistsError("Refusing to overwrite prior worker output")
@@ -64,9 +64,15 @@ def benchmark(graph_path,checkpoint,method,parts,out,batch_size=None,repeats=Non
     model=EdgeSAGE(g.edge_x.shape[1],cfg["classes"],cfg["hidden"],cfg["layers"],cfg["dropout"]).to(cfg["device"])
     model.load_state_dict(checkpoint["state_dict"]); model.eval()
     model_setup_s=time.perf_counter()-t
-    t=time.perf_counter(); owner=partition_nodes(g,"full" if method=="chunked" else method,parts,seed); partition_s=time.perf_counter()-t
+    if method=="cached" and parts!=1: raise ValueError("Cached inference uses global node states, not partitions")
+    t=time.perf_counter(); owner=partition_nodes(g,"full" if method in {"chunked","cached"} else method,parts,seed); partition_s=time.perf_counter()-t
+    def predict():
+        if method=="cached":
+            from .cached import infer_cached
+            return infer_cached(model,g,cfg,message_batch_size)
+        return infer(model,g,owner,cfg,full_graph=method=="full",partition_count=parts)
     warm=time.perf_counter()
-    infer(model,g,owner,cfg,full_graph=method=="full",partition_count=parts)
+    predict()
     sync(cfg["device"]); first_finished_at=time.perf_counter(); warm_s=first_finished_at-warm
     first_process_s=None if process_started_at is None else first_finished_at-process_started_at
     if first_process_s is not None and first_process_s<=0:
@@ -74,7 +80,7 @@ def benchmark(graph_path,checkpoint,method,parts,out,batch_size=None,repeats=Non
     records=[]
     ref=None
     for repeat in range(cfg["repeats"]):
-        p,timing=infer(model,g,owner,cfg,full_graph=method=="full",partition_count=parts)
+        p,timing=predict()
         if ref is None: ref=p
         elif not np.allclose(ref,p,atol=1e-6,rtol=1e-6): raise AssertionError("Repeated deterministic inference changed probabilities")
         records.append(dict(repeat=repeat,partitioning_s=partition_s,warmup_s=warm_s,warmup_full_passes=1,
@@ -90,4 +96,5 @@ if __name__=="__main__":
     parser=argparse.ArgumentParser(); parser.add_argument("--graph",required=True); parser.add_argument("--checkpoint",required=True); parser.add_argument("--method",required=True); parser.add_argument("--parts",type=int,required=True); parser.add_argument("--out",required=True)
     parser.add_argument("--batch-size",type=int); parser.add_argument("--repeats",type=int)
     parser.add_argument("--process-started-at",type=float)
-    a=parser.parse_args(); benchmark(a.graph,a.checkpoint,a.method,a.parts,a.out,a.batch_size,a.repeats,a.process_started_at)
+    parser.add_argument("--message-batch-size",type=int,default=4096)
+    a=parser.parse_args(); benchmark(a.graph,a.checkpoint,a.method,a.parts,a.out,a.batch_size,a.repeats,a.process_started_at,a.message_batch_size)
