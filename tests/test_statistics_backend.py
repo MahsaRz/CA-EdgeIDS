@@ -121,3 +121,21 @@ def test_input_cache_is_bounded_and_contains_only_fixed_inputs():
     tiny=summarize(g); tiny.closure_cache_bytes=1
     fixed_inputs(g,tiny,np.arange(3),2,'cpu')
     assert not tiny._memo
+
+
+def test_inference_warmed_summary_preserves_later_training_gradients():
+    from test_resources import star
+    g=star(); seed_all(17)
+    actual=EdgeSAGE(g.edge_x.shape[1],2,4,2,.2)
+    expected=copy.deepcopy(actual); summary=summarize(g); q=np.arange(3)
+    actual.eval()
+    with torch.inference_mode(): forward_summary(actual,g,summary,q)
+    assert all(not torch.is_inference(t) for t in summary._packed[3])
+    actual.train(); expected.train()
+    torch.manual_seed(29); a=forward_summary(actual,g,summary,q)
+    torch.manual_seed(29); b=forward_summary(expected,g,summarize(g),q)
+    torch.testing.assert_close(a,b,rtol=0,atol=0)
+    labels=torch.tensor([0,1,0])
+    F.cross_entropy(a,labels).backward(); F.cross_entropy(b,labels).backward()
+    for p,r in zip(actual.parameters(),expected.parameters()):
+        torch.testing.assert_close(p.grad,r.grad,rtol=0,atol=0)

@@ -74,7 +74,7 @@ def fixed_inputs(g,summary,q,depth,device):
             digest=hashlib.sha256(nodes.tobytes()).digest()
             intern=memo.get('sets',{}).get(digest)
             if intern is not None and not np.array_equal(intern,nodes): raise AssertionError('Closure digest collision')
-            cost=len(key[2])+16+(nodes.nbytes if intern is None else 0)
+            cost=len(key[2])+16+(nodes.nbytes+len(digest) if intern is None else 0)
             if memo.get('bytes',0)+cost<=summary.closure_cache_bytes:
                 if intern is None: memo.setdefault('sets',{})[digest]=nodes
                 else: nodes=intern
@@ -82,11 +82,13 @@ def fixed_inputs(g,summary,q,depth,device):
     packed=summary._packed if summary.cache_enabled else None
     if packed is not None and packed[0]==id(g) and packed[1]==str(device) and np.array_equal(packed[2],nodes):
         return nodes,packed[3]
-    matrix=summary.adjacency[nodes][:,nodes].tocoo()
-    indices=torch.tensor(np.stack([matrix.row,matrix.col]),dtype=torch.long,device=device)
-    adjacency=torch.sparse_coo_tensor(indices,torch.tensor(matrix.data,device=device),matrix.shape).coalesce()
-    values=(adjacency,torch.tensor(g.node_x[nodes],device=device),torch.tensor(summary.mean_flow[nodes],device=device),
-        torch.tensor(summary.has_incoming[nodes],device=device).unsqueeze(1))
+    # Cached constants must also be safe for later autograd use.
+    with torch.inference_mode(False):
+        matrix=summary.adjacency[nodes][:,nodes].tocoo()
+        indices=torch.tensor(np.stack([matrix.row,matrix.col]),dtype=torch.long,device=device)
+        adjacency=torch.sparse_coo_tensor(indices,torch.tensor(matrix.data,device=device),matrix.shape).coalesce()
+        values=(adjacency,torch.tensor(g.node_x[nodes],device=device),torch.tensor(summary.mean_flow[nodes],device=device),
+            torch.tensor(summary.has_incoming[nodes],device=device).unsqueeze(1))
     if summary.cache_enabled: summary._packed=(id(g),str(device),nodes,values)
     return nodes,values
 
