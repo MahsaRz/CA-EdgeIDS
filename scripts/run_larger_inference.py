@@ -21,12 +21,13 @@ from ca_edgeids.model import EdgeSAGE
 from ca_edgeids.runtime import PeakRSS,environment,seed_all
 from ca_edgeids.statistics_backend import summarize
 from larger_data import transform_frame
+from hardware_context import hardware_context
 
 ROOT=Path('runs/larger-inference'); PLAN=Path('configs/larger_inference.json')
 
 
 def sources():
-    paths=list(Path('src/ca_edgeids').glob('*.py'))+[PLAN,Path('scripts/run_larger_inference.py'),Path('scripts/larger_data.py')]
+    paths=list(Path('src/ca_edgeids').glob('*.py'))+[PLAN,Path('scripts/run_larger_inference.py'),Path('scripts/larger_data.py'),Path('scripts/hardware_context.py')]
     return {str(p).replace('\\','/'):sha256_file(p) for p in paths}
 
 
@@ -96,7 +97,7 @@ def execute():
         if hashlib.sha256(content).hexdigest()!=digest: raise ValueError('Commit the protocol before timing')
     jobs=[dict(block=b,dataset=d,sample_size=n,method=m) for b in plan['blocks'] for d in plan['datasets'] for n in plan['sample_sizes'] for m in plan['methods']]
     np.random.default_rng(plan['order_seed']).shuffle(jobs)
-    ROOT.mkdir(parents=True); dump(ROOT/'frozen_plan.json',dict(plan,source_commit=commit,source_sha256=snapshot,environment=environment(),execution_order=jobs))
+    ROOT.mkdir(parents=True); dump(ROOT/'frozen_plan.json',dict(plan,source_commit=commit,source_sha256=snapshot,environment=environment(),hardware=hardware_context(),execution_order=jobs))
     failures=[]; records=[]
     for index,job in enumerate(jobs):
         tag=f"block-{job['block']}-{job['dataset']}-{job['sample_size']}-{job['method']}"; dest=ROOT/tag

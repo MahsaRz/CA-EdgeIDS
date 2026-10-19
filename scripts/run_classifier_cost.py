@@ -11,6 +11,7 @@ import subprocess
 import sys
 import threading
 import time
+from hardware_context import hardware_context
 
 ROOT=Path('runs/classifier-cost-100000'); MODEL_ROOT=Path('runs/controlled-binary-100000'); PLAN=Path('configs/classifier_cost_100000.json')
 
@@ -37,7 +38,7 @@ class Memory:
 
 
 def sources():
-    paths=list(Path('src/ca_edgeids').glob('*.py'))+[PLAN,Path('scripts/run_classifier_cost.py'),Path('scripts/larger_data.py')]
+    paths=list(Path('src/ca_edgeids').glob('*.py'))+[PLAN,Path('scripts/run_classifier_cost.py'),Path('scripts/larger_data.py'),Path('scripts/hardware_context.py')]
     return {str(p).replace('\\','/'):sha(p) for p in paths}
 
 
@@ -118,7 +119,7 @@ def execute():
     package_versions={name:importlib.metadata.version(name) for name in ['numpy','pandas','scipy','scikit-learn','torch','joblib']}
     dump(ROOT/'frozen_plan.json',dict(plan,source_commit=commit,source_sha256=snapshot,execution_order=jobs,
         model_root=str(MODEL_ROOT),model_selections_sha256=sha(MODEL_ROOT/'selected_models.json'),
-        environment=dict(python=platform.python_version(),platform=platform.platform(),packages=package_versions)))
+        environment=dict(python=platform.python_version(),platform=platform.platform(),packages=package_versions,hardware=hardware_context())))
     records=[]; failures=[]
     for i,job in enumerate(jobs):
         tag=f"block-{job['block']}-{job['dataset']}-{job['method']}"; out=ROOT/tag; start=time.perf_counter()
