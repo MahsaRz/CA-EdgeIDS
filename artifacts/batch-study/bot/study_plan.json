@@ -1,0 +1,209 @@
+{
+  "dataset": "bot",
+  "scope": "fixed-checkpoint binary pilot; inference scheduling only",
+  "source_run": "bot-binary-pilot-30000-v1",
+  "model_seed": 7,
+  "batch_sizes": [
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "partition_counts": [
+    2,
+    4,
+    8
+  ],
+  "methods": [
+    "chunked",
+    "random",
+    "metis"
+  ],
+  "repeats": 3,
+  "order_seed": 20261019,
+  "timeout_s": 120,
+  "execution_order": [
+    {
+      "method": "random",
+      "partitions": 4,
+      "batch_size": 512
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "batch_size": 1024
+    },
+    {
+      "method": "metis",
+      "partitions": 2,
+      "batch_size": 1024
+    },
+    {
+      "method": "chunked",
+      "partitions": 1,
+      "batch_size": 2048
+    },
+    {
+      "method": "chunked",
+      "partitions": 1,
+      "batch_size": 1024
+    },
+    {
+      "method": "metis",
+      "partitions": 2,
+      "batch_size": 256
+    },
+    {
+      "method": "metis",
+      "partitions": 4,
+      "batch_size": 1024
+    },
+    {
+      "method": "chunked",
+      "partitions": 1,
+      "batch_size": 512
+    },
+    {
+      "method": "metis",
+      "partitions": 2,
+      "batch_size": 2048
+    },
+    {
+      "method": "random",
+      "partitions": 8,
+      "batch_size": 1024
+    },
+    {
+      "method": "metis",
+      "partitions": 4,
+      "batch_size": 512
+    },
+    {
+      "method": "random",
+      "partitions": 2,
+      "batch_size": 512
+    },
+    {
+      "method": "random",
+      "partitions": 4,
+      "batch_size": 1024
+    },
+    {
+      "method": "random",
+      "partitions": 2,
+      "batch_size": 256
+    },
+    {
+      "method": "chunked",
+      "partitions": 1,
+      "batch_size": 256
+    },
+    {
+      "method": "random",
+      "partitions": 4,
+      "batch_size": 256
+    },
+    {
+      "method": "random",
+      "partitions": 8,
+      "batch_size": 2048
+    },
+    {
+      "method": "metis",
+      "partitions": 4,
+      "batch_size": 2048
+    },
+    {
+      "method": "metis",
+      "partitions": 2,
+      "batch_size": 512
+    },
+    {
+      "method": "random",
+      "partitions": 4,
+      "batch_size": 2048
+    },
+    {
+      "method": "random",
+      "partitions": 2,
+      "batch_size": 1024
+    },
+    {
+      "method": "random",
+      "partitions": 2,
+      "batch_size": 2048
+    },
+    {
+      "method": "full",
+      "partitions": 1,
+      "batch_size": 0
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "batch_size": 256
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "batch_size": 2048
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "batch_size": 512
+    },
+    {
+      "method": "random",
+      "partitions": 8,
+      "batch_size": 256
+    },
+    {
+      "method": "random",
+      "partitions": 8,
+      "batch_size": 512
+    },
+    {
+      "method": "metis",
+      "partitions": 4,
+      "batch_size": 256
+    }
+  ],
+  "full_batch_size_zero_means": "All test targets in a single forward call; batch-size cap is ignored",
+  "checkpoint_sha256": "d2f05a27c4b751032f7fc31ec84cd1d34a7bf12b6cdea77ce800b2f33072ac99",
+  "source_csv_sha256": "2dd17fe22675e7cf1095a81b603b7a92bc5ba1a30ba877d6d3e13f6ae2d729be",
+  "target_row_ids_sha256": "0cb624486393f0afc062f3304d239f59600ebe191c238070226b891044c75e1c",
+  "reference_predictions_sha256": "934d9b9499c2860a487fee5718bfce14ff689f3b975d14d30ad7c4534a2cf83c",
+  "environment": {
+    "python": "3.11.8",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "package_source_sha256": {
+    "__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "batch_study.py": "148e1a9794d124983a42d3db5889e9f2bbcfcfd8667cb5c9ac9ccd92f179e77c",
+    "cli.py": "6281b204350e3343fe4bc707ff94ee1861e2a0f4e53805d9822737e3f6d644da",
+    "data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "experiment.py": "f4525aa48b3d9faca46cce5eb9070a009a01bbd7629900154d91fbf292b64838",
+    "graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "profile.py": "0f830ed421f965851547b9a4cde9334f9313c01509c2a526b08b2efd8e587f63",
+    "report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "runtime.py": "5771b57c3fc324e111d1e8c7b27f937ed3b72fd3588620103f96da763caf1604",
+    "worker.py": "cd3d741122bda1b6c332f7f2717b92d0b55c8b22f68f66b7d4979395bf256c8a"
+  },
+  "timing": "Fresh process per condition; one complete warm-up pass; repeated whole-graph inference. Loading, graph conversion, partitioning, warm-up and process startup are outside total_inference_s.",
+  "memory": "Sampled process RSS with resident input graph; activations from warm-up may remain in allocator caches. Packed graph arrays use read-only memory mapping. No claim of a cold-start or end-to-end online latency."
+}

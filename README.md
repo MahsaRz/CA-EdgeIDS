@@ -71,6 +71,8 @@ python -m ca_edgeids batch-study --run-dir runs/ton-binary-scaling-30000 --out r
 
 This reuses the saved model and test rows. It runs a single full-graph pass and one-partition, Random and available METIS batches at 256/512/1024/2048 flows, with three timing repeats and a complete warm-up pass in a fresh process for each condition. It does not retrain the model or tune it using test results. Times exclude graph loading, process startup, partitioning and warm-up.
 
+The [completed pilot comparison](docs/BATCH_SIZE_STUDY.md) contains 47 successful conditions and 141 timing records. Full-graph inference was fastest among the completed conditions on each dataset; larger batches reduced batched inference time. The results do not establish a partitioning speed advantage.
+
 The present partition sweep holds the checkpoint fixed. Exact halo inference should preserve accuracy; Tables C/D therefore examine **inference scheduling**, not accuracy improvements due to training partitions. Separate training-partition experiments, topology/edge-feature ablations, a direct Cluster-GCN training baseline, and GraphSAINT remain research tasks in the plan. The RF/MLP baselines have fixed initial settings and are not a final equal-budget tuned comparison.
 
 Graphs are built independently for train/validation/test and use all features of a split snapshot jointly. Test labels never enter representations, but test features participate in message passing. This is an **offline snapshot evaluation**. It is not causal streaming inference. No timestamp is invented where the NetFlow release lacks one.

@@ -1,0 +1,7 @@
+{
+  "requested_conditions": 29,
+  "completed_conditions": 17,
+  "unavailable_conditions": 12,
+  "timing_rows": 51,
+  "model_retrained": false
+}

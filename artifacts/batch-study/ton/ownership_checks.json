@@ -1,0 +1,10 @@
+{
+  "same_ownership_across_batch_sizes": true,
+  "ownership_sha256": {
+    "random-4": "b91e22eeeba8eeb9f113cf321a3b26798318624a44ce53fb60ca5f88e5ddaa7f",
+    "chunked-1": "5f40124a24d3ad640b555a4196271a842d7581fefe3b0733cc6234c191261776",
+    "random-8": "ba728542da421a13099381858292c0900e1038771b6eb08cbf40d29e4c73676c",
+    "random-2": "37ea6fdcb2127ad25b0725aafb777a0da5be763f885acd344cd296a7491856a5",
+    "full-1": "5f40124a24d3ad640b555a4196271a842d7581fefe3b0733cc6234c191261776"
+  }
+}

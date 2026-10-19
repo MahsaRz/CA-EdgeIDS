@@ -32,7 +32,7 @@ These checks do not bound total memory. Graph arrays, temporary index arrays, mo
 
 The tests cover a star graph where small batches repeat the entire context, a one-partition control, label-independent work counts, the exact packed-tensor limit, file-size rejection, mapped graph logits, and a full run with fresh workers. The existing correctness tests remain in place.
 
-The next comparison should include a measured one-partition batched inference baseline alongside Full, Random, and METIS. Larger pilots should vary batch size separately from partition count, keep test rows fixed, and record repeated work, total inference time, and peak memory. Full dataset runs and the multiclass protocol revision remain open.
+The [batch-size comparison](BATCH_SIZE_STUDY.md) now includes the measured one-partition baseline and all locally available conditions. Larger pilots should keep batch size separate from partition count, retain the same targets across conditions, and record repeated work, total inference time, and peak memory. Full dataset runs and the multiclass protocol revision remain open.
 
 ## Reproduction
 
