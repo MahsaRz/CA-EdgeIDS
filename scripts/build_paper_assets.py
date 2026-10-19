@@ -163,7 +163,7 @@ def execute(complete=False):
         ('Node features','Log one plus outgoing and incoming original-flow counts, independently in each split'),
         ('Flow features','Ten declared fields; eight numerical, PROTOCOL and L7 PROTO categorical; all preprocessing fitted on training only'),
         ('Network','Edge-conditioned mean aggregation; two layers, hidden width 16, ReLU; edge decoder uses endpoint states and flow attributes'),
-        ('Training / prediction','Dropout 0.2; class-balanced cross entropy; Adam, weight decay 0.0001, norm-five clipping; softmax and fixed argmax'),
+        ('Neural training / prediction','Dropout 0.2; class-balanced cross entropy; Adam, weight decay 0.0001, norm-five clipping; softmax and fixed argmax'),
         ('Classifier / graph-control cohort','Learning rate 0.003; four fixed random ownership groups, at most 512 targets per update, full context; ten-epoch maximum, patience three; validation macro F1; seeds 7/19/31/43/59'),
         ('Flow-only baselines','MLP: two hidden layers of width 16, ReLU and dropout 0.2; Forest: 100 balanced bootstrap trees, square-root feature subsampling, selected depth'),
         ('Sampler cohort','Two rates 0.001/0.003 per method at seed 7, validation-only choice, then four remaining seeds; global target-risk scaling differs from per-batch weighted mean'),

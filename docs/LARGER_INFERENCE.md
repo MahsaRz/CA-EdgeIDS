@@ -15,3 +15,5 @@ Retain the original 512 MiB CSV and 256 MiB inference tensor/input-summary scree
 Run `python scripts/run_larger_inference.py` after training and full-source scans finish. Do not run competing training/data-scan workloads during latency measurement. Verify and export the private `runs/larger-inference/` results before using any number in the manuscript.
 
 Prediction checks use absolute and relative tolerances 0.00001 plus exact class agreement. Any numerical mismatch is retained with its maximum probability difference and number of changed decisions; it is not relabeled equivalent or removed from the declared grid. Invalid/missing targets or corrupted outputs fail the audit. A pre-grid functional software check reproduced the old ToN target IDs and predictions through the fixed-preprocessor worker; its concurrent-job timing is excluded from the study.
+
+Memory values use MiB (2^20 bytes), including historical CSV field names ending in `_mb`. Inputs and run files reside on the Windows-mounted workspace under WSL2. These storage/cache conditions affect process and preparation times; the study does not treat them as native edge-device deployment measurements.
