@@ -1,0 +1,23 @@
+{
+  "datasets": ["ton", "cse", "bot"],
+  "model_seeds": [7, 19, 31, 43, 59],
+  "variants": ["full", "no_degree", "no_message_features", "no_messages", "rewired", "directed"],
+  "ownership_seed": 7,
+  "topology_seeds": {"train": 104729, "validation": 104730, "test": 104731},
+  "learning_rate": 0.003,
+  "rf_depths": {"ton": null, "cse": 16, "bot": 16},
+  "rf_trees": 100,
+  "epochs": 10,
+  "patience": 3,
+  "hidden": 16,
+  "layers": 2,
+  "dropout": 0.2,
+  "weight_decay": 0.0001,
+  "batch_size": 512,
+  "threads": 1,
+  "parameter_source": "artifacts/classifier-comparison-100000/selection/selection.json",
+  "checkpoint_rule": "validation macro F1; strict improvement; patience 3",
+  "decision_rule": "fixed argmax",
+  "test_gate": "all 120 fits and checkpoint selections frozen before new predictions",
+  "scope": "five training seeds; fixed previously inspected development split; not an independent data-split or final generalization claim"
+}
