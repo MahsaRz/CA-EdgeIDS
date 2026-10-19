@@ -32,6 +32,7 @@ def main():
     sub=p.add_subparsers(dest="cmd",required=True)
     demo=sub.add_parser("demo"); demo.add_argument("--out",required=True)
     real=sub.add_parser("run"); real.add_argument("--config",required=True); real.add_argument("--out",required=True)
+    real.add_argument("--no-report",action="store_true",help="Save the run without building paper tables")
     report=sub.add_parser("report"); report.add_argument("run_dir")
     preflight=sub.add_parser("preflight"); preflight.add_argument("--config",required=True); preflight.add_argument("--out",required=True)
     profile=sub.add_parser("profile"); profile.add_argument("--run-dir",required=True); profile.add_argument("--out",required=True)
@@ -50,6 +51,8 @@ def main():
         print(generate(args.run_dir)); return
     config=demo_config(Path(args.out).parent/(Path(args.out).name+"-fixture")) if args.cmd=="demo" else json.loads(Path(args.config).read_text())
     result=run(config,args.out)
+    if args.cmd=="run" and args.no_report:
+        print(result); return
     print(generate(result))
 
 

@@ -1,0 +1,60 @@
+{
+  "name": "linux-binary-scaling-100000",
+  "datasets": [
+    "ton",
+    "cse",
+    "bot"
+  ],
+  "inputs": {
+    "ton": {
+      "config": "configs/ton_binary_linux_100000.json",
+      "config_sha256": "93f80396d323d5e216a5f803b00974724f6fb4feb1c7b8df290a9bb2d577cbce",
+      "sample_csv_sha256": "1ab80627902a50ec9a683a743bc5eb839d1219238936c5397da0387352f2f2f3",
+      "sample_rows": 100000,
+      "sample_row_ids_sha256": "952285039e787ce38281c55090ac817cf3926e6a11bc43c23b6368a36995a96b",
+      "archive_sha256": "69dd3b8bd59e23f0718dfc69b2757cb6ca08fe2c4c1d4fd126b8bbd204bbbad2"
+    },
+    "cse": {
+      "config": "configs/cse_binary_linux_100000.json",
+      "config_sha256": "fcff21b9322cb78f1cd122f1e272d00e1471cabc68017ab85e4331db6e5bd79c",
+      "sample_csv_sha256": "fc1244b9554d85ee2fe6774e400e4b2baf6a78e8d64d9b25fa75dde959975fc5",
+      "sample_rows": 100000,
+      "sample_row_ids_sha256": "3af59ab12cbd56fbbf86a6919d55c851efabe70939471b06ddd851466844b5aa",
+      "archive_sha256": "ad6307995d08ff8825d0193d5a1cfa61cf3dc4c6f223962ba3762a7775b5dc24"
+    },
+    "bot": {
+      "config": "configs/bot_binary_linux_100000.json",
+      "config_sha256": "bef640a41a73298a638b2f8049e1928521709096cc459556b2c6012cdd0b1419",
+      "sample_csv_sha256": "8282bcac56cc7c81d1112078424045f1c3aa40cef9c189266c70a8ddaf692704",
+      "sample_rows": 100000,
+      "sample_row_ids_sha256": "87246e785e61623019d9e04d5cc92c7f2a501c68cc0a2d979056b95b70c25839",
+      "archive_sha256": "8208d46a22363368cc118e6a19bf7db235d22e6d48c38b337a86087802cb3342"
+    }
+  },
+  "sampling_seed": 2026,
+  "split_seed": 42,
+  "model_seed": 7,
+  "batch_sizes": [
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "partition_counts": [
+    2,
+    4,
+    8
+  ],
+  "methods": [
+    "chunked",
+    "random",
+    "metis"
+  ],
+  "timing_repeats": 3,
+  "order_seed": 20261019,
+  "worker_timeout_s": 120,
+  "scope": "One new binary model per dataset. Freeze that checkpoint across all inference conditions. No test-driven tuning; no five-seed or full-dataset claim.",
+  "training": "Same initial 10-epoch, patience-3, hidden-16, 2-layer, batch-512 settings as the 30,000-flow pilots. Training uses random source ownership and exact context. No RF/MLP fitting in this systems pilot.",
+  "timing": "Fresh process per condition; one complete warm-up pass; three whole-test-graph repeats. Record total inference, forward, packing, partitioning and sampled RSS separately. Loading and preparation are outside warm inference.",
+  "failures": "Retain infeasible partition counts, configured limits, timeouts and memory failures. Stop on a prediction or coverage mismatch."
+}

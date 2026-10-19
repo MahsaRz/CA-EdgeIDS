@@ -65,8 +65,13 @@ class PeakRSS:
 
 def environment():
     import sklearn, scipy, pandas, matplotlib
+    from importlib.metadata import version, PackageNotFoundError
+    try:
+        metis_version=version("pymetis")
+    except PackageNotFoundError:
+        metis_version=None
     return {"python":platform.python_version(),"platform":platform.platform(),"processor":platform.processor(),
             "torch":torch.__version__,"numpy":np.__version__,"pandas":pandas.__version__,
-            "sklearn":sklearn.__version__,"scipy":scipy.__version__,"matplotlib":matplotlib.__version__,
+            "sklearn":sklearn.__version__,"scipy":scipy.__version__,"matplotlib":matplotlib.__version__,"pymetis":metis_version,
             "cuda_available":torch.cuda.is_available(),"cuda":torch.version.cuda,
             "gpu":torch.cuda.get_device_name(0) if torch.cuda.is_available() else None}

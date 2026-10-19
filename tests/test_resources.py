@@ -100,6 +100,9 @@ def test_new_graph_storage_runs_in_fresh_workers_and_profiles(tmp_path):
     assert timings.loc[timings.method=="full","batches"].item()==1
     assert timings.loc[timings.method=="chunked","batches"].item()>1
     assert set(timings.warmup_full_passes)=={1}
+    assert (timings.first_prediction_process_s>0).all()
+    assert (timings.first_prediction_process_s<=timings.worker_process_wall_s).all()
+    assert (timings.first_prediction_in_worker_s>=timings.graph_load_s+timings.checkpoint_load_s+timings.model_setup_s).all()
     assert all(r["same_class_predictions"] for r in json.loads((study/"prediction_checks.json").read_text()))
 
 

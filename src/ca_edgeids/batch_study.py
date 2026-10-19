@@ -52,13 +52,14 @@ def run_study(run_dir,out,batch_sizes=(256,512,1024,2048),partition_counts=(2,4,
     dump(out/"study_plan.json",{
         "dataset":cfg["dataset"],"scope":"fixed-checkpoint binary pilot; inference scheduling only",
         "source_run":run_dir.name,"model_seed":seed,"batch_sizes":list(batch_sizes),"partition_counts":list(partition_counts),
+        "sample_rows":data["rows_read"],"data_scope":data["data_scope"],
         "methods":list(methods),"repeats":repeats,"order_seed":order_seed,"timeout_s":timeout_s,
         "execution_order":[{"method":m,"partitions":p,"batch_size":b} for m,p,b in jobs],
         "full_batch_size_zero_means":"All test targets in a single forward call; batch-size cap is ignored",
         "checkpoint_sha256":sha256_file(checkpoint),"source_csv_sha256":data["csv_sha256"],
         "target_row_ids_sha256":row_hash,"reference_predictions_sha256":sha256_file(anchor),
         "environment":environment(),"package_source_sha256":{p.name:sha256_file(p) for p in sorted(Path(__file__).parent.glob("*.py"))},
-        "timing":"Fresh process per condition; one complete warm-up pass; repeated whole-graph inference. Loading, graph conversion, partitioning, warm-up and process startup are outside total_inference_s.",
+        "timing":"Fresh process per condition; one complete warm-up pass; repeated whole-graph inference. Loading, graph conversion, partitioning, warm-up and process startup are outside total_inference_s. first_prediction_process_s includes process launch through the first complete graph prediction. It is one observation per condition, repeated on timing rows; it excludes source data preparation and graph conversion. OS file caches need not be cold.",
         "memory":"Sampled process RSS with resident input graph; activations from warm-up may remain in allocator caches. Packed graph arrays use read-only memory mapping. No claim of a cold-start or end-to-end online latency."})
     t=time.perf_counter(); save_graph(graph,out/"test_graph")
     dump(out/"graph_storage.json",{"conversion_s":time.perf_counter()-t,
@@ -77,10 +78,13 @@ def run_study(run_dir,out,batch_sizes=(256,512,1024,2048),partition_counts=(2,4,
                  "--checkpoint",str(checkpoint.resolve()),"--method",method,"--parts",str(parts),
                  "--repeats",str(repeats),"--out",str((out/tag).resolve())]
         if batch_size: command.extend(["--batch-size",str(batch_size)])
+        process_started_at=time.perf_counter()
+        command.extend(["--process-started-at",str(process_started_at)])
         try:
             result=subprocess.run(command,capture_output=True,text=True,timeout=timeout_s)
         except subprocess.TimeoutExpired:
             failures.append(dict(identity,stage="worker",error=f"Timed out after {timeout_s} seconds")); continue
+        worker_process_wall_s=time.perf_counter()-process_started_at
         if result.returncode:
             failures.append(dict(identity,stage="worker",error=result.stderr))
             dump(out/"unavailable_runs.json",failures)
@@ -97,7 +101,9 @@ def run_study(run_dir,out,batch_sizes=(256,512,1024,2048),partition_counts=(2,4,
         for record in records:
             if record["target_row_ids_sha256"]!=row_hash or record["coverage_min"]!=1 or record["coverage_max"]!=1:
                 raise AssertionError("Timing condition changed target coverage")
-            rows.append(dict(dataset=cfg["dataset"],model_seed=seed,**identity,**record))
+            if not 0<record["first_prediction_process_s"]<=worker_process_wall_s:
+                raise AssertionError("Invalid first-prediction process timing")
+            rows.append(dict(dataset=cfg["dataset"],model_seed=seed,worker_process_wall_s=worker_process_wall_s,**identity,**record))
         pd.DataFrame(rows).to_csv(out/"timing_repeats.csv",index=False)
         print(f"{cfg['dataset']}: {tag} checked",flush=True)
     pd.DataFrame(rows).to_csv(out/"timing_repeats.csv",index=False)

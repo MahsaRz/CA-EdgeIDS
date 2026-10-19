@@ -45,7 +45,7 @@ def measure(g, owner, parts, depth, batch_size, full=False, tensor_limit=256*102
     return result,rows
 
 
-def profile_run(run_dir,out):
+def profile_run(run_dir,out,methods=None):
     run_dir=Path(run_dir); out=Path(out)
     if out.exists() and any(out.iterdir()): raise FileExistsError(f"Refusing to overwrite {out}")
     cfg=json.loads((run_dir/"resolved_config.json").read_text())
@@ -59,7 +59,8 @@ def profile_run(run_dir,out):
     out.mkdir(parents=True,exist_ok=True)
     rows=[]; batches=[]; failures=[]
     limit=cfg.get("max_batch_tensor_bytes",256*1024**2)
-    for method in ["chunked"]+cfg["methods"]:
+    selected_methods=cfg["methods"] if methods is None else methods
+    for method in ["chunked"]+selected_methods:
         for parts in ([1] if method in {"full","chunked"} else cfg["partition_counts"]):
             try:
                 t=time.perf_counter()
@@ -80,6 +81,7 @@ def profile_run(run_dir,out):
         "target_row_ids_sha256":target_hash,"source_code_sha256":hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "graph_storage":"memory-mapped arrays" if graph_path.is_dir() else "legacy NPZ loaded into memory",
         "graph_array_bytes":array_bytes,"layers":cfg["layers"],"batch_size":cfg["max_edges_per_batch"],
+        "methods":list(selected_methods),
         "partition_seed":cfg["seeds"][0],"max_batch_tensor_bytes":limit,"unavailable":failures,"environment":environment(),
         "meaning":"Exact integer workload counts, not model performance. Factors sum context visits across all batches relative to one full graph. Repeated arcs are repeated work, not duplicated prediction targets. Packing times use a shared process and are not a controlled inference benchmark.",
         "limits":"Packed tensors exclude graph storage, index temporaries, model activations, gradients and optimizer state. File and packed-tensor limits do not guarantee a total RAM bound."})

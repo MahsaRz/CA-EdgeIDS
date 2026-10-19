@@ -103,6 +103,8 @@ def train(train_graph,val_graph,config,seed,out):
         p,_ = infer(model,val_graph,val_owner,config)
         score = evaluate(val_graph.y,p,config["label_names"])["macro_f1"]
         history.append({"epoch":epoch+1,"train_loss":total_loss/len(train_graph.y),"validation_macro_f1":score})
+        if config.get("log_progress",False):
+            print(f"epoch {epoch+1}: loss {history[-1]['train_loss']:.5f}, validation macro F1 {score:.5f}",flush=True)
         if score > best:
             best,best_epoch,stale = score,epoch+1,0
             state = {k:v.detach().cpu().clone() for k,v in model.state_dict().items()}

@@ -18,6 +18,7 @@ def export(run,destination):
     if completion["completed_conditions"]+completion["unavailable_conditions"]!=completion["requested_conditions"]:
         raise ValueError("Incomplete study")
     checks=json.loads((run/"prediction_checks.json").read_text())
+    plan=json.loads((run/"study_plan.json").read_text())
     ownership={}
     for check in checks:
         tag=f"{check['method']}-p{check['partitions']}-b{check['batch_size']}"
@@ -31,11 +32,14 @@ def export(run,destination):
     for name in ["study_plan.json","graph_storage.json","timing_repeats.csv","prediction_checks.json","unavailable_runs.json","completion.json"]:
         shutil.copyfile(run/name,destination/name)
     (destination/"ownership_checks.json").write_text(json.dumps({"same_ownership_across_batch_sizes":True,"ownership_sha256":ownership},indent=2)+"\n",encoding="utf-8")
-    (destination/"SCOPE.txt").write_text("30,000-flow sample; one frozen model per dataset; no model fitting or tuning.\nThree timing repeats are measurements of the same model, not independent training seeds.\nTotal inference excludes cold data preparation, graph construction, graph loading, partitioning, warm-up and process startup.\nFresh process per condition; one complete warm-up pass; memory is sampled process RSS.\nNo raw flows, host identities, per-flow probabilities or checkpoints are included.\n",encoding="utf-8")
+    (destination/"SCOPE.txt").write_text(f"{plan.get('sample_rows',30000):,}-flow sample; one frozen model per dataset; no model fitting or tuning in the timing sweep.\nThree timing repeats are measurements of the same model, not independent training seeds.\nTotal inference excludes cold data preparation, graph construction, graph loading, partitioning, warm-up and process startup.\nFresh process per condition; one complete warm-up pass; memory is sampled process RSS.\nNo raw flows, host identities, per-flow probabilities or checkpoints are included.\n",encoding="utf-8")
 
 
 def report(root="artifacts/batch-study"):
     root=Path(root)
+    sample_sizes={json.loads((root/d/"study_plan.json").read_text()).get("sample_rows",30000) for d in ["ton","cse","bot"]}
+    if len(sample_sizes)!=1: raise ValueError("Use a separate figure for unequal source sample sizes")
+    sample_rows=sample_sizes.pop()
     all_rows=[]
     for dataset in ["ton","cse","bot"]:
         rows=pd.read_csv(root/dataset/"timing_repeats.csv")
@@ -52,7 +56,8 @@ def report(root="artifacts/batch-study"):
     summary[["dataset","method","partitions","batch_size","repeats","mean_inference_s","sd_inference_s","peak_rss_mib","batches"]].to_latex(root/"condition_summary.tex",index=False,float_format="%.6f")
     fig,axes=plt.subplots(2,3,figsize=(12,7),layout="constrained",sharey="row")
     series=[("chunked",1,"One partition","#3274a1"),("random",2,"Random 2","#d98832"),
-            ("random",4,"Random 4","#47966a"),("random",8,"Random 8","#8a64ad")]
+            ("random",4,"Random 4","#47966a"),("random",8,"Random 8","#8a64ad"),
+            ("metis",2,"METIS 2","#bf4b45"),("metis",4,"METIS 4","#6f8f37"),("metis",8,"METIS 8","#9a637d")]
     for col,dataset in enumerate(["ton","cse","bot"]):
         data=summary[summary.dataset==dataset]
         full=data[data.method=="full"].iloc[0]
@@ -77,7 +82,7 @@ def report(root="artifacts/batch-study"):
     axes[0,0].set_ylabel("Whole-test-graph inference (ms)")
     axes[1,0].set_ylabel("Peak process RSS (MiB)")
     axes[0,0].legend(fontsize=8)
-    fig.suptitle("Batch-size comparison on 30,000-flow samples\nSame saved models and test rows · three timing repeats · no retraining",fontsize=13)
+    fig.suptitle(f"Batch-size comparison on {sample_rows:,}-flow samples\nSame saved models and test rows · three timing repeats · no retraining in the timing sweep",fontsize=13)
     for extension in ["png","svg","pdf"]: fig.savefig(root/("batch_size_comparison."+extension),dpi=300)
     plt.close(fig)
     return summary
@@ -85,6 +90,7 @@ def report(root="artifacts/batch-study"):
 
 if __name__=="__main__":
     parser=argparse.ArgumentParser(); parser.add_argument("--export",nargs=2,metavar=("RUN","DESTINATION"))
+    parser.add_argument("--root",default="artifacts/batch-study")
     args=parser.parse_args()
     if args.export: export(*args.export)
-    else: print(report().drop(columns="test_row_ids_sha256").to_string(index=False))
+    else: print(report(args.root).drop(columns="test_row_ids_sha256").to_string(index=False))
