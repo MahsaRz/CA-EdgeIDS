@@ -13,6 +13,8 @@ from scipy.stats import t as student_t
 
 def save_figure(fig,path):
     fig.savefig(str(path)+".svg",bbox_inches="tight")
+    svg=Path(str(path)+".svg")
+    svg.write_text("\n".join(line.rstrip() for line in svg.read_text(encoding="utf-8").splitlines())+"\n",encoding="utf-8",newline="\n")
     fig.savefig(str(path)+".png",dpi=300,bbox_inches="tight")
     plt.close(fig)
 
