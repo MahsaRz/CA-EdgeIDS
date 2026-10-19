@@ -1,0 +1,149 @@
+{
+  "checked_workloads": [
+    {
+      "dataset": "ton",
+      "sample_size": 300000,
+      "original_development_rows": 100000,
+      "source_csv_sha256": "dc488656996dba1fa48f70302ea868246fd368a1ca928e80e9ee7734aee38420",
+      "categorical_representation_changes": {
+        "IPV4_SRC_ADDR": 0,
+        "IPV4_DST_ADDR": 0,
+        "Attack": 0,
+        "PROTOCOL": 0,
+        "L7_PROTO": 0
+      },
+      "numerical_value_changes": {
+        "Label": 0,
+        "L4_SRC_PORT": 0,
+        "L4_DST_PORT": 0,
+        "IN_BYTES": 0,
+        "IN_PKTS": 0,
+        "OUT_BYTES": 0,
+        "OUT_PKTS": 0,
+        "TCP_FLAGS": 0,
+        "FLOW_DURATION_MILLISECONDS": 0
+      }
+    },
+    {
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "original_development_rows": 100000,
+      "source_csv_sha256": "569daf61a6173963e354989d1208eed24b293b90b3ec99b4d7d8ee36a25e3ffc",
+      "categorical_representation_changes": {
+        "IPV4_SRC_ADDR": 0,
+        "IPV4_DST_ADDR": 0,
+        "Attack": 0,
+        "PROTOCOL": 0,
+        "L7_PROTO": 0
+      },
+      "numerical_value_changes": {
+        "Label": 0,
+        "L4_SRC_PORT": 0,
+        "L4_DST_PORT": 0,
+        "IN_BYTES": 0,
+        "IN_PKTS": 0,
+        "OUT_BYTES": 0,
+        "OUT_PKTS": 0,
+        "TCP_FLAGS": 0,
+        "FLOW_DURATION_MILLISECONDS": 0
+      }
+    },
+    {
+      "dataset": "cse",
+      "sample_size": 300000,
+      "original_development_rows": 100000,
+      "source_csv_sha256": "372f36a786f19b7b0f2aad19c2c6bffeed7f82b0e2145a7960fe42d10f9999f9",
+      "categorical_representation_changes": {
+        "IPV4_SRC_ADDR": 0,
+        "IPV4_DST_ADDR": 0,
+        "Attack": 0,
+        "PROTOCOL": 0,
+        "L7_PROTO": 0
+      },
+      "numerical_value_changes": {
+        "Label": 0,
+        "L4_SRC_PORT": 0,
+        "L4_DST_PORT": 0,
+        "IN_BYTES": 0,
+        "IN_PKTS": 0,
+        "OUT_BYTES": 0,
+        "OUT_PKTS": 0,
+        "TCP_FLAGS": 0,
+        "FLOW_DURATION_MILLISECONDS": 0
+      }
+    },
+    {
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "original_development_rows": 100000,
+      "source_csv_sha256": "0940cad7e5c18d354a807886b0a8dafeaa62837447d53883f9a0612da9c97d44",
+      "categorical_representation_changes": {
+        "IPV4_SRC_ADDR": 0,
+        "IPV4_DST_ADDR": 0,
+        "Attack": 0,
+        "PROTOCOL": 0,
+        "L7_PROTO": 0
+      },
+      "numerical_value_changes": {
+        "Label": 0,
+        "L4_SRC_PORT": 0,
+        "L4_DST_PORT": 0,
+        "IN_BYTES": 0,
+        "IN_PKTS": 0,
+        "OUT_BYTES": 0,
+        "OUT_PKTS": 0,
+        "TCP_FLAGS": 0,
+        "FLOW_DURATION_MILLISECONDS": 0
+      }
+    },
+    {
+      "dataset": "bot",
+      "sample_size": 300000,
+      "original_development_rows": 100000,
+      "source_csv_sha256": "3a232fb8745ffb915fa217049b956be0a5f1758cc53c265999ba624e996c471c",
+      "categorical_representation_changes": {
+        "IPV4_SRC_ADDR": 0,
+        "IPV4_DST_ADDR": 0,
+        "Attack": 0,
+        "PROTOCOL": 0,
+        "L7_PROTO": 0
+      },
+      "numerical_value_changes": {
+        "Label": 0,
+        "L4_SRC_PORT": 0,
+        "L4_DST_PORT": 0,
+        "IN_BYTES": 0,
+        "IN_PKTS": 0,
+        "OUT_BYTES": 0,
+        "OUT_PKTS": 0,
+        "TCP_FLAGS": 0,
+        "FLOW_DURATION_MILLISECONDS": 0
+      }
+    },
+    {
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "original_development_rows": 100000,
+      "source_csv_sha256": "ded6acff4c7c66d218d7c0bc035ef0e0b3dcaa8b777e2e619ae0701ed4222150",
+      "categorical_representation_changes": {
+        "IPV4_SRC_ADDR": 0,
+        "IPV4_DST_ADDR": 0,
+        "Attack": 0,
+        "PROTOCOL": 0,
+        "L7_PROTO": 0
+      },
+      "numerical_value_changes": {
+        "Label": 0,
+        "L4_SRC_PORT": 0,
+        "L4_DST_PORT": 0,
+        "IN_BYTES": 0,
+        "IN_PKTS": 0,
+        "OUT_BYTES": 0,
+        "OUT_PKTS": 0,
+        "TCP_FLAGS": 0,
+        "FLOW_DURATION_MILLISECONDS": 0
+      }
+    }
+  ],
+  "scope": "All original development endpoints, labels, selected numeric values and categorical encoder representations remain identical in each larger sample; no fitting or predictions"
+}

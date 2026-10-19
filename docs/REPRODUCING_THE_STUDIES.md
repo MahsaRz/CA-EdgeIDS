@@ -57,13 +57,14 @@ Freeze the 30 validation candidates/15 choices before `seeds`, then all 75 selec
 
 ```text
 python scripts/create_larger_samples.py --archive-map /path/to/private-archives.json
+python scripts/audit_nested_observables.py --out runs/reproduction-exports/nested-observables.json
 python scripts/novel_host_protocol.py --out runs/reproduction-exports/novel-host-preflight
 python scripts/run_novel_host_study.py --stage train --public-root runs/reproduction-exports/novel-host-1000000
 python scripts/run_novel_host_study.py --stage evaluate --public-root runs/reproduction-exports/novel-host-1000000
 python scripts/report_novel_host_study.py --public-root runs/reproduction-exports/novel-host-1000000
 ```
 
-The sample stage verifies all complete sources again and reproduces the original development row priorities. New-host inputs are checked against the declared preflight's CSV/target digests and supports. Freeze selected checkpoints between train and evaluate. ToN/CSE are feasible but have only 12/22 attack test flows; BoT fails and is not fitted. No seed search, class dropping or temporal labels are used to repair this. `--run-root` and export overrides work as above.
+The sample stage verifies all complete sources again and reproduces the original development row priorities. The nested-observable check verifies every retained development endpoint, label, selected numerical value and categorical encoder representation in both larger sizes. New-host inputs are checked against the declared preflight's CSV/target digests and supports. Freeze selected checkpoints between train and evaluate. ToN/CSE are feasible but have only 12/22 attack test flows; BoT fails and is not fitted. No seed search, class dropping or temporal labels are used to repair this. `--run-root` and export overrides work as above.
 
 ## Classifier processing costs
 
