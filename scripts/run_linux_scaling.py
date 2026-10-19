@@ -13,6 +13,7 @@ from ca_edgeids.experiment import dump
 from ca_edgeids.preflight import inspect
 from ca_edgeids.profile import profile_run
 from ca_edgeids.runtime import environment
+from text_digest import matches_text_digest
 
 
 def execute():
@@ -27,9 +28,9 @@ def execute():
     configurations={}
     for dataset in plan["datasets"]:
         item=plan["inputs"][dataset]; config_path=Path(item["config"])
-        if sha256_file(config_path)!=item["config_sha256"]: raise ValueError("Frozen config changed")
+        if not matches_text_digest(config_path,item["config_sha256"]): raise ValueError("Frozen config changed")
         cfg=json.loads(config_path.read_text())
-        if sha256_file(cfg["csv"])!=item["sample_csv_sha256"]: raise ValueError("Frozen sample changed")
+        if not matches_text_digest(cfg["csv"],item["sample_csv_sha256"]): raise ValueError("Frozen sample changed")
         check=inspect(cfg,out/"preflight"/dataset)
         if not check["can_train_and_select_all_classes"] or not check["can_evaluate_all_classes"]:
             raise ValueError(f"Binary class coverage failed for {dataset}")

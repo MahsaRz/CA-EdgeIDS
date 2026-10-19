@@ -14,7 +14,7 @@ def create(dataset,rows=5000,task="binary"):
     if not 0<rows<=len(frame): raise ValueError("Requested sample exceeds audited uniform sample")
     sample=frame.sample(n=rows,random_state=17).sort_values("source_row_id")
     csv=directory/f"{name}-uniform-{rows}.csv"
-    sample.to_csv(csv,index=False)
+    sample.to_csv(csv,index=False,lineterminator="\n")
     audit.update(pilot_rows=rows,pilot_sampling=f"uniform {len(frame)} from full CSV, then uniform {rows} with seed 17",
         pilot_attack_counts=sample.Attack.value_counts().to_dict(),
         pilot_source_row_ids_sha256=hashlib.sha256(sample.source_row_id.to_numpy(dtype="<i8").tobytes()).hexdigest())

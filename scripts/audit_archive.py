@@ -46,7 +46,7 @@ def audit(archive,dataset,out,sample_size=30000,seed=2026):
             sample=chunk if sample is None else pd.concat([sample,chunk],ignore_index=True).nsmallest(sample_size,"_priority")
             if total % 2000000==0: print(f"{dataset}: {total:,} source rows audited",flush=True)
         sample=sample.sort_values("source_row_id").drop(columns="_priority")
-        sample.to_csv(out/(dataset+"-uniform-pilot.csv"),index=False)
+        sample.to_csv(out/(dataset+"-uniform-pilot.csv"),index=False,lineterminator="\n")
         csv_hash=hashlib.sha256(); sha1=hashlib.sha1()
         with z.open(name) as stream:
             for b in iter(lambda:stream.read(8*1024*1024),b""):

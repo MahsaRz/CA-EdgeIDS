@@ -28,7 +28,7 @@ def create():
             max_input_bytes=512*1024**2,max_batch_tensor_bytes=256*1024**2)
         path=Path(f"configs/{dataset}_binary_linux_100000.json")
         if path.exists(): raise FileExistsError(path)
-        path.write_text(json.dumps(config,indent=2)+"\n",encoding="utf-8")
+        path.write_text(json.dumps(config,indent=2)+"\n",encoding="utf-8",newline="\n")
         inputs[dataset]={"config":path.as_posix(),"config_sha256":digest(path),"sample_csv_sha256":digest(sample),
             "sample_rows":100000,"sample_row_ids_sha256":audit["pilot_source_row_ids_sha256"],
             "archive_sha256":audit["archive_sha256"]}
@@ -42,7 +42,7 @@ def create():
           "failures":"Retain infeasible partition counts, configured limits, timeouts and memory failures. Stop on a prediction or coverage mismatch."}
     target=Path("configs/linux_scaling_100000_plan.json")
     if target.exists(): raise FileExistsError(target)
-    target.write_text(json.dumps(plan,indent=2)+"\n",encoding="utf-8")
+    target.write_text(json.dumps(plan,indent=2)+"\n",encoding="utf-8",newline="\n")
     print(target)
 
 
