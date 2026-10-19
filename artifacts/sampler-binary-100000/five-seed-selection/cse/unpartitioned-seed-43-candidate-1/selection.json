@@ -1,0 +1,27 @@
+{
+  "dataset": "cse",
+  "method": "unpartitioned",
+  "seed": 43,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 12.421496789000003,
+  "model_file": "runs/sampler-binary-100000/cse/unpartitioned-seed-43-candidate-1/model.pt",
+  "model_sha256": "350a8e48f932af8509812b20a13e1f9a8152c6d9d6b468e41acc1a1715193e2a",
+  "validation_macro_f1": 0.9591142114465334,
+  "best_epoch": 1,
+  "epochs_run": 4,
+  "gradient_updates": 440,
+  "target_exposures": 224760,
+  "unique_training_targets_seen": 56190,
+  "unseen_training_targets": 0,
+  "min_target_exposures": 4,
+  "max_target_exposures": 4,
+  "empty_samples": 0,
+  "sampler_and_validation_preparation_s": 0.8725669310000512,
+  "full_graph_targets": 56190,
+  "class_targets_seen": {
+    "Benign": 50708,
+    "Attack": 5482
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}

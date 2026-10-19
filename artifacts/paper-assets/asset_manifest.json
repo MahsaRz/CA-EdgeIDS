@@ -1,0 +1,12 @@
+{
+  "scope": "verified binary research evidence; pilot systems checkpoint distinct from five-seed classifier fits",
+  "complete_evidence": false,
+  "evidence_sha256": {
+    "artifacts/controlled-binary-100000/test-evaluation/verification.json": "2e9a97f5c10cbd4935876686bb0f496e6bc419279126b687830823acc7827fe2"
+  },
+  "no_test_selection": true,
+  "plot_width_inches": 7.1,
+  "font_points": 8,
+  "tables": "A: original source and split counts; C: historical fixed-model batch-512 partition sweep; E: per-class five-seed reports",
+  "limitations": "five seeds on reused development split; one-seed historical partition sweep; unsupported multiclass/causal/distributed claims excluded"
+}

@@ -1,0 +1,82 @@
+{
+  "datasets": [
+    "ton",
+    "cse",
+    "bot"
+  ],
+  "methods": [
+    "unpartitioned",
+    "random_exact",
+    "metis_exact",
+    "cluster_gcn_edge",
+    "graphsaint_node_edge"
+  ],
+  "learning_rates": [
+    0.001,
+    0.003
+  ],
+  "model_seeds": [
+    7,
+    19,
+    31,
+    43,
+    59
+  ],
+  "selection_seed": 7,
+  "epochs": 10,
+  "patience": 3,
+  "hidden": 16,
+  "layers": 2,
+  "dropout": 0.2,
+  "weight_decay": 0.0001,
+  "batch_size": 512,
+  "threads": 1,
+  "clusters": 4,
+  "clusters_per_sample": 2,
+  "node_fraction": 0.25,
+  "ownership_seed": 7,
+  "checkpoint_rule": "strict validation macro F1 improvement; first candidate on a tie",
+  "test_gate": "publish 30 validation candidates and 15 choices, then freeze all 75 selected checkpoint hashes before evaluating",
+  "scope": "edge-task sampling adaptations; previously inspected binary development split; full snapshot validation and test",
+  "objective": "global class-balanced risk; positive analytic target inclusion probabilities; fixed ceil(E/512) updates per logical epoch",
+  "source_commit": "f1574fab7c30d8e7571c4b09a5c3dfc282512cc8",
+  "source_sha256": {
+    "src/ca_edgeids/batch_study.py": "db693747ff95216333abb7b82ca6069e105f3c083f18b4a7a0b92924ac7b47cc",
+    "src/ca_edgeids/cached.py": "e50255ac7905585b7036d0f68110ca74c793788ce442957a56f8bd67b8b1bfeb",
+    "src/ca_edgeids/classifier_study.py": "37e4468af85d20037425850aadc1a24166999e02efc3ed89700144de353c8b65",
+    "src/ca_edgeids/cli.py": "ba27e5e64e67349b5ca94831ee94e8b949d70c7fd24b10c9ea60a56c8b1472ba",
+    "src/ca_edgeids/controlled_training.py": "26a24ee893b334be66e8e17d452ffd15cc25f996b2b88816a7ce7e68114eb6de",
+    "src/ca_edgeids/data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "src/ca_edgeids/experiment.py": "afcd47ccea65a5d1174671a5ebafb5681c4061d826b3fec4255865f06e383c4f",
+    "src/ca_edgeids/graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "src/ca_edgeids/metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "src/ca_edgeids/model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "src/ca_edgeids/preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "src/ca_edgeids/profile.py": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+    "src/ca_edgeids/report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "src/ca_edgeids/runtime.py": "eee56cade0adc65a9d3dbd9d8749356d890d11973ceebcabc163266777e47cdb",
+    "src/ca_edgeids/sampler_controls.py": "2f99efb45b91deca1f0ff1b1c24bfbb35fc21b16f2e7cfe0e7cf44e0762cdaa6",
+    "src/ca_edgeids/statistics_backend.py": "e0acaaa06951ee9fb3bd73298570d011488dd611fcd2f395c5b25761983d8ccf",
+    "src/ca_edgeids/worker.py": "d2dba28025b48f7a9d9e535995dc58933e5a32331a6c6ea71edc6333023a4e01",
+    "src/ca_edgeids/__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "src/ca_edgeids/__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "configs/sampler_binary_100000.json": "31fdccb1b33c8ed071ef3d14a1613b7d4bbc1ef9c16f9592e94648bc6a1c9096",
+    "scripts/run_sampler_study.py": "bc00b41e17509a0957b446e8ec3cc65df2b85f0690417c3ce6f84f82efe4619b",
+    "scripts/run_classifier_comparison.py": "35567d146a44d57b02f092a8ef050f7e2b80020d220396bbb5ff40ffb2de852c"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "processor": "",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "pymetis": "2025.2.2",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  }
+}

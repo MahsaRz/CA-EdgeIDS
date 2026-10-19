@@ -1,0 +1,27 @@
+{
+  "dataset": "ton",
+  "method": "metis_exact",
+  "seed": 19,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 6.95395799299996,
+  "model_file": "runs/sampler-binary-100000/ton/metis_exact-seed-19-candidate-1/model.pt",
+  "model_sha256": "f7135b1d19acb880577a380238f278754db09fb815959c701a48c6029c3664b3",
+  "validation_macro_f1": 0.8986441454855119,
+  "best_epoch": 8,
+  "epochs_run": 10,
+  "gradient_updates": 1100,
+  "target_exposures": 563120,
+  "unique_training_targets_seen": 56312,
+  "unseen_training_targets": 0,
+  "min_target_exposures": 10,
+  "max_target_exposures": 10,
+  "empty_samples": 0,
+  "sampler_and_validation_preparation_s": 0.6681165150000083,
+  "full_graph_targets": 56312,
+  "class_targets_seen": {
+    "Benign": 19245,
+    "Attack": 37067
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}
