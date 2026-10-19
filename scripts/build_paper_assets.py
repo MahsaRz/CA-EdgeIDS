@@ -2,6 +2,7 @@
 import argparse
 import json
 from pathlib import Path
+import shutil
 
 import matplotlib
 matplotlib.use('Agg')
@@ -79,12 +80,56 @@ def extra_figures(complete):
             fig.legend(handles,names,loc='upper center',ncol=5,fontsize=7); fig.tight_layout(rect=(0,0,1,.9)); figure(fig,name)
 
 
+def final_tables():
+    areas=pd.read_csv('artifacts/precision-recall-areas/class_summary.csv')
+    scores=pd.read_csv('artifacts/controlled-binary-100000/test-evaluation/model_results.csv')
+    rows=[]
+    for d in DATASETS:
+        for family in ['GNN','MLP','RF']:
+            b=scores[(scores.dataset==d)&(scores.family==family)&(scores.variant=='full')]
+            p=areas[(areas.study=='controlled')&(areas.dataset==d)&(areas.family==family)&(areas.method=='full')&(areas.label=='Attack')]
+            if len(b)!=5 or len(p)!=1: raise ValueError('Incomplete baseline metrics')
+            p=p.iloc[0]
+            rows.append([d.upper(),family,*[f'{b[c].mean():.4f} $\\pm$ {b[c].std(ddof=1):.4f}' for c in ['weighted_f1','attack_fpr','attack_recall']],
+                f'{p.mean_ap:.4f} $\\pm$ {p.sd_ap:.4f}',f'{p.mean_trapezoidal_pr_auc:.4f} $\\pm$ {p.sd_trapezoidal_pr_auc:.4f}'])
+    table('table_baseline_metrics',['Dataset','Model','Weighted $F_1$','FPR','Attack recall','Attack AP','Attack PR-AUC'],rows)
+    frame=pd.read_csv('artifacts/novel-host-1000000/test-evaluation/summary.csv')
+    rows=[]
+    for d in ['ton','cse']:
+        for family in ['GNN','MLP','RF']:
+            b=frame[(frame.dataset==d)&(frame.family==family)].iloc[0]
+            rows.append([d.upper(),family,f'{b.mean_macro_f1:.4f} $\\pm$ {b.sd_macro_f1:.4f}',
+                f'{b.mean_attack_fpr:.4f}',f'{b.mean_attack_recall:.4f}',f'{b.mean_attack_ap:.4f}',str(int(b.attack_support))])
+    table('table_new_host',['Dataset','Model','Macro $F_1$','FPR','Attack recall','Attack AP','Attack $n$'],rows)
+    frame=pd.read_csv('artifacts/classifier-cost-100000/summary.csv'); rows=[]
+    for d in DATASETS:
+        for method,label in [('gnn_full','GNN Full'),('gnn_layerwise','GNN layer-wise'),('mlp','MLP'),('rf','Forest')]:
+            b=frame[(frame.dataset==d)&(frame.method==method)].iloc[0]
+            rows.append([d.upper(),label,str(int(b.test_flows)),f'{1000*b.mean_warm_s:.2f} $\\pm$ {1000*b.sd_warm_s:.2f}',
+                f'{b.mean_first_process_s:.2f} $\\pm$ {b.sd_first_process_s:.2f}',f'{b.mean_setup_peak_rss_mib:.1f}'])
+    table('table_classifier_cost',['Dataset','Method','Test $n$','Warm ms','First prediction s','RSS MiB'],rows)
+    for name in ['classifier_warm_cost','classifier_pipeline_cost','classifier_memory']:
+        for ext in ['pdf','svg','png']: shutil.copyfile(Path('artifacts/classifier-cost-100000')/(name+'.'+ext),OUT/(name+'.'+ext))
+    frame=pd.read_csv('artifacts/larger-inference/summary.csv'); rows=[]
+    for d in DATASETS:
+        for method,label in [('full','Full'),('random','Random exact'),('metis','METIS exact'),('cached','Layer-wise'),('factored','Factored mean')]:
+            selected=frame[(frame.dataset==d)&(frame.method==method)&(frame.sample_size==1000000)]
+            if len(selected)==0:
+                rows.append([d.upper(),label,'--','--','--','--','--'])
+                continue
+            b=selected.iloc[0]
+            rows.append([d.upper(),label,str(int(b.test_flows)),str(int(b.blocks)),
+                f'{b.mean_warm_s:.3f} $\\pm$ {b.sd_warm_s:.3f}',f'{b.mean_first_process_s:.2f} $\\pm$ {b.sd_first_process_s:.2f}',f'{b.mean_whole_peak_rss_mb:.1f}'])
+    table('table_million_flow_cost',['Dataset','Method','Test $n$','Blocks','Warm s','First prediction s','RSS MiB'],rows)
+
+
 def execute(complete=False):
     OUT.mkdir(parents=True,exist_ok=True)
     evidence=[Path('artifacts/controlled-binary-100000/test-evaluation/verification.json')]
     if complete:
         evidence += [Path(f'artifacts/{s}/test-evaluation/verification.json') for s in ['sampler-binary-100000','novel-host-1000000']]
-        evidence += [Path('artifacts/larger-inference/verification.json')]
+        evidence += [Path('artifacts/larger-inference/verification.json'),Path('artifacts/classifier-cost-100000/verification.json'),
+            Path('artifacts/precision-recall-areas/definitions.json')]
     if not all(p.exists() for p in evidence): raise ValueError('Required verified evidence is incomplete')
     plt.rcParams.update({'font.size':8,'font.family':'serif','pdf.fonttype':42,'ps.fonttype':42})
     rows=[]; support=[]
@@ -111,7 +156,8 @@ def execute(complete=False):
         ('Flow features','Ten declared fields; eight numerical, PROTOCOL and L7 PROTO categorical; all preprocessing fitted on training only'),
         ('Network','Edge-conditioned mean aggregation; two layers, hidden width 16, ReLU; edge decoder uses endpoint states and flow attributes'),
         ('Training / prediction','Dropout 0.2; class-balanced cross entropy; Adam, weight decay 0.0001, norm-five clipping; softmax and fixed argmax'),
-        ('Classifier / graph-control cohort','Learning rate 0.003; at most ten epochs, patience three; validation macro F1 checkpoint; seeds 7/19/31/43/59'),
+        ('Classifier / graph-control cohort','Learning rate 0.003; four fixed random ownership groups, at most 512 targets per update, full context; ten-epoch maximum, patience three; validation macro F1; seeds 7/19/31/43/59'),
+        ('Flow-only baselines','MLP: two hidden layers of width 16, ReLU and dropout 0.2; Forest: 100 balanced bootstrap trees, square-root feature subsampling, selected depth'),
         ('Sampler cohort','Two rates 0.001/0.003 per method at seed 7, validation-only choice, then four remaining seeds; global target-risk scaling differs from per-batch weighted mean'),
         ('Systems cohort','Original frozen 100000-flow pilot seed-7 weights, learning rate 0.001, and its fitted preprocessing; no fitting during scaling; distinct from classifier refits'),
         ('Partition / target batch','Exact-context controls: Full, balanced random or real METIS; ownership seed 7; flow targets never dropped at cuts'),
@@ -205,6 +251,7 @@ def execute(complete=False):
             if col<3: ax.annotate('',xy=(col+1.02,y),xytext=(col+.96,y),arrowprops=dict(arrowstyle='->',linewidth=.8))
     fig.tight_layout(pad=.2); figure(fig,'pipeline')
     extra_figures(complete)
+    if complete: final_tables()
     metadata=dict(scope='verified binary research evidence; pilot systems checkpoint distinct from five-seed classifier fits',
         complete_evidence=complete,evidence_sha256={str(p).replace('\\','/'):sha256_file(p) for p in evidence},
         no_test_selection=True,plot_width_inches=7.1,font_points=8,

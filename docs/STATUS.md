@@ -4,7 +4,7 @@
 
 The [controlled five-seed study](CONTROLLED_STUDY.md) completes all 120 model fits/evaluations on three fixed 100,000-flow samples, including six GNN graph settings, MLP and Forest. Forest leads ToN/BoT, while the full GNN leads CSE. The no-message control improves ToN/BoT on average. All selected checkpoints were published before new test predictions; every original target ID and per-class metric was verified.
 
-The [training-procedure comparison](SAMPLER_COMPARISON.md) completes 30 validation candidates and 75 selected-model test evaluations across unpartitioned, random/METIS exact-context batching, cluster-induced sampling and normalized uniform-node sampling. All five seeds and exposure/empty-sample counts are retained. These are explicit edge-task adaptations, not exact replications of the original node-classification methods. No consistent METIS quality benefit is established. All 68 current Linux correctness checks pass, including exact fitted-weight preservation after removing duplicate neighbor scans.
+The [training-procedure comparison](SAMPLER_COMPARISON.md) completes 30 validation candidates and 75 selected-model test evaluations across unpartitioned, random/METIS exact-context batching, cluster-induced sampling and normalized uniform-node sampling. All five seeds and exposure/empty-sample counts are retained. These are explicit edge-task adaptations, not exact replications of the original node-classification methods. No consistent METIS quality benefit is established. The current numerical source passed 70 Linux correctness checks, including exact fitted-weight preservation after removing duplicate neighbor scans and reusing fixed graph inputs.
 
 All three 300,000/1,000,000-flow nested uniform samples are verified against official checksums and original full-source counts. The new-host incident-flow preflight retains only 12/22 attack test flows for ToN/CSE and fails BoT entirely because validation/test have no attacks. The declared ToN/CSE fits are in progress. The first large fit attempt was retained and restarted solely to avoid repeated topology scans; no settings were selected from it. See [execution notes](EXECUTION_NOTES.md). The larger inference grid is frozen and awaits completion of competing training jobs.
 
@@ -20,7 +20,7 @@ The [100,000-flow Linux binary pilot](LINUX_SCALING_100000.md) is complete for a
 
 Source snapshots match frozen experimental commit `a390799`. All 33 extended Linux tests passed at `b5026da`. Tables, validation histories, confusion matrices, timing components and requirements are in `artifacts/linux-scaling-100000/`. ToN's false-positive rate is 18.6%; BoT's macro F1 is 0.578 despite weighted F1 of 0.976. These limitations are part of the reported result. Earlier milestone counts below describe their original runs.
 
-At that milestone the next gate was repeated exact-context computation; the layer-wise follow-up above now provides a tested alternative. The first validation-selected classifier comparison is now complete. Full-source repetitions, graph-sampler baselines and independent seeds remain outstanding. Multiclass remains paused at its documented split-feasibility gate. Overleaf remains unchanged.
+At that milestone the next gate was repeated exact-context computation; the later layer-wise, five-seed and sampler studies above now supersede that original next-step list. Complete-source model repetitions are not claimed. Multiclass remains paused at its documented split-feasibility gate. Overleaf remains unchanged pending final draft checks.
 
 ## Completed locally
 
@@ -44,10 +44,10 @@ The predefined larger 30,000-row BoT uniform sample was then run with unchanged 
 
 ## Open work
 
-1. METIS remains unavailable in the inspected Windows environment, but both synthetic Linux verification and the larger real-data Linux pilot are now complete. Continue larger studies on the recorded Linux environment; do not reinterpret historical unavailable Windows conditions as measurements.
-2. Resolve the multiclass feasibility gate before fitting multiclass models; then complete independently trained partition studies, controlled Cluster-GCN/GraphSAINT baselines, graph/edge-feature ablations, validation-only tuning and generalization studies.
-3. Profile memory/halo expansion on larger pilots before loading millions of flows into the current in-memory graph builder. Full dataset repetitions, five seeds, equal tuning budgets and final uncertainty remain outstanding.
-4. Rewrite the manuscript using verified new outputs. **Overleaf has not been modified.**
+1. Finish the declared new-host fits, publish their checkpoint hashes, then evaluate and verify all feasible models. Keep the small attack supports, limited novel-host counts and BoT failure explicit.
+2. Complete the isolated larger-inference and classifier-cost grids after training/source scans stop. Retain every workload, process block, numerical difference and resource failure.
+3. Export AP and trapezoidal PR-AUC separately for all selected models. Finish table/figure checks and the final scientific contribution assessment. Multiclass and temporal claims remain unsupported by the present data/protocol; complete-source model repetitions are not promised.
+4. Complete and inspect the private manuscript using verified new outputs, then update Overleaf while preserving the original files. **Live Overleaf has not yet been modified.**
 5. The repository is now `MahsaRz/CA-EdgeIDS`, with the working code on `revision/ca-edgeids`. Current draft review: https://github.com/MahsaRz/CA-EdgeIDS/pull/2 . It supersedes the closed fork-based draft #1. The repository history is preserved and main is unchanged.
 
 ## Next-phase findings

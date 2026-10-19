@@ -4,7 +4,7 @@
 
 The supervisor's advice identifies the correct order: change the research task, align the code, then regenerate the evidence and manuscript. More experiments cannot establish RCA without initiating-cause ground truth. The revised prediction is a label on an original flow edge: Benign/Attack or the original attack category. A malicious flow is not automatically a causal root or a faulty physical device.
 
-**Provisional project name:** CA-EdgeIDS. **Provisional title:** Cluster-Aware GraphSAGE for Flow-Level Intrusion Detection: Accuracy, Coverage, and End-to-End Cost. Avoid "distributed", "real-time", "causal", and "unseen-topology adaptation" unless separately demonstrated. Naming is provisional and is not a claim of trademark or methodological novelty.
+**Project name:** CA-EdgeIDS. **Working manuscript title:** Graph Context and Processing Cost in Flow-Level Intrusion Detection. The empirical title reflects the mixed graph/partition results. Avoid "distributed", "real-time", "causal", and "unseen-topology adaptation" unless separately demonstrated. Naming is not a claim of trademark or methodological novelty.
 
 The attached tables/figures checklist is useful and substantially appropriate after reframing. It is a minimum evidence list, not evidence that acceptance is assured. In particular, Table D cannot establish novelty merely by showing METIS versus random; the paper must distinguish existing Cluster-GCN ideas and justify what the study contributes.
 
@@ -56,7 +56,9 @@ Do not write a results-based abstract until Phase 4. The existing Overleaf manus
 
 METIS plus GraphSAGE alone is established engineering integration. A defensible submission needs evidence for a narrower contribution, potentially an auditable coverage-preserving partition study and quantitative boundary-context/cost analysis. Whether that is sufficient for a particular journal remains an open scientific judgment. If exact halos provide no useful systems benefit, report that result and reconsider the design; do not change test populations to create a speedup.
 
-## Current pilot decision
+## Original pilot decisions (historical)
+
+The later completed five-seed and sampler studies supersede the next-step lists in this section. Use [the current execution queue](EXECUTION_QUEUE.md) and [status](STATUS.md) for remaining work.
 
 The [classifier comparison](CLASSIFIER_COMPARISON.md) now completes the first validation-selected GNN/MLP/forest development comparison: 18 candidates, nine frozen selections and unchanged pilot test targets. Candidate count and neural epoch upper limits are matched; compute/capacity remain unequal and are reported. The next gate is independent trained seeds with frozen settings, then graph/feature ablations and matched graph-sampler baselines. Treat the existing pilot test splits as previously inspected evidence, not a new independent final evaluation.
 
@@ -64,7 +66,7 @@ The [layer-wise follow-up](CACHED_INFERENCE.md) now provides a tested alternativ
 
 The [larger Linux study](LINUX_SCALING_100000.md) now completes real-data Full/Random/METIS on three 100,000-flow samples. Its 79 completed conditions preserve predictions and target coverage, but Full remains fastest and no consistent RSS saving is established. Repeated exact context needs attention before launching the full-source matrix. Any revised implementation must be frozen and compared against Full on the same test population. These results are single-seed systems pilots; quality tuning must use validation data and fresh independent evaluation must follow. The multiclass protocol remains unresolved.
 
-## Near-term execution order
+## Original phase order (historical)
 
 **Measured gate update:** the complete-source audit now demonstrates missing validation classes in every multiclass dataset under the frozen pair split; CSE BruteForce spans only two pairs. Read [MULTICLASS_FEASIBILITY.md](MULTICLASS_FEASIBILITY.md) before launching Phase 3/4 multiclass runs. Keep this infeasibility outcome and revise the protocol explicitly. Binary scaling can continue independently; larger samples cannot fix the recorded full-source class absences.
 

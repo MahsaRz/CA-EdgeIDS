@@ -26,11 +26,18 @@ def execute():
     key=lambda r:(r['block'],r['dataset'],r['method'])
     expected={key(r) for r in plan['execution_order']}; actual=[key(r) for r in records+failures]
     if len(actual)!=len(set(actual)) or set(actual)!=expected: raise ValueError('Incomplete cost grid')
+    if json.loads((ROOT/'completion.json').read_text())!=dict(requested=len(expected),completed=len(records),failures=len(failures)):
+        raise ValueError('Completion counts differ')
     out=PUBLIC; out.mkdir(parents=True,exist_ok=False); rows=[]; checks=[]
     for r in records:
         d=r['dataset']; method=r['method']; family=r['family']; block=r['block']
         model=next(a for a in chosen if a['dataset']==d and a['family']==family and a['variant']=='full' and a['seed']==7)
         if r['model_sha256']!=model['model_sha256'] or sha256_file(model['model_file'])!=model['model_sha256']: raise ValueError('Checkpoint mismatch')
+        manifest=json.loads((model_root/d/'dataset_manifest.json').read_text())
+        if r['source_csv_sha256']!=manifest['csv_sha256'] or r['target_row_ids_sha256']!=manifest['test_row_ids_sha256']:
+            raise ValueError('Dataset manifest mismatch')
+        if r['preprocessor_sha256']!=sha256_file(Path('runs/linux-scaling-100000/training')/d/'preprocessor.joblib'):
+            raise ValueError('Fitted preprocessor changed')
         path=ROOT/f'block-{block}-{d}-{method}.npz'
         reference=model_root/'test-evaluation'/f'{d}-{family.lower()}-full-7-predictions.npz'
         with np.load(path,allow_pickle=False) as saved,np.load(reference,allow_pickle=False) as old:
@@ -55,7 +62,6 @@ def execute():
         sd_first_process_s=('first_prediction_process_s','std'),mean_setup_peak_rss_mib=('setup_and_prediction_peak_rss_mib_sampled','mean'),
         mean_warm_peak_rss_mib=('warm_peak_rss_mib_sampled','mean'),all_probabilities_equivalent=('probability_equivalent','all'),
         maximum_class_disagreements=('class_disagreements','max')).reset_index()
-    if not (summary.process_blocks==3).all(): raise ValueError('Missing process block')
     summary.to_csv(out/'summary.csv',index=False); summary.to_latex(out/'summary.tex',index=False,float_format='%.5f')
     for name in ['frozen_plan.json','completion.json']: (out/name).write_bytes((ROOT/name).read_bytes())
     (out/'prediction_checks.json').write_text(json.dumps(checks,indent=2),encoding='utf-8')
@@ -69,7 +75,7 @@ def execute():
     for metric,ylabel,name in [('mean_warm_s','Complete warm inference (s)','classifier_warm_cost'),('mean_first_process_s','Launch to first prediction (s)','classifier_pipeline_cost'),('mean_setup_peak_rss_mib','Sampled setup/prediction RSS (MiB)','classifier_memory')]:
         fig,axes=plt.subplots(1,3,figsize=(7.1,2.5))
         for ax,d in zip(axes,plan['datasets']):
-            b=summary[summary.dataset==d].set_index('method').loc[methods]
+            b=summary[summary.dataset==d].set_index('method').reindex(methods)
             ax.bar(range(4),b[metric],color=['#28668c','#5694b7','#bf7f36','#708557']); ax.set_title(d.upper())
             ax.set_xticks(range(4),labels); ax.set_yscale('log'); ax.grid(axis='y',alpha=.2)
         axes[0].set_ylabel(ylabel); fig.tight_layout()

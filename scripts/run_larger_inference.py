@@ -46,6 +46,12 @@ def worker(job,out,start):
         t=time.perf_counter(); split=split_rows(frame,42,'conversation'); split_s=time.perf_counter()-t
         cfg.update(csv=str(input_path),max_edges_per_batch=plan['query_batch_size'],max_batch_tensor_bytes=plan['tensor_screen_bytes'])
         t=time.perf_counter(); data=transform_frame(frame,cfg,split,pre); transform_and_audit_s=time.perf_counter()-t
+        if size==100000:
+            expected_csv=json.loads((original/'dataset_manifest.json').read_text())['csv_sha256']
+        else:
+            audit=json.loads(Path(f'artifacts/larger-uniform-source-audits/{d}.json').read_text())
+            expected_csv=next(r['csv_sha256'] for r in audit['samples'] if r['rows']==size)
+        if data.manifest['csv_sha256']!=expected_csv: raise ValueError('Workload differs from its verified sample')
         t=time.perf_counter(); g=build_graph(data,'test',True); graph_s=time.perf_counter()-t
         t=time.perf_counter(); saved=torch.load(checkpoint,map_location='cpu',weights_only=False)
         model=EdgeSAGE(g.edge_x.shape[1],2,cfg['hidden'],cfg['layers'],cfg['dropout']); model.load_state_dict(saved['state_dict']); model.eval()

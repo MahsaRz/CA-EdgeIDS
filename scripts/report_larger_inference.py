@@ -37,6 +37,7 @@ def execute():
         for n in plan['sample_sizes']:
             group=[r for r in results if r['dataset']==d and r['sample_size']==n]
             if not group: continue
+            if len({r['csv_sha256'] for r in group})!=1: raise ValueError('Different source CSVs within one workload')
             anchor=next((r for r in group if r['method']=='full'),next((r for r in group if r['method']=='cached'),None))
             if anchor is None: raise ValueError('No independent full or layer-wise reference')
             def path(r): return ROOT/f"block-{r['block']}-{d}-{n}-{r['method']}.npz"
