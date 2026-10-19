@@ -79,7 +79,9 @@ def execute():
             ax.bar(range(4),b[metric],color=['#28668c','#5694b7','#bf7f36','#708557']); ax.set_title(d.upper())
             ax.set_xticks(range(4),labels); ax.set_yscale('log'); ax.grid(axis='y',alpha=.2)
         axes[0].set_ylabel(ylabel); fig.tight_layout()
-        for ext in ['png','svg','pdf']: fig.savefig(out/f'{name}.{ext}',dpi=300,bbox_inches='tight')
+        for ext in ['png','svg','pdf']:
+            file=out/f'{name}.{ext}'; fig.savefig(file,dpi=300,bbox_inches='tight')
+            if ext=='svg': file.write_text('\n'.join(line.rstrip() for line in file.read_text().splitlines())+'\n',encoding='utf-8')
         plt.close(fig)
     (out/'SCOPE.txt').write_text('Same frozen seed-7 models and original test populations from the five-seed classifier study.\nThree process blocks; three complete warm predictions per block; no refitting/selection.\nMethod-specific imports and necessary preprocessing/graph work; Forest does not load Torch.\nSampled phase/process RSS, not allocation-exact or whole-system peak.\nNo raw flows, checkpoints, identities or per-flow predictions exported.\n',encoding='utf-8')
     print(summary.to_string(index=False))

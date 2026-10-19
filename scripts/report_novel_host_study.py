@@ -83,7 +83,9 @@ def execute():
         ax.set_title(f'{d.upper()}: {int(support.attack_support)} attack / {int(support.benign_support)} benign')
         ax.set_xticks(range(3),['Edge GNN','Flow MLP','Forest']); ax.set_ylim(0,1.02); ax.grid(axis='y',alpha=.2)
     axes.flat[0].set_ylabel('New-host test macro F1'); fig.tight_layout()
-    for ext in ['png','svg','pdf']: fig.savefig(out/f'novel_host_quality.{ext}',dpi=300,bbox_inches='tight')
+    for ext in ['png','svg','pdf']:
+        file=out/f'novel_host_quality.{ext}'; fig.savefig(file,dpi=300,bbox_inches='tight')
+        if ext=='svg': file.write_text('\n'.join(line.rstrip() for line in file.read_text().splitlines())+'\n',encoding='utf-8')
     plt.close(fig)
     (out/'SCOPE.txt').write_text('New-host incident-flow classification; known infrastructure may be shared.\nVery small attack supports limit generalization evidence. BoT fails all-class feasibility and is not fitted.\nFive training seeds are not independent data splits or population confidence intervals.\nNo raw flows, host identities, checkpoints or per-flow predictions exported.\n',encoding='utf-8')
     print(summary.to_string(index=False))

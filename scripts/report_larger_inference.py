@@ -94,7 +94,9 @@ def execute():
             ax.set_title(d.upper()); ax.set_xlabel('Uniform sample flows (million)'); ax.set_yscale('log'); ax.grid(alpha=.2)
         axes[0].set_ylabel(ylabel); handles,names=axes[0].get_legend_handles_labels()
         fig.legend(handles,names,loc='upper center',ncol=5,fontsize=7); fig.tight_layout(rect=(0,0,1,.9))
-        for ext in ['png','svg','pdf']: fig.savefig(PUBLIC/f'{name}.{ext}',dpi=300,bbox_inches='tight')
+        for ext in ['png','svg','pdf']:
+            file=PUBLIC/f'{name}.{ext}'; fig.savefig(file,dpi=300,bbox_inches='tight')
+            if ext=='svg': file.write_text('\n'.join(line.rstrip() for line in file.read_text().splitlines())+'\n',encoding='utf-8')
         plt.close(fig)
     (PUBLIC/'SCOPE.txt').write_text('Fixed original pilot preprocessor/checkpoint across three flow sample sizes.\nFresh process per condition; warm medians use three complete predictions.\nWhole-pipeline first prediction includes parse/transform/audits/graph/partition/load/inference/imports.\nKnown resource failures retained. No raw data, model files, identities or per-flow predictions exported.\n',encoding='utf-8')
     print(summary.to_string(index=False))
