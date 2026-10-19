@@ -6,6 +6,8 @@ Repository: [MahsaRz/CA-EdgeIDS](https://github.com/MahsaRz/CA-EdgeIDS). The rep
 
 The [five-seed classifier and graph controls](docs/CONTROLLED_STUDY.md) and [five-procedure sampler comparison](docs/SAMPLER_COMPARISON.md) are complete. Results are mixed and do not establish a universal graph or METIS advantage. Larger uniform samples are verified; the [execution queue](docs/EXECUTION_QUEUE.md) tracks the new-host fits, larger fixed-model processing study and manuscript revision. Failed class-support and resource conditions remain part of the evidence.
 
+For the executed settings, read each frozen study plan and the individual model records together with [effective configurations](docs/EFFECTIVE_CONFIGURATIONS.md). Some historical dataset-base files retain unused pilot fields; they are preserved and explicitly distinguished from the actual study overrides.
+
 This branch rebuilds the original DC-RCA experiments as **flow/edge intrusion classification**. It does not claim causal root-cause identification, physical fault localization, distributed execution, or proven real-time operation. The six original notebooks and `Readme.txt` remain historical reference material; they are not the revised implementation.
 
 The new package is a tested starting point, **not a completed journal evaluation**. A successful synthetic demonstration is software evidence only. Publication requires real-data schema verification, complete experiments, scientific contribution assessment, and the gates in [the phased research plan](docs/RESEARCH_PLAN.md).

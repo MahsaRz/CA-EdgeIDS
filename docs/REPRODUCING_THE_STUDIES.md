@@ -96,6 +96,16 @@ python scripts/report_pr_areas.py --require-novel --verification-root runs/repro
 
 This reads the verified test outputs of all 225 selected models and reports non-interpolated average precision and trapezoidal PR-AUC separately for both binary classes. It does not fit, tune a threshold or choose another checkpoint. The canonical export folder names above let this check match each report to its checkpoint-selection digest.
 
+## Effective model settings
+
+```text
+python scripts/export_effective_settings.py --study controlled --out runs/reproduction-exports/controlled-effective-settings.json
+python scripts/export_effective_settings.py --study sampler --out runs/reproduction-exports/sampler-effective-settings.json
+python scripts/export_effective_settings.py --study novel-host --out runs/reproduction-exports/novel-host-effective-settings.json
+```
+
+These sidecars distinguish executed study/model settings from inherited dataset-base fields. They bind all model seeds, rates, stopping decisions and input hashes to the actual selected-model manifest. See [effective configurations](EFFECTIVE_CONFIGURATIONS.md); the exporter does not rewrite historical files or change any model.
+
 ## Figures and published numbers
 
 ```text
