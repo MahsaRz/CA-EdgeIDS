@@ -1,0 +1,47 @@
+{
+  "dataset": "bot",
+  "scope": "uniform_pilot",
+  "source_csv_sha256": "8282bcac56cc7c81d1112078424045f1c3aa40cef9c189266c70a8ddaf692704",
+  "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe",
+  "source_code_sha256": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+  "graph_storage": "memory-mapped arrays",
+  "graph_array_bytes": 9890740,
+  "layers": 2,
+  "batch_size": 512,
+  "methods": [
+    "full",
+    "random",
+    "metis"
+  ],
+  "partition_seed": 7,
+  "max_batch_tensor_bytes": 268435456,
+  "unavailable": [
+    {
+      "method": "random",
+      "partitions": 8,
+      "error": "Requested 8 partitions for 6 nodes"
+    },
+    {
+      "method": "metis",
+      "partitions": 8,
+      "error": "Requested 8 partitions for 6 nodes"
+    }
+  ],
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "processor": "",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "pymetis": "2025.2.2",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "meaning": "Exact integer workload counts, not model performance. Factors sum context visits across all batches relative to one full graph. Repeated arcs are repeated work, not duplicated prediction targets. Packing times use a shared process and are not a controlled inference benchmark.",
+  "limits": "Packed tensors exclude graph storage, index temporaries, model activations, gradients and optimizer state. File and packed-tensor limits do not guarantee a total RAM bound."
+}

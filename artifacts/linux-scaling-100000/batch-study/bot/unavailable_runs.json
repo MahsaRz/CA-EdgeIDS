@@ -1,0 +1,66 @@
+[
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 1024,
+    "order_index": 1,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 1024,
+    "order_index": 9,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 2048,
+    "order_index": 16,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 256,
+    "order_index": 23,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 2048,
+    "order_index": 24,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 512,
+    "order_index": 25,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 256,
+    "order_index": 26,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 512,
+    "order_index": 27,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 6 nodes"
+  }
+]

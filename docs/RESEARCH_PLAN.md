@@ -56,6 +56,10 @@ Do not write a results-based abstract until Phase 4. The existing Overleaf manus
 
 METIS plus GraphSAGE alone is established engineering integration. A defensible submission needs evidence for a narrower contribution, potentially an auditable coverage-preserving partition study and quantitative boundary-context/cost analysis. Whether that is sufficient for a particular journal remains an open scientific judgment. If exact halos provide no useful systems benefit, report that result and reconsider the design; do not change test populations to create a speedup.
 
+## Current pilot decision
+
+The [larger Linux study](LINUX_SCALING_100000.md) now completes real-data Full/Random/METIS on three 100,000-flow samples. Its 79 completed conditions preserve predictions and target coverage, but Full remains fastest and no consistent RSS saving is established. Repeated exact context needs attention before launching the full-source matrix. Any revised implementation must be frozen and compared against Full on the same test population. These results are single-seed systems pilots; quality tuning must use validation data and fresh independent evaluation must follow. The multiclass protocol remains unresolved.
+
 ## Near-term execution order
 
 **Measured gate update:** the complete-source audit now demonstrates missing validation classes in every multiclass dataset under the frozen pair split; CSE BruteForce spans only two pairs. Read [MULTICLASS_FEASIBILITY.md](MULTICLASS_FEASIBILITY.md) before launching Phase 3/4 multiclass runs. Keep this infeasibility outcome and revise the protocol explicitly. Binary scaling can continue independently; larger samples cannot fix the recorded full-source class absences.

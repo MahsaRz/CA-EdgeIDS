@@ -1,0 +1,13 @@
+{
+  "same_ownership_across_batch_sizes": true,
+  "ownership_sha256": {
+    "random-4": "55ed635977efb50123d487d302658215e1e5ed5d087a1f9ebb4eeb1006eb7f14",
+    "metis-8": "4047fb07127c5c979b5eb167b4e3cb01b0a7e72bb341cad661fddf4c6140a424",
+    "metis-2": "04180d21801baa8f0652bf0ec71f13d3236f13cacd794ee345a77ccbb2b4a481",
+    "chunked-1": "57611b16f6f7d6a637554ff0ee35bc40eecbeb17a70453b6e22694e4d918dad4",
+    "metis-4": "2e1db42df8d16572d85d051fe3bed60c631de08a4ed8e327d9737b1fcfbb05d2",
+    "random-8": "05b87bcc462557bf093665b511dead8ba3f3993118ad1e9a4f1616668cb540e5",
+    "random-2": "0795bf97474abe3df75f7b3283201f07d4cc9c8585f193e5e78fb35ec4c17615",
+    "full-1": "57611b16f6f7d6a637554ff0ee35bc40eecbeb17a70453b6e22694e4d918dad4"
+  }
+}

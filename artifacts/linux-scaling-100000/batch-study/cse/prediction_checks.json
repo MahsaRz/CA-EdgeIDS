@@ -1,0 +1,234 @@
+[
+  {
+    "method": "random",
+    "partitions": 4,
+    "batch_size": 512,
+    "order_index": 0,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 1024,
+    "order_index": 1,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 1024,
+    "order_index": 2,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "chunked",
+    "partitions": 1,
+    "batch_size": 2048,
+    "order_index": 3,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "chunked",
+    "partitions": 1,
+    "batch_size": 1024,
+    "order_index": 4,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 256,
+    "order_index": 5,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 1024,
+    "order_index": 6,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "chunked",
+    "partitions": 1,
+    "batch_size": 512,
+    "order_index": 7,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 2048,
+    "order_index": 8,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 1024,
+    "order_index": 9,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 512,
+    "order_index": 10,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 2,
+    "batch_size": 512,
+    "order_index": 11,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 4,
+    "batch_size": 1024,
+    "order_index": 12,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 2,
+    "batch_size": 256,
+    "order_index": 13,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "chunked",
+    "partitions": 1,
+    "batch_size": 256,
+    "order_index": 14,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 4,
+    "batch_size": 256,
+    "order_index": 15,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 2048,
+    "order_index": 16,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 2048,
+    "order_index": 17,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 512,
+    "order_index": 18,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 4,
+    "batch_size": 2048,
+    "order_index": 19,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 2,
+    "batch_size": 1024,
+    "order_index": 20,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 2,
+    "batch_size": 2048,
+    "order_index": 21,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "full",
+    "partitions": 1,
+    "batch_size": 0,
+    "order_index": 22,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 256,
+    "order_index": 23,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 2048,
+    "order_index": 24,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 512,
+    "order_index": 25,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 256,
+    "order_index": 26,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 512,
+    "order_index": 27,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 256,
+    "order_index": 28,
+    "max_probability_difference": 0.0,
+    "same_class_predictions": true
+  }
+]

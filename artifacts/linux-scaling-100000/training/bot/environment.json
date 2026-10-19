@@ -1,0 +1,15 @@
+{
+  "python": "3.11.15",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "processor": "",
+  "torch": "2.9.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "2.3.3",
+  "sklearn": "1.8.0",
+  "scipy": "1.17.0",
+  "matplotlib": "3.10.7",
+  "pymetis": "2025.2.2",
+  "cuda_available": false,
+  "cuda": null,
+  "gpu": null
+}

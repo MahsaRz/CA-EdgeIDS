@@ -1,5 +1,13 @@
 # Rebuild status - 19 October 2026
 
+## Latest completed milestone
+
+The [100,000-flow Linux binary pilot](LINUX_SCALING_100000.md) is complete for all three datasets. Real-data METIS ran successfully under local Ubuntu/WSL2. The verified bundle contains 79 completed conditions and 237 warm timing measurements, including 32 METIS conditions. Eight BoT eight-partition conditions are infeasible because that test graph has six IP nodes. Every completed condition preserves exactly-once target coverage and the saved Full class predictions. Full is fastest among completed conditions for every dataset; no consistent process-memory benefit is established.
+
+Source snapshots match frozen experimental commit `a390799`. All 33 extended Linux tests passed at `b5026da`. Tables, validation histories, confusion matrices, timing components and requirements are in `artifacts/linux-scaling-100000/`. ToN's false-positive rate is 18.6%; BoT's macro F1 is 0.578 despite weighted F1 of 0.976. These limitations are part of the reported result. Earlier milestone counts below describe their original runs.
+
+The next research gate is to address repeated exact-context computation before full-source repetitions, preserve the Full comparison, then complete validation-only model development, matched baselines and independent seeds. Multiclass remains paused at its documented split-feasibility gate. Overleaf remains unchanged.
+
 ## Completed locally
 
 - Read the supervisor's recommendation and the two-page tables/figures brief; adopted intrusion detection / flow-edge classification as the revised scope.
@@ -22,7 +30,7 @@ The predefined larger 30,000-row BoT uniform sample was then run with unchanged 
 
 ## Open work
 
-1. METIS has no compatible PyMETIS wheel in the inspected Windows/Python environment. Those runs are explicitly unavailable. Validate on the provided Linux workflow or a suitable Linux machine; do not substitute another partitioner under its name.
+1. METIS remains unavailable in the inspected Windows environment, but both synthetic Linux verification and the larger real-data Linux pilot are now complete. Continue larger studies on the recorded Linux environment; do not reinterpret historical unavailable Windows conditions as measurements.
 2. Resolve the multiclass feasibility gate before fitting multiclass models; then complete independently trained partition studies, controlled Cluster-GCN/GraphSAINT baselines, graph/edge-feature ablations, validation-only tuning and generalization studies.
 3. Profile memory/halo expansion on larger pilots before loading millions of flows into the current in-memory graph builder. Full dataset repetitions, five seeds, equal tuning budgets and final uncertainty remain outstanding.
 4. Rewrite the manuscript using verified new outputs. **Overleaf has not been modified.**
@@ -42,7 +50,7 @@ The [graph-work profile](GRAPH_WORK.md) now includes all three 30,000-flow pilot
 
 The [batch-size study](BATCH_SIZE_STUDY.md) is complete for all three 30,000-flow samples: 47 completed conditions, 141 timing records, and 40 explicit unavailable/infeasible conditions. Predictions match the saved references within tolerance, class predictions are identical, and all targets are scored once. Larger batches reduce batched inference time, but Full is fastest among the completed conditions in each dataset. The current benchmark code passed 31 local tests and the Linux workflow at `5e9325f`.
 
-**Linux verification passed:** https://github.com/mahsaraeiszadeh/DC-RCA/actions/runs/39277093598 (core commit `8e44c9b`). All tests and the synthetic smoke workflow passed. The downloaded aggregate CI tables were independently inspected: actual METIS results exist for 2, 4 and 8 partitions, with zero unavailable configurations. `docs/LINUX_VERIFICATION.json` records the scope. This validates the METIS software path on Linux, **not real-data METIS accuracy or performance**. Real-data experiments remain pending. The workflow additionally requires all three methods to appear, so missing METIS cannot silently yield a green smoke check.
+**Earlier Linux verification passed:** https://github.com/mahsaraeiszadeh/DC-RCA/actions/runs/39277093598 (core commit `8e44c9b`). All tests and the synthetic smoke workflow passed. The downloaded aggregate CI tables were independently inspected: actual METIS results exist for 2, 4 and 8 partitions, with zero unavailable configurations. `docs/LINUX_VERIFICATION.json` records the scope. This validates the METIS software path on Linux, **not real-data METIS accuracy or performance**. Real-data experiments were pending at that milestone; the completed larger Linux pilot is reported above. The workflow additionally requires all three methods to appear, so missing METIS cannot silently yield a green smoke check.
 
 The final full-file node audit found **29,245 ToN IP nodes; 293 BoT IP nodes; 255,042 CSE IP nodes** before splits. This confirms that the original 1000-2000 partition sweep is infeasible for BoT with genuine IP identities. Full BoT configs now propose 2/4/8/16/32 partitions and continue to reject any value above the actual split's node count.
 

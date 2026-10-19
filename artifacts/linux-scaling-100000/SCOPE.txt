@@ -1,0 +1,6 @@
+100,000 source flows per dataset; actual test populations are reported separately.
+One binary model seed per dataset; unchanged initial training settings.
+Real-data Full, one-partition, Random and METIS inference on local Ubuntu under WSL2.
+Warm timing repeats are not independent trained models. First-process timings have one observation per condition and may use a warm OS file cache.
+No raw flows, model files, host addresses, per-flow probabilities or node assignments are included.
+No claim of a full-dataset study, distributed deployment, topology adaptation or causal inference.

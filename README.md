@@ -61,6 +61,8 @@ Runs also stop if a declared class is absent from validation, because checkpoint
 
 ## Interpretation and limitations
 
+The [100,000-flow Linux pilot](docs/LINUX_SCALING_100000.md) is complete on all three datasets, including real-data METIS: 79 valid conditions, 237 warm timing measurements, and eight explicitly infeasible BoT conditions. Predictions and coverage match the saved Full references. Full is fastest among completed conditions in each dataset. BoT's weighted F1 of 0.976 accompanies macro F1 of 0.578; these initial single-seed results do not support a partitioning speed claim or a final journal comparison. Aggregate tables, preparation/startup timings and inspected figures are published with the run hashes. The current Linux checks pass all 33 tests.
+
 [Graph-work measurements](docs/GRAPH_WORK.md) now separate small-batch repetition from partitioning. New graph files use read-only memory-mapped arrays. Default file-size and packed-tensor limits stop oversized in-memory jobs, but do not guarantee a total RAM bound. Older pilot results keep their original storage and timing definitions.
 
 Compare inference batch sizes with an existing one-seed binary run:
