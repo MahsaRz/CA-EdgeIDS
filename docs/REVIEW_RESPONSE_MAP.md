@@ -1,6 +1,6 @@
 # Reviewer concerns and revised evidence
 
-This is an internal revision checklist, not a claim that the rejected paper is now acceptable or a response sent to the journal. The revised task is binary flow intrusion classification. Changing that task is essential: intrusion annotations cannot validate root-cause identification.
+This is a technical revision checklist, not a response sent to a journal or a claim of acceptance. The revised task is binary flow intrusion classification. Changing that task is essential: intrusion annotations cannot validate root-cause identification.
 
 | Review item | Revised treatment | Evidence and remaining limits |
 |---|---|---|

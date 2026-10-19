@@ -25,6 +25,7 @@ def execute():
     gate=json.loads((source/'gate.json').read_text())
     if gate['selection_sha256']!=sha256_file(ROOT/'selected_models.json') or gate['models']!=len(selected): raise ValueError('Selection gate mismatch')
     if sha256_file('artifacts/novel-host-preflight-1000000/protocols.json')!=plan['preflight_sha256']: raise ValueError('Preflight changed')
+    preflight={r['dataset']:r for r in json.loads(Path('artifacts/novel-host-preflight-1000000/protocols.json').read_text())}
     for path,digest in plan['sources'].items():
         data=subprocess.run(['git','show',f"{plan['source_commit']}:{path}"],capture_output=True,check=True).stdout
         if hashlib.sha256(data).hexdigest()!=digest: raise ValueError('Frozen source mismatch')
@@ -47,10 +48,14 @@ def execute():
         if history.exists():
             h=pd.read_csv(history)
             if not np.isclose(h.validation_macro_f1.max(),r['validation_macro_f1'],rtol=0,atol=1e-12): raise ValueError('Best epoch mismatch')
+            if int(h.loc[h.validation_macro_f1.idxmax(),'epoch'])!=r['best_epoch']: raise ValueError('Checkpoint epoch mismatch')
         with np.load(source/(tag+'-predictions.npz'),allow_pickle=False) as saved:
             ids=saved['row_ids']; labels=saved['y']; p=saved['probabilities']; score=evaluate(labels,p,['Benign','Attack'])
             identity=(hashlib.sha256(ids.astype('<i8').tobytes()).hexdigest(),hashlib.sha256(labels.astype('<i8').tobytes()).hexdigest())
             if len(np.unique(ids))!=len(ids) or d in targets and identity!=targets[d]: raise ValueError('Target population mismatch')
+            if identity[0]!=preflight[d]['test_row_ids_sha256']: raise ValueError('Targets differ from the frozen new-host preflight')
+            if {c:int(score['per_class'][c]['support']) for c in ['Benign','Attack']}!=preflight[d]['class_counts']['test']:
+                raise ValueError('Original class supports changed')
             targets[d]=identity
         if score!=json.loads((source/(tag+'-metrics.json')).read_text()): raise ValueError('Metric mismatch')
         prior=table[(table.dataset==d)&(table.family==family)&(table.seed==seed)]

@@ -23,6 +23,10 @@ def table(name,columns,rows):
     frame.to_latex(OUT/(name+'.tex'),index=False,escape=False,column_format='l'+'r'*(len(columns)-1))
 
 
+def mean_sd(mean,sd,digits):
+    return f'{mean:.{digits}f} $\\pm$ {sd:.{digits}f}' if pd.notna(sd) else f'{mean:.{digits}f} (SD --)'
+
+
 def figure(fig,name):
     for ext in ['pdf','svg','png']:
         path=OUT/(name+'.'+ext); fig.savefig(path,bbox_inches='tight',dpi=300)
@@ -104,10 +108,14 @@ def final_tables():
     frame=pd.read_csv('artifacts/classifier-cost-100000/summary.csv'); rows=[]
     for d in DATASETS:
         for method,label in [('gnn_full','GNN Full'),('gnn_layerwise','GNN layer-wise'),('mlp','MLP'),('rf','Forest')]:
-            b=frame[(frame.dataset==d)&(frame.method==method)].iloc[0]
-            rows.append([d.upper(),label,str(int(b.test_flows)),f'{1000*b.mean_warm_s:.2f} $\\pm$ {1000*b.sd_warm_s:.2f}',
-                f'{b.mean_first_process_s:.2f} $\\pm$ {b.sd_first_process_s:.2f}',f'{b.mean_setup_peak_rss_mib:.1f}'])
-    table('table_classifier_cost',['Dataset','Method','Test $n$','Warm ms','First prediction s','RSS MiB'],rows)
+            selected=frame[(frame.dataset==d)&(frame.method==method)]
+            if len(selected)==0:
+                rows.append([d.upper(),label,'--','0','--','--','--'])
+                continue
+            b=selected.iloc[0]
+            rows.append([d.upper(),label,str(int(b.test_flows)),str(int(b.process_blocks)),mean_sd(1000*b.mean_warm_s,1000*b.sd_warm_s,2),
+                mean_sd(b.mean_first_process_s,b.sd_first_process_s,2),f'{b.mean_setup_peak_rss_mib:.1f}'])
+    table('table_classifier_cost',['Dataset','Method','Test $n$','Blocks','Warm ms','First prediction s','RSS MiB'],rows)
     for name in ['classifier_warm_cost','classifier_pipeline_cost','classifier_memory']:
         for ext in ['pdf','svg','png']: shutil.copyfile(Path('artifacts/classifier-cost-100000')/(name+'.'+ext),OUT/(name+'.'+ext))
     frame=pd.read_csv('artifacts/larger-inference/summary.csv'); rows=[]
@@ -115,11 +123,11 @@ def final_tables():
         for method,label in [('full','Full'),('random','Random exact'),('metis','METIS exact'),('cached','Layer-wise'),('factored','Factored mean')]:
             selected=frame[(frame.dataset==d)&(frame.method==method)&(frame.sample_size==1000000)]
             if len(selected)==0:
-                rows.append([d.upper(),label,'--','--','--','--','--'])
+                rows.append([d.upper(),label,'--','0','--','--','--'])
                 continue
             b=selected.iloc[0]
             rows.append([d.upper(),label,str(int(b.test_flows)),str(int(b.blocks)),
-                f'{b.mean_warm_s:.3f} $\\pm$ {b.sd_warm_s:.3f}',f'{b.mean_first_process_s:.2f} $\\pm$ {b.sd_first_process_s:.2f}',f'{b.mean_whole_peak_rss_mb:.1f}'])
+                mean_sd(b.mean_warm_s,b.sd_warm_s,3),mean_sd(b.mean_first_process_s,b.sd_first_process_s,2),f'{b.mean_whole_peak_rss_mb:.1f}'])
     table('table_million_flow_cost',['Dataset','Method','Test $n$','Blocks','Warm s','First prediction s','RSS MiB'],rows)
 
 
