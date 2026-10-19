@@ -2,7 +2,9 @@
 
 Repository: [MahsaRz/CA-EdgeIDS](https://github.com/MahsaRz/CA-EdgeIDS). The repository was renamed from DC-RCA to match the revised intrusion-detection task. The working code is on `revision/ca-edgeids` while the draft review is open.
 
-**Working title:** *Cluster-Aware GraphSAGE for Flow-Level Intrusion Detection: Accuracy, Coverage, and End-to-End Cost*.
+**Working title:** *Graph Context and Processing Cost in Flow-Level Intrusion Detection*.
+
+The [five-seed classifier and graph controls](docs/CONTROLLED_STUDY.md) and [five-procedure sampler comparison](docs/SAMPLER_COMPARISON.md) are complete. Results are mixed and do not establish a universal graph or METIS advantage. Larger uniform samples are verified; the [execution queue](docs/EXECUTION_QUEUE.md) tracks the new-host fits, larger fixed-model processing study and manuscript revision. Failed class-support and resource conditions remain part of the evidence.
 
 This branch rebuilds the original DC-RCA experiments as **flow/edge intrusion classification**. It does not claim causal root-cause identification, physical fault localization, distributed execution, or proven real-time operation. The six original notebooks and `Readme.txt` remain historical reference material; they are not the revised implementation.
 
