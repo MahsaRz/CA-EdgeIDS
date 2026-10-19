@@ -58,6 +58,8 @@ METIS plus GraphSAGE alone is established engineering integration. A defensible 
 
 ## Current pilot decision
 
+The [layer-wise follow-up](CACHED_INFERENCE.md) now provides a tested alternative to repeated halos. Its confirmation study uses 54 fresh processes and 162 warm measurements on the same saved models/targets, preserving predictions. This global baseline must accompany later cluster comparisons. Keep the observed dataset/chunk dependence and resident-node-state requirement explicit. The next gate is validation-only classifier development and matched baselines, followed by independent training seeds and larger controlled workloads.
+
 The [larger Linux study](LINUX_SCALING_100000.md) now completes real-data Full/Random/METIS on three 100,000-flow samples. Its 79 completed conditions preserve predictions and target coverage, but Full remains fastest and no consistent RSS saving is established. Repeated exact context needs attention before launching the full-source matrix. Any revised implementation must be frozen and compared against Full on the same test population. These results are single-seed systems pilots; quality tuning must use validation data and fresh independent evaluation must follow. The multiclass protocol remains unresolved.
 
 ## Near-term execution order

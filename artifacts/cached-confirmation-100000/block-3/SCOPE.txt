@@ -1,0 +1,5 @@
+Fixed seed-7 models from three 100000-flow samples; no retraining or test-driven tuning.
+Each timing includes recomputing node states, then all target predictions.
+Warm timing repeats are not independent models. One process-first-prediction observation per condition; file caches need not be cold.
+Process RSS sampled every 5 ms; global node states remain resident. No total RAM bound or distributed claim.
+Raw graph arrays, checkpoints and per-flow predictions are excluded.

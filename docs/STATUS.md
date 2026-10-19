@@ -2,11 +2,15 @@
 
 ## Latest completed milestone
 
+The [layer-wise inference follow-up](CACHED_INFERENCE.md) now addresses repeated computation with a tested global node-state pass and chunked messages/decoding. The separate confirmation study completes 54 fresh-process conditions and 162 warm timings across three independently ordered blocks. All predictions remain unchanged, with no missing targets or failures. The 41-test Linux workflow passes. Sampled RSS falls on these graphs, while speed relative to Full depends on dataset/chunk settings. This is a global inference baseline, not evidence of a cluster-specific advantage.
+
+Next: validation-only model development and matched baselines, then independent model seeds and larger controlled workloads. Minority quality and multiclass feasibility remain open. Earlier milestones below retain their original scope.
+
 The [100,000-flow Linux binary pilot](LINUX_SCALING_100000.md) is complete for all three datasets. Real-data METIS ran successfully under local Ubuntu/WSL2. The verified bundle contains 79 completed conditions and 237 warm timing measurements, including 32 METIS conditions. Eight BoT eight-partition conditions are infeasible because that test graph has six IP nodes. Every completed condition preserves exactly-once target coverage and the saved Full class predictions. Full is fastest among completed conditions for every dataset; no consistent process-memory benefit is established.
 
 Source snapshots match frozen experimental commit `a390799`. All 33 extended Linux tests passed at `b5026da`. Tables, validation histories, confusion matrices, timing components and requirements are in `artifacts/linux-scaling-100000/`. ToN's false-positive rate is 18.6%; BoT's macro F1 is 0.578 despite weighted F1 of 0.976. These limitations are part of the reported result. Earlier milestone counts below describe their original runs.
 
-The next research gate is to address repeated exact-context computation before full-source repetitions, preserve the Full comparison, then complete validation-only model development, matched baselines and independent seeds. Multiclass remains paused at its documented split-feasibility gate. Overleaf remains unchanged.
+At that milestone the next gate was repeated exact-context computation; the layer-wise follow-up above now provides a tested alternative. Full-source repetitions, validation-only model development, matched baselines and independent seeds remain outstanding. Multiclass remains paused at its documented split-feasibility gate. Overleaf remains unchanged.
 
 ## Completed locally
 

@@ -1,0 +1,7 @@
+Confirmation stage only; exploratory runs are kept in a separate bundle.
+Three independently started processes per condition, each with one complete warm-up and three warm whole-graph timing repeats.
+Average within each process before computing the across-process mean and sample standard deviation.
+One trained seed-7 model per dataset; process repetitions are not model-seed uncertainty.
+Node states recomputed for each prediction. Resident node states and original graph remain required.
+Process-first-prediction times include imports and loading; file caches need not be cold. Source preparation is excluded.
+All predefined chunk settings are retained; no test-label-based selection.

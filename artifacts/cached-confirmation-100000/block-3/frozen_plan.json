@@ -1,0 +1,156 @@
+{
+  "git_commit": "60645d30991a15cd26b93999df832d5e60a4b291",
+  "package_source_sha256": {
+    "__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "batch_study.py": "db693747ff95216333abb7b82ca6069e105f3c083f18b4a7a0b92924ac7b47cc",
+    "cached.py": "e50255ac7905585b7036d0f68110ca74c793788ce442957a56f8bd67b8b1bfeb",
+    "cli.py": "ba27e5e64e67349b5ca94831ee94e8b949d70c7fd24b10c9ea60a56c8b1472ba",
+    "data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "experiment.py": "afcd47ccea65a5d1174671a5ebafb5681c4061d826b3fec4255865f06e383c4f",
+    "graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "profile.py": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+    "report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "runtime.py": "eee56cade0adc65a9d3dbd9d8749356d890d11973ceebcabc163266777e47cdb",
+    "worker.py": "d2dba28025b48f7a9d9e535995dc58933e5a32331a6c6ea71edc6333023a4e01"
+  },
+  "driver_sha256": "b098cda537c91bb1d79d5171664e173ef0362f41a0eab619c3b362e53348f315",
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "processor": "",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "pymetis": "2025.2.2",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "threads": 1,
+  "execution_order": [
+    {
+      "dataset": "bot",
+      "method": "cached",
+      "message_batch_size": 16384,
+      "query_batch_size": 2048
+    },
+    {
+      "dataset": "bot",
+      "method": "chunked",
+      "message_batch_size": 0,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "cse",
+      "method": "cached",
+      "message_batch_size": 4096,
+      "query_batch_size": 2048
+    },
+    {
+      "dataset": "ton",
+      "method": "cached",
+      "message_batch_size": 4096,
+      "query_batch_size": 2048
+    },
+    {
+      "dataset": "ton",
+      "method": "cached",
+      "message_batch_size": 16384,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "bot",
+      "method": "cached",
+      "message_batch_size": 16384,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "ton",
+      "method": "chunked",
+      "message_batch_size": 0,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "ton",
+      "method": "cached",
+      "message_batch_size": 16384,
+      "query_batch_size": 2048
+    },
+    {
+      "dataset": "cse",
+      "method": "cached",
+      "message_batch_size": 16384,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "cse",
+      "method": "cached",
+      "message_batch_size": 16384,
+      "query_batch_size": 2048
+    },
+    {
+      "dataset": "cse",
+      "method": "chunked",
+      "message_batch_size": 0,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "ton",
+      "method": "cached",
+      "message_batch_size": 4096,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "bot",
+      "method": "cached",
+      "message_batch_size": 4096,
+      "query_batch_size": 2048
+    },
+    {
+      "dataset": "bot",
+      "method": "full",
+      "message_batch_size": 0,
+      "query_batch_size": 0
+    },
+    {
+      "dataset": "cse",
+      "method": "full",
+      "message_batch_size": 0,
+      "query_batch_size": 0
+    },
+    {
+      "dataset": "bot",
+      "method": "cached",
+      "message_batch_size": 4096,
+      "query_batch_size": 512
+    },
+    {
+      "dataset": "ton",
+      "method": "full",
+      "message_batch_size": 0,
+      "query_batch_size": 0
+    },
+    {
+      "dataset": "cse",
+      "method": "cached",
+      "message_batch_size": 4096,
+      "query_batch_size": 512
+    }
+  ],
+  "timing_repeats": 3,
+  "order_seed": 20261023,
+  "cpu_model": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+  "logical_cpus": 16,
+  "linux_memory_kib": 14163612,
+  "scope": "same saved seed-7 binary models and 100000-flow sample test populations; no fitting or tuning",
+  "cache": "recomputed for every full prediction including each timing repeat",
+  "timings": "fresh worker per condition; one complete warm-up followed by three complete predictions; warm total includes encoding and decoding; source preparation and graph conversion excluded; first-process time has one observation and OS cache need not be cold",
+  "storage": "global resident node states; bounded message and query chunks; no claim of bounded total RAM"
+}

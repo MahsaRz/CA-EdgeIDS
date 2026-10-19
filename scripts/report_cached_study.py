@@ -12,8 +12,8 @@ import numpy as np
 import pandas as pd
 
 
-def build():
-    source=Path('runs/cached-inference-100000'); public=Path('artifacts/cached-inference-100000')
+def build(source='runs/cached-inference-100000',public='artifacts/cached-inference-100000',draw=True):
+    source=Path(source); public=Path(public)
     plan=json.loads((source/'frozen_plan.json').read_text())
     inputs=json.loads((source/'inputs.json').read_text())
     done=json.loads((source/'completion.json').read_text())
@@ -70,6 +70,13 @@ def build():
         message_visits_once_per_layer=True,cache_recomputed_each_repeat=True)
     (public/'verification.json').write_text(json.dumps(verification,indent=2)+'\n',encoding='utf-8')
     (public/'SCOPE.txt').write_text('Fixed seed-7 models from three 100000-flow samples; no retraining or test-driven tuning.\nEach timing includes recomputing node states, then all target predictions.\nWarm timing repeats are not independent models. One process-first-prediction observation per condition; file caches need not be cold.\nProcess RSS sampled every 5 ms; global node states remain resident. No total RAM bound or distributed claim.\nRaw graph arrays, checkpoints and per-flow predictions are excluded.\n',encoding='utf-8')
+    if draw: plot(summary,public,'Three warm timing repeats; error bars show their standard deviation')
+    print(summary.to_string(index=False))
+    print(json.dumps(verification,indent=2))
+    return summary
+
+
+def plot(summary,public,caption):
     order=[('full',0,0),('chunked',0,512)]+[('cached',m,q) for m in [4096,16384] for q in [512,2048]]
     labels=['Full','Halo\n512','4096\n512','4096\n2048','16384\n512','16384\n2048']
     colors=['#555555','#c97d30']+['#3274a1']*4
@@ -88,11 +95,9 @@ def build():
         axes[1,col].set_xlabel('Schedule / message arcs and target flows per chunk',fontsize=8)
     axes[0,0].set_ylabel('Whole-test-graph inference (ms, log scale)')
     axes[1,0].set_ylabel('Peak process RSS (MiB)')
-    fig.suptitle('Layer-wise inference on the same frozen models and test flows\nGray: Full · orange: exact halos · blue: node states computed once per prediction\nThree warm timing repeats; error bars show their standard deviation',fontsize=12)
+    fig.suptitle('Layer-wise inference on the same frozen models and test flows\nGray: Full · orange: exact halos · blue: node states computed once per prediction\n'+caption,fontsize=12)
     for extension in ['png','svg','pdf']: fig.savefig(public/('inference_comparison.'+extension),dpi=300)
     plt.close(fig)
-    print(summary.to_string(index=False))
-    print(json.dumps(verification,indent=2))
 
 
 if __name__=='__main__': build()
