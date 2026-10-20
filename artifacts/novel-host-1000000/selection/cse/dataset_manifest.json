@@ -1,0 +1,65 @@
+{
+  "dataset": "cse",
+  "csv_sha256": "0940cad7e5c18d354a807886b0a8dafeaa62837447d53883f9a0612da9c97d44",
+  "rows_read": 1000000,
+  "feature_columns": [
+    "L4_SRC_PORT",
+    "L4_DST_PORT",
+    "PROTOCOL",
+    "L7_PROTO",
+    "IN_BYTES",
+    "IN_PKTS",
+    "OUT_BYTES",
+    "OUT_PKTS",
+    "TCP_FLAGS",
+    "FLOW_DURATION_MILLISECONDS"
+  ],
+  "transformed_width": 219,
+  "label_names": [
+    "Benign",
+    "Attack"
+  ],
+  "original_labels": [
+    "Benign",
+    "Bot",
+    "Brute Force -Web",
+    "Brute Force -XSS",
+    "DDOS attack-HOIC",
+    "DDOS attack-LOIC-UDP",
+    "DDoS attacks-LOIC-HTTP",
+    "DoS attacks-GoldenEye",
+    "DoS attacks-Hulk",
+    "DoS attacks-SlowHTTPTest",
+    "DoS attacks-Slowloris",
+    "FTP-BruteForce",
+    "Infilteration",
+    "SQL Injection",
+    "SSH-Bruteforce"
+  ],
+  "preprocessor_fit_on_current_training": true,
+  "class_counts": {
+    "train": {
+      "Benign": 849940,
+      "Attack": 119559
+    },
+    "validation": {
+      "Benign": 14905,
+      "Attack": 35
+    },
+    "test": {
+      "Benign": 15539,
+      "Attack": 22
+    }
+  },
+  "split_counts": {
+    "test": 15561,
+    "train": 969499,
+    "validation": 14940
+  },
+  "duplicate_overlap": {
+    "train/validation": 0,
+    "train/test": 0,
+    "validation/test": 0
+  },
+  "test_row_ids_sha256": "3b2d99fa08fa621b29cf6588f646e371cadd7f5b0488f61b4fadf6c6be367a1d"
+}

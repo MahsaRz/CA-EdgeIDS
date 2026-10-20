@@ -1,0 +1,78 @@
+{
+  "selection_sha256": "3239a1d97bf12ca9263ac9b05b3a3cd69c62c2722793d8a4dd00f0e59ec00c5a",
+  "models": [
+    {
+      "dataset": "ton",
+      "family": "GNN",
+      "candidate_id": "gnn-1",
+      "validation_macro_f1": 0.9216297187016727,
+      "model_sha256": "73fd45543461770ae9ce94ddbe677ffe4ceece86e32b310b6446d2c4c90f88cb",
+      "model_file": "runs/classifier-comparison-100000/ton/gnn-1/model.pt"
+    },
+    {
+      "dataset": "ton",
+      "family": "MLP",
+      "candidate_id": "mlp-1",
+      "validation_macro_f1": 0.8877281281736937,
+      "model_sha256": "e24a672eecf051331395f03a59a443231ddf36bc4a1d8aec1f58f90075e31538",
+      "model_file": "runs/classifier-comparison-100000/ton/mlp-1/model.pt"
+    },
+    {
+      "dataset": "ton",
+      "family": "RF",
+      "candidate_id": "rf-1",
+      "validation_macro_f1": 0.9935207440351074,
+      "model_sha256": "f82e58ac2585ce893017247ce7437577952559d45fc0f6ae79c8592e18230349",
+      "model_file": "runs/classifier-comparison-100000/ton/rf-1/model.joblib"
+    },
+    {
+      "dataset": "cse",
+      "family": "GNN",
+      "candidate_id": "gnn-1",
+      "validation_macro_f1": 0.9620180483517279,
+      "model_sha256": "4eb4350a88528eee5ab33558d0aaf920fbdac68a3a15433e79928c5e855e0a01",
+      "model_file": "runs/classifier-comparison-100000/cse/gnn-1/model.pt"
+    },
+    {
+      "dataset": "cse",
+      "family": "MLP",
+      "candidate_id": "mlp-1",
+      "validation_macro_f1": 0.9486018349642198,
+      "model_sha256": "0dd31920c0cfb69ec8e4d0a4555a871cbb72604478b659497c015e99bd9da86a",
+      "model_file": "runs/classifier-comparison-100000/cse/mlp-1/model.pt"
+    },
+    {
+      "dataset": "cse",
+      "family": "RF",
+      "candidate_id": "rf-0",
+      "validation_macro_f1": 0.9692280415608157,
+      "model_sha256": "6057a6b361dda729fb3436a58635ace7404640448f37ccef9a12f6dceaeab212",
+      "model_file": "runs/classifier-comparison-100000/cse/rf-0/model.joblib"
+    },
+    {
+      "dataset": "bot",
+      "family": "GNN",
+      "candidate_id": "gnn-1",
+      "validation_macro_f1": 0.7682516569592288,
+      "model_sha256": "fa79bf2e47e3e46e35f5004779a2925343bf2dd149d55857c137b9f9765afdf9",
+      "model_file": "runs/classifier-comparison-100000/bot/gnn-1/model.pt"
+    },
+    {
+      "dataset": "bot",
+      "family": "MLP",
+      "candidate_id": "mlp-1",
+      "validation_macro_f1": 0.8564899025232032,
+      "model_sha256": "7e5f0760e00ad7890821292485b62d9f237889281961be32872f7f4710a7268a",
+      "model_file": "runs/classifier-comparison-100000/bot/mlp-1/model.pt"
+    },
+    {
+      "dataset": "bot",
+      "family": "RF",
+      "candidate_id": "rf-0",
+      "validation_macro_f1": 0.9781793168005787,
+      "model_sha256": "77a821b880ae547511404340b378eadee6b348aa91e7e261672ea7a30de4c55f",
+      "model_file": "runs/classifier-comparison-100000/bot/rf-0/model.joblib"
+    }
+  ],
+  "evaluation_scope": "selected candidates only; previously inspected development test splits; no retuning"
+}

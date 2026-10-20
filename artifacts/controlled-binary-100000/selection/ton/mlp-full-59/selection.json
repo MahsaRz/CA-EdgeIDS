@@ -1,0 +1,18 @@
+{
+  "dataset": "ton",
+  "family": "MLP",
+  "variant": "full",
+  "seed": 59,
+  "fit_s": 1.0570799319999935,
+  "model_file": "runs/controlled-binary-100000/ton/mlp-full-59/model.pt",
+  "model_sha256": "fa4c34b9378868bfa0974c27ab35a0f6271968b810e1ab814bb448a9c3474b76",
+  "best_epoch": 9,
+  "epochs_run": 10,
+  "validation_macro_f1": 0.8876161759614629,
+  "gradient_updates": 1130,
+  "class_weights": [
+    1.463029384613037,
+    0.7595974802970886
+  ],
+  "parameters": 2098
+}

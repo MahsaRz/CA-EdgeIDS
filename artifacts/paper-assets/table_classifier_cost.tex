@@ -1,0 +1,18 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+Dataset & Method & Test $n$ & Blocks & Warm ms & First prediction s & RSS MiB \\
+\midrule
+TON & GNN Full & 20691 & 3 & 49.41 $\pm$ 1.16 & 2.57 $\pm$ 0.04 & 483.8 \\
+TON & GNN layer-wise & 20691 & 3 & 16.54 $\pm$ 0.29 & 2.57 $\pm$ 0.05 & 427.7 \\
+TON & MLP & 20691 & 3 & 3.99 $\pm$ 0.13 & 2.45 $\pm$ 0.05 & 409.0 \\
+TON & Forest & 20691 & 3 & 149.03 $\pm$ 2.52 & 1.95 $\pm$ 0.01 & 335.2 \\
+CSE & GNN Full & 21870 & 3 & 72.89 $\pm$ 0.29 & 2.70 $\pm$ 0.02 & 527.1 \\
+CSE & GNN layer-wise & 21870 & 3 & 24.81 $\pm$ 4.31 & 2.65 $\pm$ 0.02 & 447.8 \\
+CSE & MLP & 21870 & 3 & 4.65 $\pm$ 0.40 & 2.54 $\pm$ 0.02 & 424.7 \\
+CSE & Forest & 21870 & 3 & 144.32 $\pm$ 2.44 & 1.95 $\pm$ 0.02 & 355.3 \\
+BOT & GNN Full & 26304 & 3 & 41.56 $\pm$ 7.12 & 2.60 $\pm$ 0.06 & 457.3 \\
+BOT & GNN layer-wise & 26304 & 3 & 15.38 $\pm$ 0.28 & 2.56 $\pm$ 0.08 & 408.5 \\
+BOT & MLP & 26304 & 3 & 3.91 $\pm$ 0.22 & 2.47 $\pm$ 0.04 & 390.4 \\
+BOT & Forest & 26304 & 3 & 83.23 $\pm$ 1.41 & 1.76 $\pm$ 0.08 & 306.5 \\
+\bottomrule
+\end{tabular}

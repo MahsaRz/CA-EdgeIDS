@@ -1,0 +1,11 @@
+class,train_flows,train_host_pairs,validation_flows,validation_host_pairs,test_flows,test_host_pairs,all_host_pairs
+Benign,5819,219,2989,73,2166,65,357
+Backdoor,0,0,0,0,36,2,2
+DDoS,1746,15,1317,8,474,8,31
+DoS,1166,15,53,5,29,4,24
+Injection,606,27,463,10,166,7,44
+MITM,9,2,0,0,0,0,2
+Password,1438,26,184,8,347,13,47
+Ransomware,0,0,0,0,9,2,2
+Scanning,3608,346,1551,111,1452,100,557
+XSS,2408,18,446,5,1518,5,28

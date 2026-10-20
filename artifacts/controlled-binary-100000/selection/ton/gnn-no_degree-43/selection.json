@@ -1,0 +1,21 @@
+{
+  "dataset": "ton",
+  "family": "GNN",
+  "variant": "no_degree",
+  "seed": 43,
+  "fit_s": 6.051478060999997,
+  "summary_preparation_s": 0.7294110180000004,
+  "model_file": "runs/controlled-binary-100000/ton/gnn-no_degree-43/model.pt",
+  "model_sha256": "8cec0cd088a46c34ae7bb2caf49cc3a906da3a5298add0be14c47e0de5dbd994",
+  "training_message_arcs": 112624,
+  "validation_message_arcs": 45994,
+  "validation_macro_f1": 0.9266527100344419,
+  "best_epoch": 10,
+  "epochs_run": 10,
+  "gradient_updates": 1130,
+  "parameters": 7042,
+  "class_weights": [
+    1.463029384613037,
+    0.7595974802970886
+  ]
+}

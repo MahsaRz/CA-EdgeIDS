@@ -1,0 +1,21 @@
+{
+  "dataset": "bot",
+  "family": "GNN",
+  "variant": "rewired",
+  "seed": 31,
+  "fit_s": 2.218546143000026,
+  "summary_preparation_s": 0.36523585299994465,
+  "model_file": "runs/controlled-binary-100000/bot/gnn-rewired-31/model.pt",
+  "model_sha256": "ada2673de5eff5733397b6835d28c56415622df5bb571cada798f58f253acbe4",
+  "training_message_arcs": 141238,
+  "validation_message_arcs": 6154,
+  "validation_macro_f1": 0.5988771800850129,
+  "best_epoch": 1,
+  "epochs_run": 4,
+  "gradient_updates": 560,
+  "parameters": 4978,
+  "class_weights": [
+    179.2360382080078,
+    0.5013986825942993
+  ]
+}

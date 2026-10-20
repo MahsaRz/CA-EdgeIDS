@@ -1,0 +1,21 @@
+{
+  "dataset": "cse",
+  "family": "GNN",
+  "variant": "rewired",
+  "seed": 19,
+  "fit_s": 24.782337487000063,
+  "summary_preparation_s": 0.8452863499999239,
+  "model_file": "runs/controlled-binary-100000/cse/gnn-rewired-19/model.pt",
+  "model_sha256": "f316d4e6bf91c8a6136c3d6117fec8e4f6fd41f7f2f5631a5f777662c79cb6f8",
+  "training_message_arcs": 112380,
+  "validation_message_arcs": 43880,
+  "validation_macro_f1": 0.9624327029942772,
+  "best_epoch": 6,
+  "epochs_run": 9,
+  "gradient_updates": 999,
+  "parameters": 8530,
+  "class_weights": [
+    0.5540545582771301,
+    5.1249542236328125
+  ]
+}

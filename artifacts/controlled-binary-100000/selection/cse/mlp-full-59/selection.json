@@ -1,0 +1,18 @@
+{
+  "dataset": "cse",
+  "family": "MLP",
+  "variant": "full",
+  "seed": 59,
+  "fit_s": 1.1446687320000137,
+  "model_file": "runs/controlled-binary-100000/cse/mlp-full-59/model.pt",
+  "model_sha256": "3f0a5d72cfb31a62c1a2ff00992aa1170c49a93db8895bf35a0123bae31f0d23",
+  "best_epoch": 10,
+  "epochs_run": 10,
+  "validation_macro_f1": 0.9518110455498214,
+  "gradient_updates": 1110,
+  "class_weights": [
+    0.5540545582771301,
+    5.1249542236328125
+  ],
+  "parameters": 2594
+}

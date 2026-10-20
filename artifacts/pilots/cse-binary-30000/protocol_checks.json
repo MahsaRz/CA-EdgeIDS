@@ -1,0 +1,7 @@
+{
+  "missing_training_classes": [],
+  "missing_validation_classes": [],
+  "missing_test_classes": [],
+  "valid_for_all_class_validation_selection": true,
+  "valid_for_all_class_test_evaluation": true
+}

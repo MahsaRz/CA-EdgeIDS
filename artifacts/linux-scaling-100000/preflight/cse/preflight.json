@@ -1,0 +1,45 @@
+{
+  "dataset": "cse",
+  "task": "binary",
+  "scope": "uniform_pilot",
+  "missing_classes": {
+    "train": [],
+    "validation": [],
+    "test": []
+  },
+  "can_train_and_select_all_classes": true,
+  "can_evaluate_all_classes": true,
+  "nodes_per_split": {
+    "train": 8483,
+    "validation": 3960,
+    "test": 3971
+  },
+  "shared_hosts_between_splits": {
+    "train/validation": 2053,
+    "train/test": 2051,
+    "validation/test": 1555
+  },
+  "interpretation": "Host-pair isolation permits shared hosts. Counts indicate feasibility, not adequate statistical power. Do not choose seeds or merge classes to improve test outcomes.",
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 50708,
+      "train_host_pairs": 22592,
+      "validation_flows": 19626,
+      "validation_host_pairs": 7568,
+      "test_flows": 17737,
+      "test_host_pairs": 7518,
+      "all_host_pairs": 37678
+    },
+    {
+      "class": "Attack",
+      "train_flows": 5482,
+      "train_host_pairs": 83,
+      "validation_flows": 2314,
+      "validation_host_pairs": 33,
+      "test_flows": 4133,
+      "test_host_pairs": 38,
+      "all_host_pairs": 154
+    }
+  ]
+}

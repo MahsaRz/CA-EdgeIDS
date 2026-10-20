@@ -1,0 +1,143 @@
+{
+  "dataset": "bot",
+  "task": "binary",
+  "csv_sha256": "8282bcac56cc7c81d1112078424045f1c3aa40cef9c189266c70a8ddaf692704",
+  "rows_read": 100000,
+  "max_rows": null,
+  "feature_columns": [
+    "L4_SRC_PORT",
+    "L4_DST_PORT",
+    "PROTOCOL",
+    "L7_PROTO",
+    "IN_BYTES",
+    "IN_PKTS",
+    "OUT_BYTES",
+    "OUT_PKTS",
+    "TCP_FLAGS",
+    "FLOW_DURATION_MILLISECONDS"
+  ],
+  "categorical_columns": [
+    "PROTOCOL",
+    "L7_PROTO"
+  ],
+  "transformed_width": 68,
+  "label_names": [
+    "Benign",
+    "Attack"
+  ],
+  "original_labels": [
+    "Benign",
+    "DDoS",
+    "DoS",
+    "Reconnaissance",
+    "Theft"
+  ],
+  "split_protocol": "conversation",
+  "explicit_family_mapping": "case normalization only; original names preserved",
+  "split_seed": 42,
+  "duplicate_overlap": {
+    "train/test": 0,
+    "train/validation": 0,
+    "validation/test": 0
+  },
+  "split_counts": {
+    "test": 26304,
+    "train": 70619,
+    "validation": 3077
+  },
+  "class_counts": {
+    "train": {
+      "Benign": 197,
+      "Attack": 70422
+    },
+    "validation": {
+      "Benign": 11,
+      "Attack": 3066
+    },
+    "test": {
+      "Benign": 129,
+      "Attack": 26175
+    }
+  },
+  "test_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe",
+  "data_scope": "uniform_pilot",
+  "max_input_bytes": 536870912,
+  "scope": "offline joint snapshot classification; no online, causal, or unseen-host claim unless separately tested",
+  "source_audit": {
+    "dataset": "NF-BoT-IoT-v2",
+    "archive_sha256": "8208d46a22363368cc118e6a19bf7db235d22e6d48c38b337a86087802cb3342",
+    "csv_sha256": "a94465c84ee393609db43464bc48bf84d01d1a68d1fe5b858071bf935d2e7a1b",
+    "bagit_sha1_verified": true,
+    "source_rows": 37763497,
+    "unique_ip_nodes": 293,
+    "source_columns": [
+      "IPV4_SRC_ADDR",
+      "L4_SRC_PORT",
+      "IPV4_DST_ADDR",
+      "L4_DST_PORT",
+      "PROTOCOL",
+      "L7_PROTO",
+      "IN_BYTES",
+      "IN_PKTS",
+      "OUT_BYTES",
+      "OUT_PKTS",
+      "TCP_FLAGS",
+      "CLIENT_TCP_FLAGS",
+      "SERVER_TCP_FLAGS",
+      "FLOW_DURATION_MILLISECONDS",
+      "DURATION_IN",
+      "DURATION_OUT",
+      "MIN_TTL",
+      "MAX_TTL",
+      "LONGEST_FLOW_PKT",
+      "SHORTEST_FLOW_PKT",
+      "MIN_IP_PKT_LEN",
+      "MAX_IP_PKT_LEN",
+      "SRC_TO_DST_SECOND_BYTES",
+      "DST_TO_SRC_SECOND_BYTES",
+      "RETRANSMITTED_IN_BYTES",
+      "RETRANSMITTED_IN_PKTS",
+      "RETRANSMITTED_OUT_BYTES",
+      "RETRANSMITTED_OUT_PKTS",
+      "SRC_TO_DST_AVG_THROUGHPUT",
+      "DST_TO_SRC_AVG_THROUGHPUT",
+      "NUM_PKTS_UP_TO_128_BYTES",
+      "NUM_PKTS_128_TO_256_BYTES",
+      "NUM_PKTS_256_TO_512_BYTES",
+      "NUM_PKTS_512_TO_1024_BYTES",
+      "NUM_PKTS_1024_TO_1514_BYTES",
+      "TCP_WIN_MAX_IN",
+      "TCP_WIN_MAX_OUT",
+      "ICMP_TYPE",
+      "ICMP_IPV4_TYPE",
+      "DNS_QUERY_ID",
+      "DNS_QUERY_TYPE",
+      "DNS_TTL_ANSWER",
+      "FTP_COMMAND_RET_CODE",
+      "Label",
+      "Attack"
+    ],
+    "original_attack_counts": {
+      "DDoS": 18331847,
+      "DoS": 16673183,
+      "Reconnaissance": 2620999,
+      "Benign": 135037,
+      "Theft": 2431
+    },
+    "binary_counts": {
+      "1": 37628460,
+      "0": 135037
+    },
+    "pilot_rows": 100000,
+    "pilot_seed": 2026,
+    "pilot_sampling": "uniform random priorities across full CSV; no label conditioning",
+    "pilot_attack_counts": {
+      "DDoS": 48473,
+      "DoS": 44196,
+      "Reconnaissance": 6988,
+      "Benign": 337,
+      "Theft": 6
+    },
+    "pilot_source_row_ids_sha256": "87246e785e61623019d9e04d5cc92c7f2a501c68cc0a2d979056b95b70c25839"
+  }
+}

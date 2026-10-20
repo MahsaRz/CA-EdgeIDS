@@ -1,0 +1,24 @@
+{
+  "best_epoch": 5,
+  "epochs_run": 8,
+  "validation_macro_f1": 0.7682516569592288,
+  "class_weights": [
+    179.2360382080078,
+    0.5013986825942993
+  ],
+  "gradient_updates": 1120,
+  "parameters": 4978,
+  "dataset": "bot",
+  "family": "GNN",
+  "candidate_id": "gnn-1",
+  "settings": {
+    "learning_rate": 0.003
+  },
+  "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+  "validation_flows": 3077,
+  "training_flows": 70619,
+  "fit_s": 214.18611260600005,
+  "reused_original_fit": false,
+  "model_sha256": "fa79bf2e47e3e46e35f5004779a2925343bf2dd149d55857c137b9f9765afdf9",
+  "model_file": "runs/classifier-comparison-100000/bot/gnn-1/model.pt"
+}

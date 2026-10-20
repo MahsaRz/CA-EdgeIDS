@@ -1,0 +1,9 @@
+{
+  "source_snapshots_match_commit": true,
+  "conditions_accounted_for": 18,
+  "same_target_coverage": true,
+  "same_class_predictions": true,
+  "maximum_probability_difference": 0.0,
+  "message_visits_once_per_layer": true,
+  "cache_recomputed_each_repeat": true
+}

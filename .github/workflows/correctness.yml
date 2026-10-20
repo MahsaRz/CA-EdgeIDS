@@ -1,0 +1,30 @@
+name: EdgeIDS correctness
+on:
+  push:
+    branches: [revision/ca-edgeids]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: edgeids-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e '.[test,metis]'
+      - run: python -m pytest -q
+      - run: python -m ca_edgeids demo --out runs/synthetic-ci
+      - name: Require actual METIS coverage in the Linux smoke run
+        run: python -c "import json,pandas as pd; from pathlib import Path; assert json.loads(Path('runs/synthetic-ci/unavailable_runs.json').read_text()) == []; r=pd.read_csv('runs/synthetic-ci/benchmark_runs.csv'); assert set(r.method) == {'full','random','metis'}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-software-check-not-paper-results
+          path: runs/synthetic-ci/paper_outputs/

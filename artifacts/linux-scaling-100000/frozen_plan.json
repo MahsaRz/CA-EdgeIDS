@@ -1,0 +1,100 @@
+{
+  "name": "linux-binary-scaling-100000",
+  "datasets": [
+    "ton",
+    "cse",
+    "bot"
+  ],
+  "inputs": {
+    "ton": {
+      "config": "configs/ton_binary_linux_100000.json",
+      "config_sha256": "93f80396d323d5e216a5f803b00974724f6fb4feb1c7b8df290a9bb2d577cbce",
+      "sample_csv_sha256": "1ab80627902a50ec9a683a743bc5eb839d1219238936c5397da0387352f2f2f3",
+      "sample_rows": 100000,
+      "sample_row_ids_sha256": "952285039e787ce38281c55090ac817cf3926e6a11bc43c23b6368a36995a96b",
+      "archive_sha256": "69dd3b8bd59e23f0718dfc69b2757cb6ca08fe2c4c1d4fd126b8bbd204bbbad2"
+    },
+    "cse": {
+      "config": "configs/cse_binary_linux_100000.json",
+      "config_sha256": "fcff21b9322cb78f1cd122f1e272d00e1471cabc68017ab85e4331db6e5bd79c",
+      "sample_csv_sha256": "fc1244b9554d85ee2fe6774e400e4b2baf6a78e8d64d9b25fa75dde959975fc5",
+      "sample_rows": 100000,
+      "sample_row_ids_sha256": "3af59ab12cbd56fbbf86a6919d55c851efabe70939471b06ddd851466844b5aa",
+      "archive_sha256": "ad6307995d08ff8825d0193d5a1cfa61cf3dc4c6f223962ba3762a7775b5dc24"
+    },
+    "bot": {
+      "config": "configs/bot_binary_linux_100000.json",
+      "config_sha256": "bef640a41a73298a638b2f8049e1928521709096cc459556b2c6012cdd0b1419",
+      "sample_csv_sha256": "8282bcac56cc7c81d1112078424045f1c3aa40cef9c189266c70a8ddaf692704",
+      "sample_rows": 100000,
+      "sample_row_ids_sha256": "87246e785e61623019d9e04d5cc92c7f2a501c68cc0a2d979056b95b70c25839",
+      "archive_sha256": "8208d46a22363368cc118e6a19bf7db235d22e6d48c38b337a86087802cb3342"
+    }
+  },
+  "sampling_seed": 2026,
+  "split_seed": 42,
+  "model_seed": 7,
+  "batch_sizes": [
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "partition_counts": [
+    2,
+    4,
+    8
+  ],
+  "methods": [
+    "chunked",
+    "random",
+    "metis"
+  ],
+  "timing_repeats": 3,
+  "order_seed": 20261019,
+  "worker_timeout_s": 120,
+  "scope": "One new binary model per dataset. Freeze that checkpoint across all inference conditions. No test-driven tuning; no five-seed or full-dataset claim.",
+  "training": "Same initial 10-epoch, patience-3, hidden-16, 2-layer, batch-512 settings as the 30,000-flow pilots. Training uses random source ownership and exact context. No RF/MLP fitting in this systems pilot.",
+  "timing": "Fresh process per condition; one complete warm-up pass; three whole-test-graph repeats. Record total inference, forward, packing, partitioning and sampled RSS separately. Loading and preparation are outside warm inference.",
+  "failures": "Retain infeasible partition counts, configured limits, timeouts and memory failures. Stop on a prediction or coverage mismatch.",
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "processor": "",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "pymetis": "2025.2.2",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "git_commit": "a390799c32fb53f554649b6ab5b886d3b8d84d2b",
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "linux_memory_kib": 14163604,
+    "torch_threads": 1,
+    "virtualization": "local Ubuntu under WSL2"
+  },
+  "driver_source_sha256": "44a1bd7ac6f4b4fca01e5c907d327ec2995c713c4556795a2852649da5e2f857",
+  "package_source_sha256": {
+    "__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "batch_study.py": "db693747ff95216333abb7b82ca6069e105f3c083f18b4a7a0b92924ac7b47cc",
+    "cli.py": "ba27e5e64e67349b5ca94831ee94e8b949d70c7fd24b10c9ea60a56c8b1472ba",
+    "data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "experiment.py": "afcd47ccea65a5d1174671a5ebafb5681c4061d826b3fec4255865f06e383c4f",
+    "graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "profile.py": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+    "report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "runtime.py": "eee56cade0adc65a9d3dbd9d8749356d890d11973ceebcabc163266777e47cdb",
+    "worker.py": "d04f52419935bbd6c6bb969ff5fea31f3d9e7ddff037f08e5225f7f43bde447c"
+  }
+}

@@ -1,0 +1,462 @@
+[
+  {
+    "dataset": "ton",
+    "family": "GNN",
+    "seed": 7,
+    "fit_s": 75.81285677599999,
+    "model_file": "runs/novel-host-1000000/ton/gnn-7/model.pt",
+    "model_sha256": "0ecb8545d053d527e7ea7a2f0bf6803d6dc38d758e2902333a303b1908bcf291",
+    "validation_macro_f1": 0.5539502350647861,
+    "best_epoch": 4,
+    "epochs_run": 7,
+    "gradient_updates": 13664,
+    "parameters": 9346,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "GNN",
+    "seed": 19,
+    "fit_s": 95.3959350099999,
+    "model_file": "runs/novel-host-1000000/ton/gnn-19/model.pt",
+    "model_sha256": "2bed30decda3f4f2b8ad8295aa7940316d1c65d29c978ed8a01d45347a35ab25",
+    "validation_macro_f1": 0.6053735839776203,
+    "best_epoch": 6,
+    "epochs_run": 9,
+    "gradient_updates": 17568,
+    "parameters": 9346,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "GNN",
+    "seed": 31,
+    "fit_s": 74.55008801600002,
+    "model_file": "runs/novel-host-1000000/ton/gnn-31/model.pt",
+    "model_sha256": "5a4ab85c7126f65df803d70a3bcd6974c0b1cd180c6465bcae58f90279349b9f",
+    "validation_macro_f1": 0.5820450068644422,
+    "best_epoch": 4,
+    "epochs_run": 7,
+    "gradient_updates": 13664,
+    "parameters": 9346,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "GNN",
+    "seed": 43,
+    "fit_s": 51.88334495000004,
+    "model_file": "runs/novel-host-1000000/ton/gnn-43/model.pt",
+    "model_sha256": "4360d5ade8a3a9335d6e2fa69166a3e41d17ecc197bdb7376b86735554d90bf5",
+    "validation_macro_f1": 0.5720421801668949,
+    "best_epoch": 2,
+    "epochs_run": 5,
+    "gradient_updates": 9760,
+    "parameters": 9346,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "GNN",
+    "seed": 59,
+    "fit_s": 84.79948152200018,
+    "model_file": "runs/novel-host-1000000/ton/gnn-59/model.pt",
+    "model_sha256": "e684bbd1bfeef02f17d612a930790f908e6d5bb01f1ff7c9b29b3c9f3484521e",
+    "validation_macro_f1": 0.5344865100087032,
+    "best_epoch": 5,
+    "epochs_run": 8,
+    "gradient_updates": 15616,
+    "parameters": 9346,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "MLP",
+    "seed": 7,
+    "fit_s": 12.322339770000099,
+    "model_file": "runs/novel-host-1000000/ton/mlp-7/model.pt",
+    "model_sha256": "42290fc13575e8aac48dc9762f5e199666d033b7cd0e6c4f3eef0f6bbf95c0d8",
+    "best_epoch": 5,
+    "epochs_run": 8,
+    "validation_macro_f1": 0.42478109783791207,
+    "gradient_updates": 15616,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "parameters": 2866,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "MLP",
+    "seed": 19,
+    "fit_s": 9.143734750000021,
+    "model_file": "runs/novel-host-1000000/ton/mlp-19/model.pt",
+    "model_sha256": "161fc05e5b825eb76f60c25e0ed2ef15ee738a21c8cef1c7e1003c2d3171c374",
+    "best_epoch": 3,
+    "epochs_run": 6,
+    "validation_macro_f1": 0.4152868709564948,
+    "gradient_updates": 11712,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "parameters": 2866,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "MLP",
+    "seed": 31,
+    "fit_s": 10.454400395999983,
+    "model_file": "runs/novel-host-1000000/ton/mlp-31/model.pt",
+    "model_sha256": "9cf9e1a2e7163e6f45f94f12ae0b9696115075f5a11dc208dc38c075b8b2228a",
+    "best_epoch": 4,
+    "epochs_run": 7,
+    "validation_macro_f1": 0.4014622146868293,
+    "gradient_updates": 13664,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "parameters": 2866,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "MLP",
+    "seed": 43,
+    "fit_s": 14.86224930100002,
+    "model_file": "runs/novel-host-1000000/ton/mlp-43/model.pt",
+    "model_sha256": "7abd0685a7ebb0eb656a66011838946f6fcf3b0426fdca0eb7ff22cba9e771ba",
+    "best_epoch": 7,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.3769917750210375,
+    "gradient_updates": 19520,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "parameters": 2866,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "MLP",
+    "seed": 59,
+    "fit_s": 14.708719111999926,
+    "model_file": "runs/novel-host-1000000/ton/mlp-59/model.pt",
+    "model_sha256": "6aa1b4377b12cb2b5ee3eaf0a31569dd81c1b5f527382dd9dcf6eed8ba0716dd",
+    "best_epoch": 8,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.4077215878194671,
+    "gradient_updates": 19520,
+    "class_weights": [
+      1.3897007703781128,
+      0.7809933423995972
+    ],
+    "parameters": 2866,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "RF",
+    "seed": 7,
+    "fit_s": 184.744977866,
+    "model_file": "runs/novel-host-1000000/ton/rf-7/model.joblib",
+    "model_sha256": "fb0830d07ff2df3c2ed0fd4c1ab3d243625b36eb5da7b94a33127b0b812121aa",
+    "validation_macro_f1": 0.6130046359855946,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "RF",
+    "seed": 19,
+    "fit_s": 181.32758818800016,
+    "model_file": "runs/novel-host-1000000/ton/rf-19/model.joblib",
+    "model_sha256": "829c60950b674c3adbaafc4e517d53f32f6eaddde0600914397f3b018b3740aa",
+    "validation_macro_f1": 0.5581476627348188,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "RF",
+    "seed": 31,
+    "fit_s": 184.64476645299987,
+    "model_file": "runs/novel-host-1000000/ton/rf-31/model.joblib",
+    "model_sha256": "e4b8def9ebbd0f1e57fc1430e2e345ec055725afcc9ce2e17fb5128991ec3d9d",
+    "validation_macro_f1": 0.5820450068644422,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "RF",
+    "seed": 43,
+    "fit_s": 182.1070780570003,
+    "model_file": "runs/novel-host-1000000/ton/rf-43/model.joblib",
+    "model_sha256": "89715ea9b06eaa80a79de249096bf6b57ac924f9b4fcfe19d0b5da279b390589",
+    "validation_macro_f1": 0.5227498677948176,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "ton",
+    "family": "RF",
+    "seed": 59,
+    "fit_s": 188.95173624000017,
+    "model_file": "runs/novel-host-1000000/ton/rf-59/model.joblib",
+    "model_sha256": "997706f0063d7f5d3a83a4b391f60d755e7e6925245bb7ae2b43dc24e7d35073",
+    "validation_macro_f1": 0.5921363040629096,
+    "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+  },
+  {
+    "dataset": "cse",
+    "family": "GNN",
+    "seed": 7,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 1448.823501754,
+    "model_file": "runs/novel-host-1000000/cse/gnn-7/model.pt",
+    "model_sha256": "be936ffbd1b2db8040c576a227ebd3dcf557f8b2b5c43eddd775d14d2c04b59e",
+    "validation_macro_f1": 0.5110918802564168,
+    "best_epoch": 4,
+    "epochs_run": 7,
+    "gradient_updates": 13265,
+    "parameters": 12226,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ]
+  },
+  {
+    "dataset": "cse",
+    "family": "GNN",
+    "seed": 19,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 806.1753184660001,
+    "model_file": "runs/novel-host-1000000/cse/gnn-19/model.pt",
+    "model_sha256": "7c6dc01bb7eb95225270795867772dc76687276efd185a6acedd0fd6acf2ede9",
+    "validation_macro_f1": 0.5084684033983792,
+    "best_epoch": 1,
+    "epochs_run": 4,
+    "gradient_updates": 7580,
+    "parameters": 12226,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ]
+  },
+  {
+    "dataset": "cse",
+    "family": "GNN",
+    "seed": 31,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 823.313092591,
+    "model_file": "runs/novel-host-1000000/cse/gnn-31/model.pt",
+    "model_sha256": "e1aa00b5ba7d78bca0b716cdba0668c587451a20477568a15eafb156af7e7eba",
+    "validation_macro_f1": 0.5029527713152201,
+    "best_epoch": 1,
+    "epochs_run": 4,
+    "gradient_updates": 7580,
+    "parameters": 12226,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ]
+  },
+  {
+    "dataset": "cse",
+    "family": "GNN",
+    "seed": 43,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 1611.138266934,
+    "model_file": "runs/novel-host-1000000/cse/gnn-43/model.pt",
+    "model_sha256": "305b690740f93f3e4c143cdcecb0fa99356730cda98536dbf2150a1451a068c9",
+    "validation_macro_f1": 0.5145852897773008,
+    "best_epoch": 5,
+    "epochs_run": 8,
+    "gradient_updates": 15160,
+    "parameters": 12226,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ]
+  },
+  {
+    "dataset": "cse",
+    "family": "GNN",
+    "seed": 59,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 1820.334271742,
+    "model_file": "runs/novel-host-1000000/cse/gnn-59/model.pt",
+    "model_sha256": "2cb1ec6f0d001376fbdd1baa8cebfd74aed7f8e749ce4b002127b5d36f701a76",
+    "validation_macro_f1": 0.5102682654351781,
+    "best_epoch": 6,
+    "epochs_run": 9,
+    "gradient_updates": 17055,
+    "parameters": 12226,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ]
+  },
+  {
+    "dataset": "cse",
+    "family": "MLP",
+    "seed": 7,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 15.055835588999798,
+    "model_file": "runs/novel-host-1000000/cse/mlp-7/model.pt",
+    "model_sha256": "67c02a3d4b300feb56e116062705815cc7c118025f3ec82d2d968f44764206c2",
+    "best_epoch": 6,
+    "epochs_run": 9,
+    "validation_macro_f1": 0.5370458218054501,
+    "gradient_updates": 17055,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ],
+    "parameters": 3826
+  },
+  {
+    "dataset": "cse",
+    "family": "MLP",
+    "seed": 19,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 16.100088029999824,
+    "model_file": "runs/novel-host-1000000/cse/mlp-19/model.pt",
+    "model_sha256": "235a81a5c43f2582bc223be73262445dcb07fb3685d613b8a50de7ad48131d93",
+    "best_epoch": 7,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.5330507420971807,
+    "gradient_updates": 18950,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ],
+    "parameters": 3826
+  },
+  {
+    "dataset": "cse",
+    "family": "MLP",
+    "seed": 31,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 12.909144039000239,
+    "model_file": "runs/novel-host-1000000/cse/mlp-31/model.pt",
+    "model_sha256": "4688bf498bc5e13be810b40163010efe57518fbabeccf523cfd518f62bb1307f",
+    "best_epoch": 5,
+    "epochs_run": 8,
+    "validation_macro_f1": 0.5316754949602538,
+    "gradient_updates": 15160,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ],
+    "parameters": 3826
+  },
+  {
+    "dataset": "cse",
+    "family": "MLP",
+    "seed": 43,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 16.15161194400025,
+    "model_file": "runs/novel-host-1000000/cse/mlp-43/model.pt",
+    "model_sha256": "febe98c152b8f1f323da36ee8fea2cf63ce515f39c284f0849ec90f260f45748",
+    "best_epoch": 10,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.5324504224076028,
+    "gradient_updates": 18950,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ],
+    "parameters": 3826
+  },
+  {
+    "dataset": "cse",
+    "family": "MLP",
+    "seed": 59,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 17.43717435399958,
+    "model_file": "runs/novel-host-1000000/cse/mlp-59/model.pt",
+    "model_sha256": "ed1159fe7bd993bfc1ea69e29449b67bb78c7524e983b1cccdb5bd29c59a5050",
+    "best_epoch": 7,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.533878144333552,
+    "gradient_updates": 18950,
+    "class_weights": [
+      0.5703337788581848,
+      4.054479598999023
+    ],
+    "parameters": 3826
+  },
+  {
+    "dataset": "cse",
+    "family": "RF",
+    "seed": 7,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 178.50556936799967,
+    "model_file": "runs/novel-host-1000000/cse/rf-7/model.joblib",
+    "model_sha256": "2ca4841dc60ac072efe419f8f536e90c407e7dfcdbe4e177efc0256fe961d70d",
+    "validation_macro_f1": 0.49922906750687135
+  },
+  {
+    "dataset": "cse",
+    "family": "RF",
+    "seed": 19,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 181.6845160570001,
+    "model_file": "runs/novel-host-1000000/cse/rf-19/model.joblib",
+    "model_sha256": "c42688d1cff4d51bce7183581f0f6732cd1fef08f8bc14d9dce24f4967d7e4df",
+    "validation_macro_f1": 0.49924585218702866
+  },
+  {
+    "dataset": "cse",
+    "family": "RF",
+    "seed": 31,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 178.11650030199962,
+    "model_file": "runs/novel-host-1000000/cse/rf-31/model.joblib",
+    "model_sha256": "3c72775c8673107d1965ccf29c11bedd312f4630f4a3261490698fafcede4c05",
+    "validation_macro_f1": 0.49929619947717674
+  },
+  {
+    "dataset": "cse",
+    "family": "RF",
+    "seed": 43,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 179.6163267209995,
+    "model_file": "runs/novel-host-1000000/cse/rf-43/model.joblib",
+    "model_sha256": "c06a0090dc103109719454420e7012b82a0e674289813ad1621ad6ae643d67e9",
+    "validation_macro_f1": 0.4992626357420566
+  },
+  {
+    "dataset": "cse",
+    "family": "RF",
+    "seed": 59,
+    "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+    "fit_s": 178.88614750299985,
+    "model_file": "runs/novel-host-1000000/cse/rf-59/model.joblib",
+    "model_sha256": "3d104e18249d69eb9bc198d7ce8f2ae9a88b73440d9b110aaafd5f0caacc59f1",
+    "validation_macro_f1": 0.4992794181720682
+  }
+]

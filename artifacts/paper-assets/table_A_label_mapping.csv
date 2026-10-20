@@ -1,0 +1,4 @@
+Dataset,Original Attack names,Binary mapping,Multiclass status
+TON,"Benign, scanning, dos, xss, ddos, password, ransomware, mitm, injection, backdoor",Label=0: Benign; Label=1: Attack,Not fitted: missing validation family support
+CSE,"Benign, DDOS attack-HOIC, DoS attacks-Hulk, DDoS attacks-LOIC-HTTP, Bot, Infilteration, SSH-Bruteforce, FTP-BruteForce, DoS attacks-GoldenEye, DoS attacks-SlowHTTPTest, DoS attacks-Slowloris, Brute Force -Web, DDOS attack-LOIC-UDP, Brute Force -XSS, SQL Injection",Label=0: Benign; Label=1: Attack,Not fitted: missing validation family support
+BOT,"DDoS, DoS, Reconnaissance, Benign, Theft",Label=0: Benign; Label=1: Attack,Not fitted: missing validation family support

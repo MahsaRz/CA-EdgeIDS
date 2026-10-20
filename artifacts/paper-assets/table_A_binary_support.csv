@@ -1,0 +1,10 @@
+Dataset,Split,Benign,Attack
+TON,train,"19,245","37,067"
+TON,validation,"9,886","13,111"
+TON,test,"7,197","13,494"
+CSE,train,"50,708","5,482"
+CSE,validation,"19,626","2,314"
+CSE,test,"17,737","4,133"
+BOT,train,197,"70,422"
+BOT,validation,11,"3,066"
+BOT,test,129,"26,175"

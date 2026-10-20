@@ -1,0 +1,21 @@
+{
+  "dataset": "cse",
+  "family": "GNN",
+  "variant": "no_degree",
+  "seed": 19,
+  "fit_s": 10.143109046000006,
+  "summary_preparation_s": 0.8395639589999746,
+  "model_file": "runs/controlled-binary-100000/cse/gnn-no_degree-19/model.pt",
+  "model_sha256": "c541feaa85975a0e493d7b15ed94ca8a4c4dda56cc9fd6ed173d0988605650a1",
+  "training_message_arcs": 112380,
+  "validation_message_arcs": 43880,
+  "validation_macro_f1": 0.9539012898431066,
+  "best_epoch": 1,
+  "epochs_run": 4,
+  "gradient_updates": 444,
+  "parameters": 8530,
+  "class_weights": [
+    0.5540545582771301,
+    5.1249542236328125
+  ]
+}

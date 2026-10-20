@@ -1,0 +1,29 @@
+{
+  "datasets": [
+    {
+      "dataset": "ton",
+      "requested_conditions": 29,
+      "completed_conditions": 29,
+      "unavailable_conditions": 0,
+      "timing_rows": 87,
+      "model_retrained": false
+    },
+    {
+      "dataset": "cse",
+      "requested_conditions": 29,
+      "completed_conditions": 29,
+      "unavailable_conditions": 0,
+      "timing_rows": 87,
+      "model_retrained": false
+    },
+    {
+      "dataset": "bot",
+      "requested_conditions": 29,
+      "completed_conditions": 21,
+      "unavailable_conditions": 8,
+      "timing_rows": 63,
+      "model_retrained": false
+    }
+  ],
+  "scope": "100,000-flow binary systems pilots; one model seed per dataset"
+}

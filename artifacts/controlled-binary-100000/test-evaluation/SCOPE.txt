@@ -1,0 +1,4 @@
+Five trained seeds on the same fixed pilot split; seed variation is not independent dataset uncertainty.
+All predefined variants retained. No test-based choice of seed, graph setting or threshold.
+Ablation changes use identical target flows and paired model seeds.
+Fit times are diagnostic; no fresh-process speed or memory claim is inferred.

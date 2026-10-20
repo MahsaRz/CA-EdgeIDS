@@ -1,0 +1,5 @@
+REAL-DATA PILOT, NOT FINAL PAPER RESULTS.
+Small uniform sample; one training seed; initial untuned settings.
+Graphs and classifier are under development. Exact inference coverage is the validated property; a speedup or state-of-the-art accuracy is not established.
+Missing METIS configurations are explicitly listed. Compare baselines only as diagnostic results; tuning budgets and baseline process isolation are not yet matched.
+No raw flows, per-flow predictions, or model checkpoint is included in this published bundle.

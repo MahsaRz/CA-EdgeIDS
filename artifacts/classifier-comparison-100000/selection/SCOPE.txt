@@ -1,0 +1,5 @@
+Validation-only selection from two candidates per family and dataset.
+Neural epoch/update upper limits matched; forest tree budget separate. Candidate count is not equal computing cost.
+Original GNN candidate fits reused with source/config/checkpoint and validation checks.
+One model seed; previously inspected pilot splits. Test predictions are not computed during selection.
+No checkpoints, raw flows or per-flow predictions exported.

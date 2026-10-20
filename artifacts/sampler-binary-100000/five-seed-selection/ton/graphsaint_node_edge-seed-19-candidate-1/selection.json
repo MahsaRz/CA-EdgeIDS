@@ -1,0 +1,27 @@
+{
+  "dataset": "ton",
+  "method": "graphsaint_node_edge",
+  "seed": 19,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 4.45813679500003,
+  "model_file": "runs/sampler-binary-100000/ton/graphsaint_node_edge-seed-19-candidate-1/model.pt",
+  "model_sha256": "a3c6146d945c3060c37c17cd66457c7a12091453a8de9b7dbb67d6ecd8e3235a",
+  "validation_macro_f1": 0.9129913307187179,
+  "best_epoch": 7,
+  "epochs_run": 10,
+  "gradient_updates": 1100,
+  "target_exposures": 490387,
+  "unique_training_targets_seen": 56148,
+  "unseen_training_targets": 164,
+  "min_target_exposures": 0,
+  "max_target_exposures": 107,
+  "empty_samples": 2,
+  "sampler_and_validation_preparation_s": 0.6493919979999987,
+  "full_graph_targets": 56312,
+  "class_targets_seen": {
+    "Benign": 19216,
+    "Attack": 36932
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}

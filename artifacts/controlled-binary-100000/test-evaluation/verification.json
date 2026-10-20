@@ -1,0 +1,9 @@
+{
+  "models": 120,
+  "five_seeds_per_setting": true,
+  "unchanged_targets": true,
+  "unchanged_labels": true,
+  "metrics_recomputed": true,
+  "comparison_tables_verified": true,
+  "paired_differences_match_training_seeds": true
+}

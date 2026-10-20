@@ -1,0 +1,57 @@
+{
+  "test_n": 21870,
+  "macro_f1": 0.9839405273343673,
+  "weighted_f1": 0.990184612993669,
+  "macro_precision": 0.9869704634641563,
+  "macro_recall": 0.9809771154116329,
+  "weighted_precision": 0.9901837278681315,
+  "weighted_recall": 0.990214906264289,
+  "per_class": {
+    "Benign": {
+      "precision": 0.992136156827501,
+      "recall": 0.9958279303151604,
+      "f1-score": 0.9939786156443444,
+      "support": 17737.0
+    },
+    "Attack": {
+      "precision": 0.9818047701008115,
+      "recall": 0.9661263005081054,
+      "f1-score": 0.9739024390243902,
+      "support": 4133.0
+    },
+    "accuracy": 0.990214906264289,
+    "macro avg": {
+      "precision": 0.9869704634641563,
+      "recall": 0.9809771154116329,
+      "f1-score": 0.9839405273343673,
+      "support": 21870.0
+    },
+    "weighted avg": {
+      "precision": 0.9901837278681315,
+      "recall": 0.990214906264289,
+      "f1-score": 0.990184612993669,
+      "support": 21870.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      17663,
+      74
+    ],
+    [
+      140,
+      3993
+    ]
+  ],
+  "average_precision_ovr": {
+    "Benign": 0.9953206639206285,
+    "Attack": 0.9827408212764095
+  },
+  "fpr_ovr": {
+    "Benign": 0.033873699491894504,
+    "Attack": 0.0041720696848396
+  },
+  "attack_false_positive_rate": 0.0041720696848396,
+  "missing_test_classes": [],
+  "pr_metric_definition": "non-interpolated average precision, not trapezoidal PR-AUC"
+}

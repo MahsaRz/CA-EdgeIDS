@@ -1,0 +1,11 @@
+{
+  "same_ownership_across_batch_sizes": true,
+  "ownership_sha256": {
+    "random-4": "c40d86ad55ce7ad05a9cfdef5af15ef556403934a0730c48a9e781ef9ddd1eb5",
+    "metis-2": "08a3eabe03ccd84d534cfe5aabb8158407ab007f600462499eb238931ec3febe",
+    "chunked-1": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1",
+    "metis-4": "443fa80bae4d295a1656ed4d3a2c23f8f86c11de990f5a2db0318e5ae8cd8144",
+    "random-2": "15989ac61f97aca7d8bd6c5d169ef360f7f43b0a4d9e63332d46dc80f7e82237",
+    "full-1": "17b0761f87b081d5cf10757ccc89f12be355c70e2e29df288b65b30710dcbcd1"
+  }
+}

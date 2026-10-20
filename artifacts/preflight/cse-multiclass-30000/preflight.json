@@ -1,0 +1,102 @@
+{
+  "dataset": "cse",
+  "task": "multiclass",
+  "scope": "uniform_pilot",
+  "missing_classes": {
+    "train": [],
+    "validation": [
+      "BruteForce",
+      "DoS",
+      "Web Attacks"
+    ],
+    "test": [
+      "BruteForce",
+      "Web Attacks"
+    ]
+  },
+  "can_train_and_select_all_classes": false,
+  "can_evaluate_all_classes": false,
+  "nodes_per_split": {
+    "train": 3747,
+    "validation": 1875,
+    "test": 1884
+  },
+  "shared_hosts_between_splits": {
+    "train/validation": 1071,
+    "train/test": 1073,
+    "validation/test": 875
+  },
+  "interpretation": "Host-pair isolation permits shared hosts. Counts indicate feasibility, not adequate statistical power. Do not choose seeds or merge classes to improve test outcomes.",
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 15311,
+      "train_host_pairs": 7838,
+      "validation_flows": 5804,
+      "validation_host_pairs": 2538,
+      "test_flows": 5365,
+      "test_host_pairs": 2635,
+      "all_host_pairs": 13011
+    },
+    {
+      "class": "Bot",
+      "train_flows": 162,
+      "train_host_pairs": 7,
+      "validation_flows": 43,
+      "validation_host_pairs": 2,
+      "test_flows": 27,
+      "test_host_pairs": 1,
+      "all_host_pairs": 10
+    },
+    {
+      "class": "BruteForce",
+      "train_flows": 174,
+      "train_host_pairs": 2,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 0,
+      "test_host_pairs": 0,
+      "all_host_pairs": 2
+    },
+    {
+      "class": "DDoS",
+      "train_flows": 1173,
+      "train_host_pairs": 12,
+      "validation_flows": 558,
+      "validation_host_pairs": 4,
+      "test_flows": 438,
+      "test_host_pairs": 4,
+      "all_host_pairs": 20
+    },
+    {
+      "class": "DoS",
+      "train_flows": 38,
+      "train_host_pairs": 2,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 722,
+      "test_host_pairs": 2,
+      "all_host_pairs": 4
+    },
+    {
+      "class": "Infiltration",
+      "train_flows": 54,
+      "train_host_pairs": 23,
+      "validation_flows": 82,
+      "validation_host_pairs": 17,
+      "test_flows": 40,
+      "test_host_pairs": 15,
+      "all_host_pairs": 55
+    },
+    {
+      "class": "Web Attacks",
+      "train_flows": 9,
+      "train_host_pairs": 1,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 0,
+      "test_host_pairs": 0,
+      "all_host_pairs": 1
+    }
+  ]
+}

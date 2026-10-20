@@ -1,0 +1,5 @@
+Edge-task adaptations of cluster-induced and normalized uniform-node sampling.
+All 75 selected models, five seeds and all original test targets retained.
+Sampling only affects training; full context used for validation/test.
+Variation across training seeds on reused development holdouts; not population uncertainty.
+Raw data, host identities, checkpoints and per-flow predictions excluded.

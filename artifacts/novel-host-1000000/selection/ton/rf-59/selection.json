@@ -1,0 +1,10 @@
+{
+  "dataset": "ton",
+  "family": "RF",
+  "seed": 59,
+  "fit_s": 188.95173624000017,
+  "model_file": "runs/novel-host-1000000/ton/rf-59/model.joblib",
+  "model_sha256": "997706f0063d7f5d3a83a4b391f60d755e7e6925245bb7ae2b43dc24e7d35073",
+  "validation_macro_f1": 0.5921363040629096,
+  "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+}

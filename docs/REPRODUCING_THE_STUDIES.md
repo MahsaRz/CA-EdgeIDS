@@ -1,0 +1,117 @@
+# Reproducing the studies
+
+Use a clean Git clone of `revision/ca-edgeids` on Linux. The experiment drivers check committed source bytes; a source ZIP alone does not include the history needed for historical verification. Each run refuses to overwrite an earlier private run. Aggregate export paths below are new, ignored folders, so the checked-in evidence stays intact.
+
+## Environment and exact samples
+
+Install the pinned Linux packages, then install this project without changing those versions:
+
+```text
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r artifacts/linux-scaling-100000/requirements.txt
+python -m pip install -e . --no-deps
+python -m pytest -q
+```
+
+Use the official v2 archives linked in [data sources](DATA_SOURCES.md). Create a private JSON file with keys `ton`, `cse` and `bot`, each containing the path to its official archive. It contains local paths only and stays outside Git. The scripts verify the release archive/CSV checksums and full counts rather than accepting a similarly named third-party CSV.
+
+```text
+python scripts/prepare_reproduction_samples.py --archive-map /path/to/private-archives.json
+```
+
+This scans all three complete sources and writes the exact 100,000-flow uniform samples expected by the checked-in configs. If the samples already exist, `--check-existing` checks their content and row-ID digests against the frozen protocol; it does not repeat the full archive scan. Do not run `make_linux_scaling_configs.py` against an ordinary clone: the frozen configs are already included.
+
+## Baseline run folders
+
+```text
+python scripts/run_linux_scaling.py
+python scripts/verify_linux_scaling.py
+```
+
+This creates `runs/linux-scaling-100000/`, including each dataset's original pilot model, fitted preprocessor, training/validation histories, test graph and fixed-model benchmark anchors. Later drivers deliberately check these local manifests. They are regenerated here rather than assumed to be available from the original machine. The original three-model systems cohort uses learning rate 0.001 and remains separate from the classifier refits.
+
+## Five seeds and graph controls
+
+```text
+python scripts/run_controlled_study.py --stage train
+python scripts/report_controlled_study.py --stage train --public-root runs/reproduction-exports/controlled-binary-100000
+python scripts/run_controlled_study.py --stage evaluate
+python scripts/report_controlled_study.py --stage evaluate --public-root runs/reproduction-exports/controlled-binary-100000
+```
+
+Inspect/freeze the exported selection manifest before the evaluate command. It must contain all 120 models and checkpoint hashes. The settings are the already declared validation-selected settings; this stage performs no new hyperparameter search. The default private folder is `runs/controlled-binary-100000/`. `--run-root` can choose another folder when replaying in an existing checkout; pass the same value to both runner and reporter.
+
+## Training procedures
+
+```text
+python scripts/run_sampler_study.py --stage select --public-root runs/reproduction-exports/sampler-binary-100000
+python scripts/run_sampler_study.py --stage seeds --public-root runs/reproduction-exports/sampler-binary-100000
+python scripts/run_sampler_study.py --stage evaluate --public-root runs/reproduction-exports/sampler-binary-100000
+python scripts/report_sampler_study.py --public-root runs/reproduction-exports/sampler-binary-100000
+```
+
+Freeze the 30 validation candidates/15 choices before `seeds`, then all 75 selected checkpoint hashes before `evaluate`. Full-snapshot validation/test context and identical original targets are used by all five procedures. Exposure and empty-update counts remain part of the comparison. Use the same `--run-root`/`--public-root` on every stage if overriding them.
+
+## Larger samples and new-host protocol
+
+```text
+python scripts/create_larger_samples.py --archive-map /path/to/private-archives.json
+python scripts/audit_nested_observables.py --out runs/reproduction-exports/nested-observables.json
+python scripts/novel_host_protocol.py --out runs/reproduction-exports/novel-host-preflight
+python scripts/run_novel_host_study.py --stage train --public-root runs/reproduction-exports/novel-host-1000000
+python scripts/run_novel_host_study.py --stage evaluate --public-root runs/reproduction-exports/novel-host-1000000
+python scripts/report_novel_host_study.py --public-root runs/reproduction-exports/novel-host-1000000
+```
+
+The sample stage verifies all complete sources again and reproduces the original development row priorities. The nested-observable check verifies every retained development endpoint, label, selected numerical value and categorical encoder representation in both larger sizes. New-host inputs are checked against the declared preflight's CSV/target digests and supports. Freeze selected checkpoints between train and evaluate. ToN/CSE are feasible but have only 12/22 attack test flows; BoT fails and is not fitted. No seed search, class dropping or temporal labels are used to repair this. `--run-root` and export overrides work as above.
+
+## Classifier processing costs
+
+Finish fitting and source scans before timing, and run the timing studies separately:
+
+```text
+python scripts/run_classifier_cost.py
+python scripts/report_classifier_cost.py --public-root runs/reproduction-exports/classifier-cost-100000
+```
+
+The 36-condition grid uses the frozen seed-7 full GNN, MLP and Forest from the five-seed study, including a layer-wise GNN condition. Flow-only workers skip graph construction; Forest avoids unused Torch imports. Predictions are checked against each selected model's earlier test output. This is a different checkpoint cohort from the older systems baseline below.
+
+## Larger processing study
+
+Finish training and full-source scans before timing:
+
+```text
+python scripts/run_larger_inference.py
+python scripts/report_larger_inference.py --public-root runs/reproduction-exports/larger-inference
+```
+
+This uses the locally regenerated baseline's own checkpoint/preprocessor anchors and a fixed 135-condition grid. All three process blocks, every success and every resource failure must remain. The report checks numerical differences and class decisions against Full, or the independent layer-wise implementation where Full is rejected. It never relabels a mismatched condition equivalent. New model-file hashes and wall times can differ across hardware; the local run's own provenance is the anchor, not a requirement to possess the original private checkpoints.
+
+## Precision-recall areas
+
+```text
+python scripts/report_pr_areas.py --require-novel --verification-root runs/reproduction-exports --out runs/reproduction-exports/precision-recall-areas
+```
+
+This reads the verified test outputs of all 225 selected models and reports non-interpolated average precision and trapezoidal PR-AUC separately for both binary classes. It does not fit, tune a threshold or choose another checkpoint. The canonical export folder names above let this check match each report to its checkpoint-selection digest.
+
+## Effective model settings
+
+```text
+python scripts/export_effective_settings.py --study controlled --out runs/reproduction-exports/controlled-effective-settings.json
+python scripts/export_effective_settings.py --study sampler --out runs/reproduction-exports/sampler-effective-settings.json
+python scripts/export_effective_settings.py --study novel-host --out runs/reproduction-exports/novel-host-effective-settings.json
+```
+
+These sidecars distinguish executed study/model settings from inherited dataset-base fields. They bind all model seeds, rates, stopping decisions and input hashes to the actual selected-model manifest. See [effective configurations](EFFECTIVE_CONFIGURATIONS.md); the exporter does not rewrite historical files or change any model.
+
+## Figures and published numbers
+
+```text
+python scripts/build_paper_assets.py --complete
+```
+
+This rebuilds paper assets from the checked-in verified aggregate evidence, without requiring raw records or checkpoints. A replay's new exports are kept separately; compare their manifests, supports and metrics before explicitly replacing any publication bundle. Rebuilding plots alone is not a new model evaluation.
+
+The frozen source commits and input/selection/target digests are recorded in each bundle. The current arithmetic-preserving neighbor-index improvement has exact closure/fitted-weight tests; historical experiments retain their own source snapshots. Graph-classification results use one reused development split, and system timing repeats do not become independent model seeds. See [claim checks](CLAIM_CHECKS.md) for the supported interpretation.

@@ -1,0 +1,24 @@
+{
+  "best_epoch": 10,
+  "epochs_run": 10,
+  "validation_macro_f1": 0.8745251559519581,
+  "gradient_updates": 1130,
+  "class_weights": [
+    1.463029384613037,
+    0.7595974802970886
+  ],
+  "parameters": 2098,
+  "dataset": "ton",
+  "family": "MLP",
+  "candidate_id": "mlp-0",
+  "settings": {
+    "learning_rate": 0.001
+  },
+  "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+  "validation_flows": 22997,
+  "training_flows": 56312,
+  "fit_s": 1.3366835140000148,
+  "reused_original_fit": false,
+  "model_sha256": "6915c88660a5c0d43c37929deb4d2ecd936219db3613a13110e95ccfb1d20f0a",
+  "model_file": "runs/classifier-comparison-100000/ton/mlp-0/model.pt"
+}

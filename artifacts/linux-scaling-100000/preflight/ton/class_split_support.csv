@@ -1,0 +1,3 @@
+class,train_flows,train_host_pairs,validation_flows,validation_host_pairs,test_flows,test_host_pairs,all_host_pairs
+Benign,19245,451,9886,169,7197,144,764
+Attack,37067,469,13111,152,13494,146,767

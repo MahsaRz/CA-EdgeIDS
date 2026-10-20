@@ -1,0 +1,9 @@
+{
+  "same_ownership_across_batch_sizes": true,
+  "ownership_sha256": {
+    "random-4": "270880408f621afcdac5746cf5533e2b8401ea562fd868ffc805571b7b64765f",
+    "chunked-1": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+    "random-2": "b64c0d4ec2af5aba75d0e38754bd4da29669e6bd54220441f3710964fdb4ece3",
+    "full-1": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+  }
+}

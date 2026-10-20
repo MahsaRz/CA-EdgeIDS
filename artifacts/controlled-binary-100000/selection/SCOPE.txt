@@ -1,0 +1,4 @@
+All 120 selected checkpoints frozen before new test predictions.
+Five training seeds; one fixed previously inspected data split.
+GNN arithmetic is factored for all controls; hidden states recomputed each update.
+No raw data, checkpoints, per-flow predictions or host identities exported.

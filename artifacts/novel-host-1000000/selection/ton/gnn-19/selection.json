@@ -1,0 +1,18 @@
+{
+  "dataset": "ton",
+  "family": "GNN",
+  "seed": 19,
+  "fit_s": 95.3959350099999,
+  "model_file": "runs/novel-host-1000000/ton/gnn-19/model.pt",
+  "model_sha256": "2bed30decda3f4f2b8ad8295aa7940316d1c65d29c978ed8a01d45347a35ab25",
+  "validation_macro_f1": 0.6053735839776203,
+  "best_epoch": 6,
+  "epochs_run": 9,
+  "gradient_updates": 17568,
+  "parameters": 9346,
+  "class_weights": [
+    1.3897007703781128,
+    0.7809933423995972
+  ],
+  "fit_source_commit": "5e4fb3a7e983832e9654f9788785a7d003d67a61"
+}

@@ -1,0 +1,326 @@
+[
+  {
+    "dataset": "bot",
+    "method": "mlp",
+    "block": 2,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "cse",
+    "method": "gnn_layerwise",
+    "block": 3,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "ton",
+    "method": "rf",
+    "block": 1,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "ton",
+    "method": "gnn_full",
+    "block": 1,
+    "maximum_probability_difference": 1.1324882507324219e-06,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "ton",
+    "method": "rf",
+    "block": 2,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "mlp",
+    "block": 2,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "ton",
+    "method": "gnn_layerwise",
+    "block": 2,
+    "maximum_probability_difference": 1.1324882507324219e-06,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "bot",
+    "method": "gnn_full",
+    "block": 1,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "bot",
+    "method": "mlp",
+    "block": 3,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "bot",
+    "method": "gnn_layerwise",
+    "block": 1,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "ton",
+    "method": "mlp",
+    "block": 2,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "mlp",
+    "block": 1,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "cse",
+    "method": "rf",
+    "block": 1,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "ton",
+    "method": "mlp",
+    "block": 3,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "gnn_full",
+    "block": 3,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "cse",
+    "method": "gnn_layerwise",
+    "block": 1,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "bot",
+    "method": "gnn_layerwise",
+    "block": 3,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "cse",
+    "method": "rf",
+    "block": 3,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "bot",
+    "method": "rf",
+    "block": 3,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "bot",
+    "method": "gnn_layerwise",
+    "block": 2,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "ton",
+    "method": "gnn_layerwise",
+    "block": 3,
+    "maximum_probability_difference": 1.1324882507324219e-06,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "mlp",
+    "block": 3,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "bot",
+    "method": "mlp",
+    "block": 1,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "ton",
+    "method": "mlp",
+    "block": 1,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "gnn_layerwise",
+    "block": 2,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "bot",
+    "method": "gnn_full",
+    "block": 2,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "bot",
+    "method": "rf",
+    "block": 2,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "bot",
+    "method": "gnn_full",
+    "block": 3,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  },
+  {
+    "dataset": "ton",
+    "method": "gnn_full",
+    "block": 3,
+    "maximum_probability_difference": 1.1324882507324219e-06,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "ton",
+    "method": "rf",
+    "block": 3,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "gnn_full",
+    "block": 2,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "ton",
+    "method": "gnn_full",
+    "block": 2,
+    "maximum_probability_difference": 1.1324882507324219e-06,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "ton",
+    "method": "gnn_layerwise",
+    "block": 1,
+    "maximum_probability_difference": 1.1324882507324219e-06,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689"
+  },
+  {
+    "dataset": "cse",
+    "method": "rf",
+    "block": 2,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "cse",
+    "method": "gnn_full",
+    "block": 1,
+    "maximum_probability_difference": 3.5762786865234375e-07,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a"
+  },
+  {
+    "dataset": "bot",
+    "method": "rf",
+    "block": 1,
+    "maximum_probability_difference": 0.0,
+    "probability_equivalent": true,
+    "class_disagreements": 0,
+    "target_row_ids_sha256": "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe"
+  }
+]

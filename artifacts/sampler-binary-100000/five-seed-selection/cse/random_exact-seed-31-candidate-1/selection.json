@@ -1,0 +1,27 @@
+{
+  "dataset": "cse",
+  "method": "random_exact",
+  "seed": 31,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 19.639794456000004,
+  "model_file": "runs/sampler-binary-100000/cse/random_exact-seed-31-candidate-1/model.pt",
+  "model_sha256": "dd89618c4866dbd9a9a4d6ed3963d287601f37487732e4fc57f420367857c074",
+  "validation_macro_f1": 0.9589517454089469,
+  "best_epoch": 3,
+  "epochs_run": 6,
+  "gradient_updates": 660,
+  "target_exposures": 337140,
+  "unique_training_targets_seen": 56190,
+  "unseen_training_targets": 0,
+  "min_target_exposures": 6,
+  "max_target_exposures": 6,
+  "empty_samples": 0,
+  "sampler_and_validation_preparation_s": 0.9209391729999652,
+  "full_graph_targets": 56190,
+  "class_targets_seen": {
+    "Benign": 50708,
+    "Attack": 5482
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}

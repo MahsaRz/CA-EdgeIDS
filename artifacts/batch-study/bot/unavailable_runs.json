@@ -1,0 +1,130 @@
+[
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 1024,
+    "order_index": 1,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 1024,
+    "order_index": 2,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 256,
+    "order_index": 5,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 1024,
+    "order_index": 6,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 2048,
+    "order_index": 8,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 1024,
+    "order_index": 9,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 512,
+    "order_index": 10,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 2048,
+    "order_index": 16,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 2048,
+    "order_index": 17,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "metis",
+    "partitions": 2,
+    "batch_size": 512,
+    "order_index": 18,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 256,
+    "order_index": 23,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 2048,
+    "order_index": 24,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 8,
+    "batch_size": 512,
+    "order_index": 25,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 256,
+    "order_index": 26,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "random",
+    "partitions": 8,
+    "batch_size": 512,
+    "order_index": 27,
+    "stage": "feasibility",
+    "error": "Requested 8 partitions for 4 nodes"
+  },
+  {
+    "method": "metis",
+    "partitions": 4,
+    "batch_size": 256,
+    "order_index": 28,
+    "stage": "feasibility",
+    "error": "METIS unavailable. Install the metis extra on a supported platform; no substitute is called METIS."
+  }
+]

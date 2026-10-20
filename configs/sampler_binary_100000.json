@@ -1,0 +1,23 @@
+{
+  "datasets": ["ton", "cse", "bot"],
+  "methods": ["unpartitioned", "random_exact", "metis_exact", "cluster_gcn_edge", "graphsaint_node_edge"],
+  "learning_rates": [0.001, 0.003],
+  "model_seeds": [7, 19, 31, 43, 59],
+  "selection_seed": 7,
+  "epochs": 10,
+  "patience": 3,
+  "hidden": 16,
+  "layers": 2,
+  "dropout": 0.2,
+  "weight_decay": 0.0001,
+  "batch_size": 512,
+  "threads": 1,
+  "clusters": 4,
+  "clusters_per_sample": 2,
+  "node_fraction": 0.25,
+  "ownership_seed": 7,
+  "checkpoint_rule": "strict validation macro F1 improvement; first candidate on a tie",
+  "test_gate": "publish 30 validation candidates and 15 choices, then freeze all 75 selected checkpoint hashes before evaluating",
+  "scope": "edge-task sampling adaptations; previously inspected binary development split; full snapshot validation and test",
+  "objective": "global class-balanced risk; positive analytic target inclusion probabilities; fixed ceil(E/512) updates per logical epoch"
+}

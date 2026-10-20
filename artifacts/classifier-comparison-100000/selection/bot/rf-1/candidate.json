@@ -1,0 +1,19 @@
+{
+  "trees": 100,
+  "tree_nodes": 13498,
+  "dataset": "bot",
+  "family": "RF",
+  "candidate_id": "rf-1",
+  "settings": {
+    "max_depth": null,
+    "trees": 100
+  },
+  "validation_macro_f1": 0.9781793168005787,
+  "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+  "validation_flows": 3077,
+  "training_flows": 70619,
+  "fit_s": 1.612537524000004,
+  "reused_original_fit": false,
+  "model_sha256": "88167507809518cbc3d5b3368b791c99bd1de2bb2cde1bdbb9ee6d23aeaccdd2",
+  "model_file": "runs/classifier-comparison-100000/bot/rf-1/model.joblib"
+}

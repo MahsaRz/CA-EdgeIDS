@@ -1,0 +1,21 @@
+{
+  "dataset": "bot",
+  "family": "GNN",
+  "variant": "directed",
+  "seed": 19,
+  "fit_s": 3.535849733999953,
+  "summary_preparation_s": 0.18043484000008903,
+  "model_file": "runs/controlled-binary-100000/bot/gnn-directed-19/model.pt",
+  "model_sha256": "70c2648e54179755c0fefff14b52fa544d00b370044913e7bdeec34dba7bb2df",
+  "training_message_arcs": 70619,
+  "validation_message_arcs": 3077,
+  "validation_macro_f1": 0.8660134988025255,
+  "best_epoch": 10,
+  "epochs_run": 10,
+  "gradient_updates": 1400,
+  "parameters": 4978,
+  "class_weights": [
+    179.2360382080078,
+    0.5013986825942993
+  ]
+}

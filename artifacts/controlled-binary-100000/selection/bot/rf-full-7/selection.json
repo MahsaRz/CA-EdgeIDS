@@ -1,0 +1,12 @@
+{
+  "dataset": "bot",
+  "family": "RF",
+  "variant": "full",
+  "seed": 7,
+  "fit_s": 1.7766943920000813,
+  "model_file": "runs/controlled-binary-100000/bot/rf-full-7/model.joblib",
+  "model_sha256": "77a821b880ae547511404340b378eadee6b348aa91e7e261672ea7a30de4c55f",
+  "validation_macro_f1": 0.9781793168005787,
+  "trees": 100,
+  "tree_nodes": 12964
+}

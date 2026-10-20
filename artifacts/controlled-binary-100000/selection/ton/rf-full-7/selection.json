@@ -1,0 +1,12 @@
+{
+  "dataset": "ton",
+  "family": "RF",
+  "variant": "full",
+  "seed": 7,
+  "fit_s": 2.8886878589999867,
+  "model_file": "runs/controlled-binary-100000/ton/rf-full-7/model.joblib",
+  "model_sha256": "f82e58ac2585ce893017247ce7437577952559d45fc0f6ae79c8592e18230349",
+  "validation_macro_f1": 0.9935207440351074,
+  "trees": 100,
+  "tree_nodes": 205278
+}

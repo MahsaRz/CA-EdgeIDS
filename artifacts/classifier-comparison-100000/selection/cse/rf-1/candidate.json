@@ -1,0 +1,19 @@
+{
+  "trees": 100,
+  "tree_nodes": 104234,
+  "dataset": "cse",
+  "family": "RF",
+  "candidate_id": "rf-1",
+  "settings": {
+    "max_depth": null,
+    "trees": 100
+  },
+  "validation_macro_f1": 0.9677867385475671,
+  "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+  "validation_flows": 21940,
+  "training_flows": 56190,
+  "fit_s": 4.895195276999971,
+  "reused_original_fit": false,
+  "model_sha256": "f729642688c3c54f5932776286e76f63ff13103e565c531488dfed353552804e",
+  "model_file": "runs/classifier-comparison-100000/cse/rf-1/model.joblib"
+}

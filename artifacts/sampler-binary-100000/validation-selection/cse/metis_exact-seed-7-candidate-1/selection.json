@@ -1,0 +1,27 @@
+{
+  "dataset": "cse",
+  "method": "metis_exact",
+  "seed": 7,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 20.90069927799999,
+  "model_file": "runs/sampler-binary-100000/cse/metis_exact-seed-7-candidate-1/model.pt",
+  "model_sha256": "c428e565103358af078ea9eb94430ed1c8ec4e245fef413e4afd31a4067a4e2b",
+  "validation_macro_f1": 0.9611910932446324,
+  "best_epoch": 4,
+  "epochs_run": 7,
+  "gradient_updates": 770,
+  "target_exposures": 393330,
+  "unique_training_targets_seen": 56190,
+  "unseen_training_targets": 0,
+  "min_target_exposures": 7,
+  "max_target_exposures": 7,
+  "empty_samples": 0,
+  "sampler_and_validation_preparation_s": 0.9062619350000034,
+  "full_graph_targets": 56190,
+  "class_targets_seen": {
+    "Benign": 50708,
+    "Attack": 5482
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}

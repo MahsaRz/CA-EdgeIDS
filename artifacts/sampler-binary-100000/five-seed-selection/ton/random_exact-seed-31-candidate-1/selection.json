@@ -1,0 +1,27 @@
+{
+  "dataset": "ton",
+  "method": "random_exact",
+  "seed": 31,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 4.710633137000002,
+  "model_file": "runs/sampler-binary-100000/ton/random_exact-seed-31-candidate-1/model.pt",
+  "model_sha256": "d4024dd8d9038ab13ae044f8015916a4a16b356d208d9dfac4116cbd07b81254",
+  "validation_macro_f1": 0.8837614801655439,
+  "best_epoch": 5,
+  "epochs_run": 8,
+  "gradient_updates": 880,
+  "target_exposures": 450496,
+  "unique_training_targets_seen": 56312,
+  "unseen_training_targets": 0,
+  "min_target_exposures": 8,
+  "max_target_exposures": 8,
+  "empty_samples": 0,
+  "sampler_and_validation_preparation_s": 0.6751739360000215,
+  "full_graph_targets": 56312,
+  "class_targets_seen": {
+    "Benign": 19245,
+    "Attack": 37067
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}

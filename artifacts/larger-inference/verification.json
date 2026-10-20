@@ -1,0 +1,9 @@
+{
+  "requested": 135,
+  "audited_conditions": 129,
+  "equivalent_conditions": 129,
+  "numerical_mismatch_conditions": 0,
+  "failures": 6,
+  "same_frozen_models_across_sizes": true,
+  "uncertainty": "sample SD across three process-block medians; not three independent model fits or a population confidence interval"
+}

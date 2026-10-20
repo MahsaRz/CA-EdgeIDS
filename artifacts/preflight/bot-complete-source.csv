@@ -1,0 +1,6 @@
+class,train_flows,train_host_pairs,validation_flows,validation_host_pairs,test_flows,test_host_pairs,all_host_pairs
+Benign,79503,215,1775,52,53759,66,333
+DDoS,12245311,12,561937,1,5524599,3,16
+DoS,12979217,12,589641,1,3104325,3,16
+Reconnaissance,1377675,12,29830,1,1213494,3,16
+Theft,1514,2,0,0,917,1,3

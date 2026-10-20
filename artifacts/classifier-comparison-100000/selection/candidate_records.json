@@ -1,0 +1,404 @@
+[
+  {
+    "best_epoch": 9,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.8461191374570329,
+    "class_weights": [
+      1.463029384613037,
+      0.7595974802970886
+    ],
+    "gradient_updates": 1130,
+    "parameters": 7042,
+    "dataset": "ton",
+    "family": "GNN",
+    "candidate_id": "gnn-0",
+    "settings": {
+      "learning_rate": 0.001
+    },
+    "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+    "validation_flows": 22997,
+    "training_flows": 56312,
+    "fit_s": 310.19288220100003,
+    "reused_original_fit": true,
+    "model_sha256": "97a8fe98771c23f2e812f06a47f06f9a96eefd5c27b73984c3dcd29a8f1ba925",
+    "model_file": "runs/classifier-comparison-100000/ton/gnn-0/model.pt"
+  },
+  {
+    "best_epoch": 10,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.9216297187016727,
+    "class_weights": [
+      1.463029384613037,
+      0.7595974802970886
+    ],
+    "gradient_updates": 1130,
+    "parameters": 7042,
+    "dataset": "ton",
+    "family": "GNN",
+    "candidate_id": "gnn-1",
+    "settings": {
+      "learning_rate": 0.003
+    },
+    "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+    "validation_flows": 22997,
+    "training_flows": 56312,
+    "fit_s": 308.97848931699997,
+    "reused_original_fit": false,
+    "model_sha256": "73fd45543461770ae9ce94ddbe677ffe4ceece86e32b310b6446d2c4c90f88cb",
+    "model_file": "runs/classifier-comparison-100000/ton/gnn-1/model.pt"
+  },
+  {
+    "best_epoch": 10,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.8745251559519581,
+    "gradient_updates": 1130,
+    "class_weights": [
+      1.463029384613037,
+      0.7595974802970886
+    ],
+    "parameters": 2098,
+    "dataset": "ton",
+    "family": "MLP",
+    "candidate_id": "mlp-0",
+    "settings": {
+      "learning_rate": 0.001
+    },
+    "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+    "validation_flows": 22997,
+    "training_flows": 56312,
+    "fit_s": 1.3366835140000148,
+    "reused_original_fit": false,
+    "model_sha256": "6915c88660a5c0d43c37929deb4d2ecd936219db3613a13110e95ccfb1d20f0a",
+    "model_file": "runs/classifier-comparison-100000/ton/mlp-0/model.pt"
+  },
+  {
+    "best_epoch": 7,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.8877281281736937,
+    "gradient_updates": 1130,
+    "class_weights": [
+      1.463029384613037,
+      0.7595974802970886
+    ],
+    "parameters": 2098,
+    "dataset": "ton",
+    "family": "MLP",
+    "candidate_id": "mlp-1",
+    "settings": {
+      "learning_rate": 0.003
+    },
+    "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+    "validation_flows": 22997,
+    "training_flows": 56312,
+    "fit_s": 1.334889321999981,
+    "reused_original_fit": false,
+    "model_sha256": "e24a672eecf051331395f03a59a443231ddf36bc4a1d8aec1f58f90075e31538",
+    "model_file": "runs/classifier-comparison-100000/ton/mlp-1/model.pt"
+  },
+  {
+    "trees": 100,
+    "tree_nodes": 98754,
+    "dataset": "ton",
+    "family": "RF",
+    "candidate_id": "rf-0",
+    "settings": {
+      "max_depth": 16,
+      "trees": 100
+    },
+    "validation_macro_f1": 0.9921049810821934,
+    "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+    "validation_flows": 22997,
+    "training_flows": 56312,
+    "fit_s": 3.021245100999977,
+    "reused_original_fit": false,
+    "model_sha256": "64f93b92bb61a1190b3faa1647e38ae01302851988e51e288bb80036e0d26ff7",
+    "model_file": "runs/classifier-comparison-100000/ton/rf-0/model.joblib"
+  },
+  {
+    "trees": 100,
+    "tree_nodes": 205278,
+    "dataset": "ton",
+    "family": "RF",
+    "candidate_id": "rf-1",
+    "settings": {
+      "max_depth": null,
+      "trees": 100
+    },
+    "validation_macro_f1": 0.9935207440351074,
+    "validation_row_ids_sha256": "1b1e33dc4054d2073cfa4059f66008968cbe9297106eea91feb3f1e3aeb67401",
+    "validation_flows": 22997,
+    "training_flows": 56312,
+    "fit_s": 3.435211047999985,
+    "reused_original_fit": false,
+    "model_sha256": "f82e58ac2585ce893017247ce7437577952559d45fc0f6ae79c8592e18230349",
+    "model_file": "runs/classifier-comparison-100000/ton/rf-1/model.joblib"
+  },
+  {
+    "best_epoch": 5,
+    "epochs_run": 8,
+    "validation_macro_f1": 0.9605596063085853,
+    "class_weights": [
+      0.5540545582771301,
+      5.1249542236328125
+    ],
+    "gradient_updates": 888,
+    "parameters": 8530,
+    "dataset": "cse",
+    "family": "GNN",
+    "candidate_id": "gnn-0",
+    "settings": {
+      "learning_rate": 0.001
+    },
+    "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+    "validation_flows": 21940,
+    "training_flows": 56190,
+    "fit_s": 339.334840751,
+    "reused_original_fit": true,
+    "model_sha256": "d6759b0d89a3c48e53e07f4777e97dfbbf077e6f8b559f53afec9d9adb2ab968",
+    "model_file": "runs/classifier-comparison-100000/cse/gnn-0/model.pt"
+  },
+  {
+    "best_epoch": 3,
+    "epochs_run": 6,
+    "validation_macro_f1": 0.9620180483517279,
+    "class_weights": [
+      0.5540545582771301,
+      5.1249542236328125
+    ],
+    "gradient_updates": 666,
+    "parameters": 8530,
+    "dataset": "cse",
+    "family": "GNN",
+    "candidate_id": "gnn-1",
+    "settings": {
+      "learning_rate": 0.003
+    },
+    "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+    "validation_flows": 21940,
+    "training_flows": 56190,
+    "fit_s": 267.77060773000005,
+    "reused_original_fit": false,
+    "model_sha256": "4eb4350a88528eee5ab33558d0aaf920fbdac68a3a15433e79928c5e855e0a01",
+    "model_file": "runs/classifier-comparison-100000/cse/gnn-1/model.pt"
+  },
+  {
+    "best_epoch": 10,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.9474746600089017,
+    "gradient_updates": 1110,
+    "class_weights": [
+      0.5540545582771301,
+      5.1249542236328125
+    ],
+    "parameters": 2594,
+    "dataset": "cse",
+    "family": "MLP",
+    "candidate_id": "mlp-0",
+    "settings": {
+      "learning_rate": 0.001
+    },
+    "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+    "validation_flows": 21940,
+    "training_flows": 56190,
+    "fit_s": 1.228524102999927,
+    "reused_original_fit": false,
+    "model_sha256": "81975610513f5cb882e1cb3336875a6ce1036f82e32fa8f7e75fd7bfceb3e4b6",
+    "model_file": "runs/classifier-comparison-100000/cse/mlp-0/model.pt"
+  },
+  {
+    "best_epoch": 4,
+    "epochs_run": 7,
+    "validation_macro_f1": 0.9486018349642198,
+    "gradient_updates": 777,
+    "class_weights": [
+      0.5540545582771301,
+      5.1249542236328125
+    ],
+    "parameters": 2594,
+    "dataset": "cse",
+    "family": "MLP",
+    "candidate_id": "mlp-1",
+    "settings": {
+      "learning_rate": 0.003
+    },
+    "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+    "validation_flows": 21940,
+    "training_flows": 56190,
+    "fit_s": 0.9457253770000307,
+    "reused_original_fit": false,
+    "model_sha256": "0dd31920c0cfb69ec8e4d0a4555a871cbb72604478b659497c015e99bd9da86a",
+    "model_file": "runs/classifier-comparison-100000/cse/mlp-1/model.pt"
+  },
+  {
+    "trees": 100,
+    "tree_nodes": 54134,
+    "dataset": "cse",
+    "family": "RF",
+    "candidate_id": "rf-0",
+    "settings": {
+      "max_depth": 16,
+      "trees": 100
+    },
+    "validation_macro_f1": 0.9692280415608157,
+    "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+    "validation_flows": 21940,
+    "training_flows": 56190,
+    "fit_s": 4.776089730999956,
+    "reused_original_fit": false,
+    "model_sha256": "6057a6b361dda729fb3436a58635ace7404640448f37ccef9a12f6dceaeab212",
+    "model_file": "runs/classifier-comparison-100000/cse/rf-0/model.joblib"
+  },
+  {
+    "trees": 100,
+    "tree_nodes": 104234,
+    "dataset": "cse",
+    "family": "RF",
+    "candidate_id": "rf-1",
+    "settings": {
+      "max_depth": null,
+      "trees": 100
+    },
+    "validation_macro_f1": 0.9677867385475671,
+    "validation_row_ids_sha256": "83cbe0c8ba05be50145541530b9a116c5981b87bba4c8d4a1267b9048da00534",
+    "validation_flows": 21940,
+    "training_flows": 56190,
+    "fit_s": 4.895195276999971,
+    "reused_original_fit": false,
+    "model_sha256": "f729642688c3c54f5932776286e76f63ff13103e565c531488dfed353552804e",
+    "model_file": "runs/classifier-comparison-100000/cse/rf-1/model.joblib"
+  },
+  {
+    "best_epoch": 1,
+    "epochs_run": 4,
+    "validation_macro_f1": 0.6362167487684729,
+    "class_weights": [
+      179.2360382080078,
+      0.5013986825942993
+    ],
+    "gradient_updates": 560,
+    "parameters": 4978,
+    "dataset": "bot",
+    "family": "GNN",
+    "candidate_id": "gnn-0",
+    "settings": {
+      "learning_rate": 0.001
+    },
+    "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+    "validation_flows": 3077,
+    "training_flows": 70619,
+    "fit_s": 120.87679739300006,
+    "reused_original_fit": true,
+    "model_sha256": "c755fb52a4c7cf4bf1054f17e40cc87c6ada5a3832b8c4917d72b9b83c3fcd3b",
+    "model_file": "runs/classifier-comparison-100000/bot/gnn-0/model.pt"
+  },
+  {
+    "best_epoch": 5,
+    "epochs_run": 8,
+    "validation_macro_f1": 0.7682516569592288,
+    "class_weights": [
+      179.2360382080078,
+      0.5013986825942993
+    ],
+    "gradient_updates": 1120,
+    "parameters": 4978,
+    "dataset": "bot",
+    "family": "GNN",
+    "candidate_id": "gnn-1",
+    "settings": {
+      "learning_rate": 0.003
+    },
+    "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+    "validation_flows": 3077,
+    "training_flows": 70619,
+    "fit_s": 214.18611260600005,
+    "reused_original_fit": false,
+    "model_sha256": "fa79bf2e47e3e46e35f5004779a2925343bf2dd149d55857c137b9f9765afdf9",
+    "model_file": "runs/classifier-comparison-100000/bot/gnn-1/model.pt"
+  },
+  {
+    "best_epoch": 10,
+    "epochs_run": 10,
+    "validation_macro_f1": 0.8216823926706811,
+    "gradient_updates": 1400,
+    "class_weights": [
+      179.2360382080078,
+      0.5013986825942993
+    ],
+    "parameters": 1410,
+    "dataset": "bot",
+    "family": "MLP",
+    "candidate_id": "mlp-0",
+    "settings": {
+      "learning_rate": 0.001
+    },
+    "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+    "validation_flows": 3077,
+    "training_flows": 70619,
+    "fit_s": 1.1284589870000445,
+    "reused_original_fit": false,
+    "model_sha256": "38858c437c743b3cd0a97135fd44e0bb90d7601658df6e385505ea37400847d4",
+    "model_file": "runs/classifier-comparison-100000/bot/mlp-0/model.pt"
+  },
+  {
+    "best_epoch": 6,
+    "epochs_run": 9,
+    "validation_macro_f1": 0.8564899025232032,
+    "gradient_updates": 1260,
+    "class_weights": [
+      179.2360382080078,
+      0.5013986825942993
+    ],
+    "parameters": 1410,
+    "dataset": "bot",
+    "family": "MLP",
+    "candidate_id": "mlp-1",
+    "settings": {
+      "learning_rate": 0.003
+    },
+    "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+    "validation_flows": 3077,
+    "training_flows": 70619,
+    "fit_s": 0.9477040960000522,
+    "reused_original_fit": false,
+    "model_sha256": "7e5f0760e00ad7890821292485b62d9f237889281961be32872f7f4710a7268a",
+    "model_file": "runs/classifier-comparison-100000/bot/mlp-1/model.pt"
+  },
+  {
+    "trees": 100,
+    "tree_nodes": 12964,
+    "dataset": "bot",
+    "family": "RF",
+    "candidate_id": "rf-0",
+    "settings": {
+      "max_depth": 16,
+      "trees": 100
+    },
+    "validation_macro_f1": 0.9781793168005787,
+    "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+    "validation_flows": 3077,
+    "training_flows": 70619,
+    "fit_s": 1.6165305309999667,
+    "reused_original_fit": false,
+    "model_sha256": "77a821b880ae547511404340b378eadee6b348aa91e7e261672ea7a30de4c55f",
+    "model_file": "runs/classifier-comparison-100000/bot/rf-0/model.joblib"
+  },
+  {
+    "trees": 100,
+    "tree_nodes": 13498,
+    "dataset": "bot",
+    "family": "RF",
+    "candidate_id": "rf-1",
+    "settings": {
+      "max_depth": null,
+      "trees": 100
+    },
+    "validation_macro_f1": 0.9781793168005787,
+    "validation_row_ids_sha256": "1bb5271b9ea405670548ff02f4768da2efa1bcbd29012436f78193fd4419ac45",
+    "validation_flows": 3077,
+    "training_flows": 70619,
+    "fit_s": 1.612537524000004,
+    "reused_original_fit": false,
+    "model_sha256": "88167507809518cbc3d5b3368b791c99bd1de2bb2cde1bdbb9ee6d23aeaccdd2",
+    "model_file": "runs/classifier-comparison-100000/bot/rf-1/model.joblib"
+  }
+]

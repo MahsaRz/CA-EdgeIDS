@@ -1,0 +1,27 @@
+{
+  "dataset": "bot",
+  "method": "cluster_gcn_edge",
+  "seed": 43,
+  "learning_rate": 0.003,
+  "candidate_index": 1,
+  "fit_s": 5.723449548999952,
+  "model_file": "runs/sampler-binary-100000/bot/cluster_gcn_edge-seed-43-candidate-1/model.pt",
+  "model_sha256": "3cde577510eb6ae460e883c3a60563e97f59c7dfeb14533907da76dbf333df8b",
+  "validation_macro_f1": 0.8660134988025255,
+  "best_epoch": 8,
+  "epochs_run": 10,
+  "gradient_updates": 1380,
+  "target_exposures": 592656,
+  "unique_training_targets_seen": 70010,
+  "unseen_training_targets": 609,
+  "min_target_exposures": 0,
+  "max_target_exposures": 242,
+  "empty_samples": 0,
+  "sampler_and_validation_preparation_s": 0.4408974369999896,
+  "full_graph_targets": 70619,
+  "class_targets_seen": {
+    "Benign": 197,
+    "Attack": 69813
+  },
+  "objective": "global class-balanced risk; fixed per-update scaling; sampling uses analytic edge inclusion and target-subsample corrections"
+}

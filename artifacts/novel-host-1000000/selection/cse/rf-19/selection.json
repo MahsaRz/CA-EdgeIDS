@@ -1,0 +1,10 @@
+{
+  "dataset": "cse",
+  "family": "RF",
+  "seed": 19,
+  "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+  "fit_s": 181.6845160570001,
+  "model_file": "runs/novel-host-1000000/cse/rf-19/model.joblib",
+  "model_sha256": "c42688d1cff4d51bce7183581f0f6732cd1fef08f8bc14d9dce24f4967d7e4df",
+  "validation_macro_f1": 0.49924585218702866
+}

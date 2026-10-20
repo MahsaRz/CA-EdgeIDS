@@ -1,0 +1,904 @@
+{
+  "datasets": [
+    "ton",
+    "cse",
+    "bot"
+  ],
+  "sample_sizes": [
+    100000,
+    300000,
+    1000000
+  ],
+  "methods": [
+    "full",
+    "random",
+    "metis",
+    "cached",
+    "factored"
+  ],
+  "blocks": [
+    1,
+    2,
+    3
+  ],
+  "query_batch_size": 2048,
+  "message_batch_size": 4096,
+  "partitions": 4,
+  "warm_repeats": 3,
+  "threads": 1,
+  "order_seed": 20261023,
+  "worker_timeout_seconds": 300,
+  "scope": "same original 100000-flow preprocessing and seed-7 checkpoint within each dataset; no fitting or test-quality selection",
+  "input_limit_bytes": 536870912,
+  "tensor_screen_bytes": 268435456,
+  "feature_screen_bytes": 3221225472,
+  "timing": "fresh process per condition; CSV parse, fixed transform, split construction, graph construction, checkpoint loading, partitioning and first complete prediction; three additional full warm predictions; OS cache need not be cold",
+  "failures": "retain declared timeout, resource guard and infeasible conditions without raising limits after results",
+  "source_commit": "83747d54919f6e6ad8baccb17bcf42cb9f22d31d",
+  "source_sha256": {
+    "src/ca_edgeids/batch_study.py": "db693747ff95216333abb7b82ca6069e105f3c083f18b4a7a0b92924ac7b47cc",
+    "src/ca_edgeids/cached.py": "e50255ac7905585b7036d0f68110ca74c793788ce442957a56f8bd67b8b1bfeb",
+    "src/ca_edgeids/classifier_study.py": "37e4468af85d20037425850aadc1a24166999e02efc3ed89700144de353c8b65",
+    "src/ca_edgeids/cli.py": "ba27e5e64e67349b5ca94831ee94e8b949d70c7fd24b10c9ea60a56c8b1472ba",
+    "src/ca_edgeids/controlled_training.py": "ef20f0d36109e51892737a0cc8cd14e7bb76d42be0d5af2cf83bd2d788561c7b",
+    "src/ca_edgeids/data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "src/ca_edgeids/experiment.py": "afcd47ccea65a5d1174671a5ebafb5681c4061d826b3fec4255865f06e383c4f",
+    "src/ca_edgeids/graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "src/ca_edgeids/metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "src/ca_edgeids/model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "src/ca_edgeids/preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "src/ca_edgeids/profile.py": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+    "src/ca_edgeids/report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "src/ca_edgeids/runtime.py": "eee56cade0adc65a9d3dbd9d8749356d890d11973ceebcabc163266777e47cdb",
+    "src/ca_edgeids/sampler_controls.py": "2f99efb45b91deca1f0ff1b1c24bfbb35fc21b16f2e7cfe0e7cf44e0762cdaa6",
+    "src/ca_edgeids/statistics_backend.py": "f8234bb1f0901ab5a7adfdf958177ef7197e42895e694770b214a3cf3d305a97",
+    "src/ca_edgeids/worker.py": "d2dba28025b48f7a9d9e535995dc58933e5a32331a6c6ea71edc6333023a4e01",
+    "src/ca_edgeids/__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "src/ca_edgeids/__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "configs/larger_inference.json": "bd0ca2dfb4ca2b4336c7f8487dddfc36744d89acb2033971c2df55f449e9b3d9",
+    "scripts/run_larger_inference.py": "3428b8b073aa0d172a8e5c8c880f06134f137bd026a8c0353bbb1c83a140c152",
+    "scripts/larger_data.py": "ccd2c136504c4175671e58f4ba50b6dc6517408da67d1a6c1db8a1c1bf9dbdac",
+    "scripts/hardware_context.py": "a4157ea0dad82df2e349ac2d0544a629a59f151e997d583d92cab5df5ca07789"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "processor": "",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "pymetis": "2025.2.2",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "hardware": {
+    "cpu_model": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+    "logical_cpus": 16,
+    "linux_memory_kib": 14163612,
+    "linux_visible_memory_gib": 13.50747299194336,
+    "linux_swap_kib": 4194304,
+    "windows_mounted_workspace": true,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "scope": "Linux-visible VM/process context; not whole-host available memory or a deployment capacity bound"
+  },
+  "execution_order": [
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "full"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "cached"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "factored"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 300000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "random"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 300000,
+      "method": "random"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "sample_size": 1000000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "sample_size": 300000,
+      "method": "cached"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 1000000,
+      "method": "factored"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "sample_size": 100000,
+      "method": "full"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "metis"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "sample_size": 100000,
+      "method": "cached"
+    }
+  ]
+}

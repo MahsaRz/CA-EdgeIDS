@@ -1,0 +1,21 @@
+{
+  "models": 75,
+  "candidates": 30,
+  "target_population_sha256": {
+    "ton": [
+      "cf27e52fc631f8ae119e8c040f68aa0c2e444f26036153b7777dd2e56efa5689",
+      "59bbea0e635ea524821069c781d69907124df90205a85cad1957914de7401c7d"
+    ],
+    "cse": [
+      "dc7b3a0819847d441bf18e8d8ee7c3bb0fe1b43cd7d44ff6ac7348d8f62d8c2a",
+      "ec6f65a04cf8f3a1019ef084accffd6d97a13020a87fdb6ba4a90ea9695de404"
+    ],
+    "bot": [
+      "588d0404a32e50373285559c3e1c033e2087778ffbcebd7153a2370c1fbb97fe",
+      "eb0adb7400542f2d5206e7919d2c5de49493b00798257724c84fabd2457da6c7"
+    ]
+  },
+  "selection_sha256": "9e2e3fd161a4097935be380869a3f422e6ebee280b8b028cd74548ad165c7325",
+  "checkpoint_and_saved_prediction_metrics_checked": true,
+  "retuned": false
+}

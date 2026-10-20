@@ -1,0 +1,100 @@
+{
+  "dataset": "cse",
+  "scope": "complete_source_split_feasibility_not_model_results",
+  "archive_sha256": "ad6307995d08ff8825d0193d5a1cfa61cf3dc4c6f223962ba3762a7775b5dc24",
+  "csv_sha256_from_verified_provenance": "16a545a3e139b2e85d08b1b7d9d40328c3689a49d0deaafce6dcf8d7b63e1257",
+  "source_rows": 18893708,
+  "split_seed": 42,
+  "split_protocol": "conversation",
+  "fractions": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "unique_host_pairs": 1866048,
+  "missing_classes": {
+    "train": [],
+    "validation": [
+      "BruteForce",
+      "DoS"
+    ],
+    "test": [
+      "BruteForce"
+    ]
+  },
+  "can_train_and_select_all_classes": false,
+  "can_evaluate_all_classes": false,
+  "class_support": [
+    {
+      "class": "Benign",
+      "train_flows": 9590916,
+      "train_host_pairs": 1118517,
+      "validation_flows": 3685403,
+      "validation_host_pairs": 372782,
+      "test_flows": 3359248,
+      "test_host_pairs": 372926,
+      "all_host_pairs": 1864225
+    },
+    {
+      "class": "Bot",
+      "train_flows": 96232,
+      "train_host_pairs": 7,
+      "validation_flows": 30973,
+      "validation_host_pairs": 2,
+      "test_flows": 15892,
+      "test_host_pairs": 1,
+      "all_host_pairs": 10
+    },
+    {
+      "class": "BruteForce",
+      "train_flows": 120912,
+      "train_host_pairs": 2,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 0,
+      "test_host_pairs": 0,
+      "all_host_pairs": 2
+    },
+    {
+      "class": "DDoS",
+      "train_flows": 757269,
+      "train_host_pairs": 12,
+      "validation_flows": 355150,
+      "validation_host_pairs": 4,
+      "test_flows": 277851,
+      "test_host_pairs": 4,
+      "all_host_pairs": 20
+    },
+    {
+      "class": "DoS",
+      "train_flows": 23628,
+      "train_host_pairs": 2,
+      "validation_flows": 0,
+      "validation_host_pairs": 0,
+      "test_flows": 460371,
+      "test_host_pairs": 2,
+      "all_host_pairs": 4
+    },
+    {
+      "class": "Infiltration",
+      "train_flows": 35970,
+      "train_host_pairs": 2838,
+      "validation_flows": 54990,
+      "validation_host_pairs": 865,
+      "test_flows": 25401,
+      "test_host_pairs": 901,
+      "all_host_pairs": 4604
+    },
+    {
+      "class": "Web Attacks",
+      "train_flows": 3446,
+      "train_host_pairs": 5,
+      "validation_flows": 26,
+      "validation_host_pairs": 1,
+      "test_flows": 30,
+      "test_host_pairs": 1,
+      "all_host_pairs": 7
+    }
+  ],
+  "interpretation": "Frozen split audited before model fitting. Counts alone do not demonstrate statistical power or generalization; no seeds searched, no class merging, no test scores used."
+}

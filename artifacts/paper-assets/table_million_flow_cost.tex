@@ -1,0 +1,21 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+Dataset & Method & Test $n$ & Blocks & Warm s & First prediction s & RSS MiB \\
+\midrule
+TON & Full & 206110 & 3 & 0.656 $\pm$ 0.016 & 8.74 $\pm$ 0.07 & 1918.1 \\
+TON & Random exact & 206110 & 3 & 48.241 $\pm$ 0.279 & 56.94 $\pm$ 0.08 & 1924.0 \\
+TON & METIS exact & 206110 & 3 & 50.539 $\pm$ 0.195 & 59.07 $\pm$ 0.86 & 1929.8 \\
+TON & Layer-wise & 206110 & 3 & 0.177 $\pm$ 0.008 & 8.27 $\pm$ 0.20 & 1923.8 \\
+TON & Factored mean & 206110 & 3 & 1.809 $\pm$ 0.004 & 10.00 $\pm$ 0.17 & 1918.2 \\
+CSE & Full & 219226 & 3 & 1.071 $\pm$ 0.035 & 10.26 $\pm$ 0.17 & 2071.6 \\
+CSE & Random exact & -- & 0 & -- & -- & -- \\
+CSE & METIS exact & -- & 0 & -- & -- & -- \\
+CSE & Layer-wise & 219226 & 3 & 0.232 $\pm$ 0.002 & 9.32 $\pm$ 0.16 & 2049.4 \\
+CSE & Factored mean & 219226 & 3 & 4.883 $\pm$ 0.047 & 13.89 $\pm$ 0.09 & 2053.9 \\
+BOT & Full & 262028 & 3 & 0.594 $\pm$ 0.020 & 8.79 $\pm$ 0.10 & 1753.6 \\
+BOT & Random exact & 262028 & 3 & 62.219 $\pm$ 0.165 & 71.16 $\pm$ 0.30 & 1759.6 \\
+BOT & METIS exact & 262028 & 3 & 63.355 $\pm$ 0.865 & 72.66 $\pm$ 1.39 & 1754.1 \\
+BOT & Layer-wise & 262028 & 3 & 0.160 $\pm$ 0.004 & 8.31 $\pm$ 0.12 & 1759.3 \\
+BOT & Factored mean & 262028 & 3 & 1.414 $\pm$ 0.032 & 9.55 $\pm$ 0.15 & 1753.7 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,2 @@
+dataset,prediction_unit,original_labels,task,classes,train_n,validation_n,test_n,scope
+bot,original flow / edge,Benign; DDoS; DoS; Reconnaissance; Theft,binary,Benign; Attack,3564,152,1284,PILOT SUBSET - NOT FULL DATASET

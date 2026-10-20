@@ -1,0 +1,67 @@
+{
+  "datasets": [
+    "ton",
+    "cse",
+    "bot"
+  ],
+  "seed": 7,
+  "candidates_per_family": 2,
+  "neural_learning_rates": [
+    0.001,
+    0.003
+  ],
+  "rf_depths": [
+    16,
+    null
+  ],
+  "rf_trees": 100,
+  "neural_epochs": 10,
+  "patience": 3,
+  "hidden": 16,
+  "dropout": 0.2,
+  "weight_decay": 0.0001,
+  "batch_size": 512,
+  "threads": 1,
+  "selection": "validation macro F1; first candidate wins exact ties",
+  "threshold": "fixed argmax for every model; no test-driven threshold tuning",
+  "reuse_original_gnn_candidate": true,
+  "scope": "single-seed development comparison on previously inspected 100000-flow pilot splits; equal candidate count, not equal compute or parameter count",
+  "source_commit": "e336b380843aa440ff93e708fd050a6ee17df44a",
+  "source_sha256": {
+    "src/ca_edgeids/__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "src/ca_edgeids/__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "src/ca_edgeids/batch_study.py": "db693747ff95216333abb7b82ca6069e105f3c083f18b4a7a0b92924ac7b47cc",
+    "src/ca_edgeids/cached.py": "e50255ac7905585b7036d0f68110ca74c793788ce442957a56f8bd67b8b1bfeb",
+    "src/ca_edgeids/classifier_study.py": "37e4468af85d20037425850aadc1a24166999e02efc3ed89700144de353c8b65",
+    "src/ca_edgeids/cli.py": "ba27e5e64e67349b5ca94831ee94e8b949d70c7fd24b10c9ea60a56c8b1472ba",
+    "src/ca_edgeids/data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "src/ca_edgeids/experiment.py": "afcd47ccea65a5d1174671a5ebafb5681c4061d826b3fec4255865f06e383c4f",
+    "src/ca_edgeids/graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "src/ca_edgeids/metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "src/ca_edgeids/model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "src/ca_edgeids/preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "src/ca_edgeids/profile.py": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+    "src/ca_edgeids/report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "src/ca_edgeids/runtime.py": "eee56cade0adc65a9d3dbd9d8749356d890d11973ceebcabc163266777e47cdb",
+    "src/ca_edgeids/worker.py": "d2dba28025b48f7a9d9e535995dc58933e5a32331a6c6ea71edc6333023a4e01",
+    "configs/classifier_comparison_100000.json": "51f7d64dfedc5909f9ffc261a1eb5a102454ee632628f298f9c924679538a7f8",
+    "scripts/run_classifier_comparison.py": "ca070a4132cd95d501c5e72ca168c77a100879f9ea5e3c9695cc06972d348ae0"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "processor": "",
+    "torch": "2.9.0+cpu",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "sklearn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.7",
+    "pymetis": "2025.2.2",
+    "cuda_available": false,
+    "cuda": null,
+    "gpu": null
+  },
+  "test_scope": "previously inspected development holdout; not an untouched final test",
+  "budget": "two candidates per family; neural maximum 10 epochs with patience 3; RF 100 trees per candidate; unequal compute reported"
+}

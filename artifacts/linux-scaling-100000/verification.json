@@ -1,0 +1,30 @@
+{
+  "source_commit": "a390799c32fb53f554649b6ab5b886d3b8d84d2b",
+  "source_snapshots_match": true,
+  "fixed_test_coverage": true,
+  "same_class_predictions": true,
+  "real_data_metis_in_each_dataset": true,
+  "datasets": [
+    {
+      "dataset": "ton",
+      "completed_conditions": 29,
+      "unavailable_conditions": 0,
+      "timing_rows": 87,
+      "maximum_probability_difference": 5.960464477539063e-08
+    },
+    {
+      "dataset": "cse",
+      "completed_conditions": 29,
+      "unavailable_conditions": 0,
+      "timing_rows": 87,
+      "maximum_probability_difference": 0.0
+    },
+    {
+      "dataset": "bot",
+      "completed_conditions": 21,
+      "unavailable_conditions": 8,
+      "timing_rows": 63,
+      "maximum_probability_difference": 5.960464477539063e-08
+    }
+  ]
+}

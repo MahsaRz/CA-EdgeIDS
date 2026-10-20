@@ -1,0 +1,18 @@
+{
+  "dataset": "cse",
+  "family": "GNN",
+  "seed": 59,
+  "fit_source_commit": "62d7f9f79e21cf75c55046150830d482eee7f242",
+  "fit_s": 1820.334271742,
+  "model_file": "runs/novel-host-1000000/cse/gnn-59/model.pt",
+  "model_sha256": "2cb1ec6f0d001376fbdd1baa8cebfd74aed7f8e749ce4b002127b5d36f701a76",
+  "validation_macro_f1": 0.5102682654351781,
+  "best_epoch": 6,
+  "epochs_run": 9,
+  "gradient_updates": 17055,
+  "parameters": 12226,
+  "class_weights": [
+    0.5703337788581848,
+    4.054479598999023
+  ]
+}

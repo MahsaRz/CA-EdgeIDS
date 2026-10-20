@@ -1,0 +1,18 @@
+{
+  "conversion_s": 0.1533833420000974,
+  "array_sha256": {
+    "dst.npy": "b7fabeb047edccd6299361a2ca107761265d4f2832e4f76685d85e522a77863d",
+    "edge_x.npy": "a4d7582fa7ffa8682672782e41f186945ecf3307dab0d446bf320f8e8c8db9a0",
+    "hosts.npy": "81281c746121699313d0ea485307817177d655e5934cff2daebb0aa225d20010",
+    "incoming_data.npy": "c9c00ef16f4461dbbc576e817ccefd12e040fc15d4178b3af7836f3d6f14a932",
+    "incoming_indices.npy": "3340e551b04587ef6c69ef95c725cadad2db3b9131a63e0527018d5c0c85a20c",
+    "incoming_indptr.npy": "3b4dd9503fa63ce8f95d7af09caf56fc05670232655a54347beadcd7113c0487",
+    "message_dst.npy": "b46543404a8f62912b761011568aadb1733b3161d348232a9e56e1c6ac370421",
+    "message_flow.npy": "4f203acdfdd4189bed98052ace783a4091b6cd954624435124c422a6c43320ef",
+    "message_src.npy": "f3ad259c55b640915f5b0a018e9f54f4e6babe6330b3f53f11c13cb7d4be8615",
+    "node_x.npy": "ae5021fe42b3b8854f759d701614dfb53c1e970c10c769de26f79bde0d376c0d",
+    "row_ids.npy": "772933ec1e8ed0dc7902578e941e4370db290cefa77ebd0ce6823ce284fc4e07",
+    "src.npy": "b9aaef0938ff2f05957d885eb7092c5f5791fabc9b153f8af61d0d7b081dd3bf",
+    "y.npy": "58b7425b1e3d692f8b4b9bdf23b25a14e1104ecf4fc935d7801b40258ba16efb"
+  }
+}

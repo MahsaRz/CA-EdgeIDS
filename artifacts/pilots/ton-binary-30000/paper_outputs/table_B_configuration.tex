@@ -1,0 +1,34 @@
+\begin{tabular}{ll}
+\toprule
+component & actual\_implementation \\
+\midrule
+task & binary \\
+node\_definition & original IP address \\
+target\_edge & one original directed flow record \\
+message\_direction & both directions \\
+node\_features & log1p(outgoing/incoming flow counts), computed separately per split snapshot \\
+edge\_features & L4\_SRC\_PORT; L4\_DST\_PORT; PROTOCOL; L7\_PROTO; IN\_BYTES; IN\_PKTS; OUT\_BYTES; OUT\_PKTS; TCP\_FLAGS; FLOW\_DURATION\_MILLISECONDS \\
+label\_location & original target edges only; no label in messages \\
+model & edge-conditioned GraphSAGE-style mean aggregator + edge MLP \\
+layers & 2 \\
+hidden & 16 \\
+activation & ReLU \\
+dropout & 0.20000 \\
+loss & weighted cross entropy; training frequencies only \\
+output & softmax probabilities; argmax decision \\
+optimizer & Adam \\
+learning\_rate & 0.00100 \\
+weight\_decay & 0.00010 \\
+maximum\_epochs & 10 \\
+selection & validation macro-F1; patience 3 \\
+framework & PyTorch \\
+training\_partitioning & random \\
+training\_partitions & 4 \\
+seeds & [7] \\
+split\_seed & 42 \\
+split\_protocol & conversation \\
+test\_context & K-hop incoming halo; no boundary edges discarded \\
+comparison & same trained weights across inference partition counts \\
+scope & PILOT SUBSET - NOT FULL DATASET \\
+\bottomrule
+\end{tabular}

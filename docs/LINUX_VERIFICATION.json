@@ -1,0 +1,12 @@
+{
+  "run_url": "https://github.com/mahsaraeiszadeh/DC-RCA/actions/runs/39277093598",
+  "tested_commit": "8e44c9be00737a2e57489811be3b660ca65a33c5",
+  "result": "success",
+  "metis_partition_counts": [
+    2,
+    4,
+    8
+  ],
+  "unavailable_configurations": [],
+  "scope": "Linux synthetic software verification, not real-data METIS results"
+}

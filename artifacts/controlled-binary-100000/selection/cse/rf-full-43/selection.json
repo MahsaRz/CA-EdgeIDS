@@ -1,0 +1,12 @@
+{
+  "dataset": "cse",
+  "family": "RF",
+  "variant": "full",
+  "seed": 43,
+  "fit_s": 3.757570079000061,
+  "model_file": "runs/controlled-binary-100000/cse/rf-full-43/model.joblib",
+  "model_sha256": "47d260b727054d994b2a0eff6808de58d173c6afafc940536432f33575993bae",
+  "validation_macro_f1": 0.9690826124497132,
+  "trees": 100,
+  "tree_nodes": 51562
+}

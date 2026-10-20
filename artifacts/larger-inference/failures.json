@@ -1,0 +1,50 @@
+[
+  {
+    "block": 2,
+    "dataset": "cse",
+    "sample_size": 1000000,
+    "method": "metis",
+    "error": "worker timeout at the frozen 300-second limit",
+    "private_diagnostic_sha256": "ede902456c12268f153b5d05787d32df74ef845f8762c2250b09d196389942e1"
+  },
+  {
+    "block": 3,
+    "dataset": "cse",
+    "sample_size": 1000000,
+    "method": "random",
+    "error": "worker timeout at the frozen 300-second limit",
+    "private_diagnostic_sha256": "ede902456c12268f153b5d05787d32df74ef845f8762c2250b09d196389942e1"
+  },
+  {
+    "block": 1,
+    "dataset": "cse",
+    "sample_size": 1000000,
+    "method": "random",
+    "error": "worker timeout at the frozen 300-second limit",
+    "private_diagnostic_sha256": "ede902456c12268f153b5d05787d32df74ef845f8762c2250b09d196389942e1"
+  },
+  {
+    "block": 1,
+    "dataset": "cse",
+    "sample_size": 1000000,
+    "method": "metis",
+    "error": "worker timeout at the frozen 300-second limit",
+    "private_diagnostic_sha256": "ede902456c12268f153b5d05787d32df74ef845f8762c2250b09d196389942e1"
+  },
+  {
+    "block": 3,
+    "dataset": "cse",
+    "sample_size": 1000000,
+    "method": "metis",
+    "error": "worker timeout at the frozen 300-second limit",
+    "private_diagnostic_sha256": "ede902456c12268f153b5d05787d32df74ef845f8762c2250b09d196389942e1"
+  },
+  {
+    "block": 2,
+    "dataset": "cse",
+    "sample_size": 1000000,
+    "method": "random",
+    "error": "worker timeout at the frozen 300-second limit",
+    "private_diagnostic_sha256": "ede902456c12268f153b5d05787d32df74ef845f8762c2250b09d196389942e1"
+  }
+]

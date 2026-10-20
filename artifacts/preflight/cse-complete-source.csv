@@ -1,0 +1,8 @@
+class,train_flows,train_host_pairs,validation_flows,validation_host_pairs,test_flows,test_host_pairs,all_host_pairs
+Benign,9590916,1118517,3685403,372782,3359248,372926,1864225
+Bot,96232,7,30973,2,15892,1,10
+BruteForce,120912,2,0,0,0,0,2
+DDoS,757269,12,355150,4,277851,4,20
+DoS,23628,2,0,0,460371,2,4
+Infiltration,35970,2838,54990,865,25401,901,4604
+Web Attacks,3446,5,26,1,30,1,7

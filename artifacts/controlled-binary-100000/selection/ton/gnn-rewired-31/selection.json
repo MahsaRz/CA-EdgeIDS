@@ -1,0 +1,21 @@
+{
+  "dataset": "ton",
+  "family": "GNN",
+  "variant": "rewired",
+  "seed": 31,
+  "fit_s": 5.674041493000004,
+  "summary_preparation_s": 0.7088096499999779,
+  "model_file": "runs/controlled-binary-100000/ton/gnn-rewired-31/model.pt",
+  "model_sha256": "ecf8a5270803bc1611f65ec25ef7d64d7c058ecf5c20791f3990247ba303ab99",
+  "training_message_arcs": 112624,
+  "validation_message_arcs": 45994,
+  "validation_macro_f1": 0.9068680397751212,
+  "best_epoch": 10,
+  "epochs_run": 10,
+  "gradient_updates": 1130,
+  "parameters": 7042,
+  "class_weights": [
+    1.463029384613037,
+    0.7595974802970886
+  ]
+}

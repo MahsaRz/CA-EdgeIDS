@@ -1,0 +1,5 @@
+30,000-flow sample; one frozen model per dataset; no model fitting or tuning.
+Three timing repeats are measurements of the same model, not independent training seeds.
+Total inference excludes cold data preparation, graph construction, graph loading, partitioning, warm-up and process startup.
+Fresh process per condition; one complete warm-up pass; memory is sampled process RSS.
+No raw flows, host identities, per-flow probabilities or checkpoints are included.
