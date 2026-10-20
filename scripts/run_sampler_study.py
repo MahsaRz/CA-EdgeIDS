@@ -42,7 +42,8 @@ def check_sources(plan):
 def dataset_inputs(dataset,plan):
     _,cfg,data=common(dataset)
     cfg.update(epochs=plan['epochs'],patience=plan['patience'],hidden=plan['hidden'],layers=plan['layers'],
-        dropout=plan['dropout'],weight_decay=plan['weight_decay'],max_edges_per_batch=plan['batch_size'],threads=plan['threads'])
+        dropout=plan['dropout'],weight_decay=plan['weight_decay'],max_edges_per_batch=plan['batch_size'],threads=plan['threads'],
+            seeds=plan['model_seeds'],configuration_scope='dataset and shared model settings; dedicated study plan and per-model record govern execution')
     folder=ROOT/dataset
     if folder.exists():
         if data.manifest!=json.loads((folder/'dataset_manifest.json').read_text()): raise ValueError('Data manifest changed')

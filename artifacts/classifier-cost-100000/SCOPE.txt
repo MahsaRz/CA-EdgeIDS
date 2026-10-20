@@ -1,0 +1,5 @@
+Same frozen seed-7 models and original test populations from the five-seed classifier study.
+Three process blocks; three complete warm predictions per block; no refitting/selection.
+Method-specific imports and necessary preprocessing/graph work; Forest does not load Torch.
+Sampled phase/process RSS, not allocation-exact or whole-system peak.
+No raw flows, checkpoints, identities or per-flow predictions exported.

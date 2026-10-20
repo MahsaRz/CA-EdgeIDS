@@ -1,17 +1,18 @@
-# Remaining work in execution order
+# Completed execution record
 
-The current authorization covers carrying out the remaining research phases and preparing the revised manuscript. Each empirical phase freezes its inputs/settings before fitting, keeps all declared seeds and failures, and publishes aggregate evidence without raw data or model files. A failed scientific feasibility gate is retained as a result rather than bypassed.
+All declared empirical phases have finished. Failed scientific and resource gates remain visible.
 
-| Order | Phase | Current state | Gate before the next dependent step |
-|---|---|---|---|
-| 1 | Five training seeds and graph/feature controls | Complete: 120 fits and verified test evaluations; mixed results retained | Completed checkpoint publication and original-target checks |
-| 2 | Unpartitioned, cluster and graph-sampling training controls | Complete: 30 validation candidates, 75 frozen selected-model evaluations; five seeds, all exposure counts retained | Completed sampler normalization tests and pre-test publication; explicit edge-task adaptations |
-| 3 | Generalization | One-million-flow new-host protocol frozen and audited; ToN/CSE fits in progress; BoT infeasible | ToN/CSE attack test supports only 12/22; no broad adaptation claim regardless of score |
-| 4 | Larger fixed-workload inference | All larger sample/source checks complete; 135-condition grid frozen, waiting for training to finish | Fixed preprocessor/checkpoint across sizes; isolated fresh processes; retain resource limits and failures |
-| 5 | Classifier costs and ranking metrics | Four-method, 36-condition processing protocol prepared; functional output checks passed; separate AP/PR-AUC exporter checked on the first 195 models | Time only after training/scans; preserve all blocks and matched targets; export all 225 models' ranking areas after new-host verification |
-| 5a | Multiclass and time protocols | Original complete-source all-class gate remains infeasible; no genuine timestamp identified | Binary remains the main task; report unsupported multiclass/temporal conditions rather than weakening the split or inventing metadata |
-| 6 | Contribution assessment | Pending the controlled evidence | State which graph/cluster benefits are supported; retain negative results and separate integration from algorithmic novelty |
-| 7 | Manuscript rewrite | Original Overleaf source backed up; new private local source drafted; live Overleaf unchanged | Complete remaining empirical sections, render/inspect, then update the private manuscript; preserve original authorship and acknowledgment |
-| 8 | Release verification | Ongoing | Correctness tests, Linux checks, figure/table audit, reproducible commands and reviewed draft changes |
+| Order | Phase | Final state |
+|---|---|---|
+| 1 | Classifiers and graph controls | 120 five-seed evaluations verified |
+| 2 | Training procedures | 75 five-seed evaluations; selection published first; sampling exposure retained |
+| 3 | New-host evaluation | 30 evaluations; 12/22 attack test flows on ToN/CSE; BoT infeasible; poor detection retained |
+| 4 | Larger fixed-model inference | 135 requests; 129 successful, six CSE partition timeouts; all successful predictions verified |
+| 5 | Matched classifier cost | 36 successful fresh-process conditions; all predictions verified |
+| 5a | Ranking metrics | Separate AP and trapezoidal PR-AUC for all 225 models and both classes |
+| 5b | Multiclass/time gates | Missing class support and genuine timestamps retained; no unsupported fits/claims |
+| 6 | Contribution assessment | Conditional empirical value and negative findings documented |
+| 7 | Manuscript | Complete results and rewrite; private Overleaf updated, zero compile errors and actual PDF reviewed |
+| 8 | Release | Numerical package passes 71 tests; aggregate checksums and metadata corrections verified; final branch checks recorded in the pull request |
 
-The larger sample sizes above are computational study sizes, not complete-source evaluations. They are selected independently of labels or test scores. Source audits still cover all 73,597,701 original flows. A single workstation does not establish deployment across edge devices. The manuscript should describe the actual completed workloads and feasible task; journal acceptance is not an experimental exit gate.
+See STATUS.md for current release details and CONTRIBUTION_ASSESSMENT.md for scientific limits. A one-million-flow sample is not complete-source training or distributed edge deployment. Source audits cover all 73,597,701 original flows. Journal acceptance is not an experimental completion gate.

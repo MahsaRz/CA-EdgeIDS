@@ -1,5 +1,14 @@
 # Rebuild and resubmission plan
 
+## Completed evidence update
+
+The declared experiments are complete: 225 selected-model evaluations (120 classifier/graph controls, 75 training-procedure controls and 30 new-host models), 36 matched classifier-cost conditions and 135 larger-workload requests. All 36 classifier-cost and 129 successful larger-workload conditions preserve class decisions within the declared probability tolerance; six CSE one-million-flow partition conditions time out. The current numerical package passes 71 Linux correctness tests. AP and trapezoidal PR-AUC are separately reported for all 225 models.
+
+Forest leads the original ToN/BoT classifier comparison and the full GNN leads CSE. Removing neighbor messages helps ToN/BoT. Layer-wise inference is the fastest tested GNN schedule in all nine larger workloads; exact partition processing is substantially slower. New-host detection is weak: CSE GNN attack recall is 1.8% despite weighted F1 of 0.9951. ToN/CSE attack test supports are only 12/22; BoT is infeasible. These results support a conditional empirical comparison, not reliable adaptation, causal diagnosis or a new partitioning algorithm.
+
+The current execution record and contribution assessment supersede earlier planned or pending milestones below. Historical protocols and exclusions remain preserved.
+
+
 ## Decision and scope
 
 The supervisor's advice identifies the correct order: change the research task, align the code, then regenerate the evidence and manuscript. More experiments cannot establish RCA without initiating-cause ground truth. The revised prediction is a label on an original flow edge: Benign/Attack or the original attack category. A malicious flow is not automatically a causal root or a faulty physical device.

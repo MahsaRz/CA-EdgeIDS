@@ -21,3 +21,32 @@ Prediction checks use absolute and relative tolerances 0.00001 plus exact class 
 Memory values use MiB (2^20 bytes), including historical CSV field names ending in `_mb`. Inputs and run files reside on the Windows-mounted workspace under WSL2. These storage/cache conditions affect process and preparation times; the study does not treat them as native edge-device deployment measurements.
 
 The frozen manifest also records the CPU model, logical CPU count, Linux-visible memory/swap and single-thread environment. The current workstation exposes 16 logical CPUs and about 13.5 GiB to Linux; this is VM-visible total memory, not a guarantee of available memory during a call.
+
+## Completed results
+
+Numerical source: `83747d5`. All 135 requests are retained: 129 complete and six time out. Every successful condition passes probability tolerances and exact class agreement; maximum probability difference is 0.000007033348 and no decisions change. The six failures are all CSE one-million-flow random/METIS conditions, across all three process blocks. Their 300-second limit covers the entire worker, including first prediction and three warm predictions; it is not an inferred forward time.
+
+At one million sampled flows, actual test populations are 206,110 / 219,226 / 262,028 for ToN / CSE / BoT, containing 810 / 18,846 / 12 IP nodes. Increasing flow volume does not establish large-node-topology scaling.
+
+| Dataset | Method | Complete warm seconds, mean ± SD | First prediction seconds, mean | Process peak MiB, mean |
+|---|---|---:|---:|---:|
+| ToN | Full | 0.6563 ± 0.0157 | 8.739 | 1918.1 |
+| ToN | Layer-wise | 0.1770 ± 0.0080 | 8.268 | 1923.8 |
+| ToN | Factored | 1.8088 ± 0.0044 | 10.005 | 1918.2 |
+| ToN | Random exact | 48.2408 ± 0.2794 | 56.942 | 1924.0 |
+| ToN | METIS exact | 50.5391 ± 0.1954 | 59.066 | 1929.8 |
+| CSE | Full | 1.0706 ± 0.0355 | 10.262 | 2071.6 |
+| CSE | Layer-wise | 0.2316 ± 0.0016 | 9.323 | 2049.4 |
+| CSE | Factored | 4.8829 ± 0.0466 | 13.895 | 2053.9 |
+| CSE | Random / METIS exact | unavailable: all blocks timed out | unavailable | unavailable |
+| BoT | Full | 0.5944 ± 0.0205 | 8.795 | 1753.6 |
+| BoT | Layer-wise | 0.1597 ± 0.0043 | 8.311 | 1759.3 |
+| BoT | Factored | 1.4138 ± 0.0317 | 9.548 | 1753.7 |
+| BoT | Random exact | 62.2192 ± 0.1645 | 71.165 | 1759.6 |
+| BoT | METIS exact | 63.3554 ± 0.8651 | 72.656 | 1754.1 |
+
+Layer-wise is the fastest complete warm GNN schedule in all nine dataset/size workloads. Rebuilding factored summaries every prediction is slower than Full; reuse during training answers a different question. Exact halos repeat substantial work: one-million-flow METIS inference is about 77 times Full on ToN and 107 times Full on BoT. The tested partition schedules do not offer a speed benefit.
+
+Whole-pipeline peaks at one million flows are similar across methods, about 1.7–2.0 GiB. These measurements do not establish substantial whole-pipeline memory savings from partitioning or layer-wise processing. Preparation and resident transformed features matter. The smaller classifier-cost grid uses another model cohort and memory sampling window; its memory comparisons must keep that scope.
+
+Verified aggregate records, failures, block counts, hardware and input hashes are in `artifacts/larger-inference/`; the complete tables and figures are in `artifacts/paper-assets/`.

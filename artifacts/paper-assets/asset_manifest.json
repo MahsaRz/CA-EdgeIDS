@@ -1,8 +1,13 @@
 {
   "scope": "verified binary research evidence; pilot systems checkpoint distinct from five-seed classifier fits",
-  "complete_evidence": false,
+  "complete_evidence": true,
   "evidence_sha256": {
-    "artifacts/controlled-binary-100000/test-evaluation/verification.json": "2e9a97f5c10cbd4935876686bb0f496e6bc419279126b687830823acc7827fe2"
+    "artifacts/controlled-binary-100000/test-evaluation/verification.json": "2e9a97f5c10cbd4935876686bb0f496e6bc419279126b687830823acc7827fe2",
+    "artifacts/sampler-binary-100000/test-evaluation/verification.json": "d4ac333d353fddae95a3db8d147d34e853235b513dbe0da0eecaca184ffb2fba",
+    "artifacts/novel-host-1000000/test-evaluation/verification.json": "85c1e86588a21a6f20d500d63d3945866f96bb35e73f7170718359cd662b1a13",
+    "artifacts/larger-inference/verification.json": "7278dc2e7ffc9c3ee3ff8f13fffed6427ed7ca9eceb49494f5759a8ac49019e7",
+    "artifacts/classifier-cost-100000/verification.json": "aca77c35369abe5c78170514ad11c9fc1a9162e95e046ca57a368be658910707",
+    "artifacts/precision-recall-areas/definitions.json": "46ff2c270e722a04846bf9f5a196cea2b8d11f8c25be0186f7ed367132dec544"
   },
   "no_test_selection": true,
   "plot_width_inches": 7.1,

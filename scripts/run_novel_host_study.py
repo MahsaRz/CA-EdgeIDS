@@ -49,7 +49,8 @@ def inputs(d,pre=None):
     cfg=json.loads(Path(f'configs/{d}_binary_linux_100000.json').read_text())
     old=pd.read_csv(cfg['csv'],usecols=[SOURCE,DEST])
     hosts=set(old[SOURCE])|set(old[DEST]); cfg.update(csv=f'data/larger-uniform/{d}/{d}-uniform-1000000.csv',classes=2,
-        label_names=['Benign','Attack'],learning_rate=.003,epochs=10,patience=3,hidden=16,layers=2,dropout=.2,weight_decay=.0001,threads=1,max_edges_per_batch=512,progress_every=512)
+        label_names=['Benign','Attack'],learning_rate=.003,epochs=10,patience=3,hidden=16,layers=2,dropout=.2,weight_decay=.0001,threads=1,max_edges_per_batch=512,progress_every=512,seeds=SEEDS,split_protocol='novel_host_incident',
+        source_audit=f'data/larger-uniform/{d}/source_audit.json',configuration_scope='dataset and shared model settings; dedicated study plan and per-model record govern execution')
     frame=pd.read_csv(cfg['csv'],low_memory=False); split,_,_=assign(frame,hosts)
     expected=next(r for r in json.loads(Path('artifacts/novel-host-preflight-1000000/protocols.json').read_text()) if r['dataset']==d)
     if sha256_file(cfg['csv'])!=expected['csv_sha256'] or not expected['feasible']: raise ValueError('Infeasible or changed preflight')

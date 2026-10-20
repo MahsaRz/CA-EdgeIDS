@@ -1,0 +1,13 @@
+{
+  "source_verification_sha256": {
+    "artifacts/controlled-binary-100000/test-evaluation/verification.json": "2e9a97f5c10cbd4935876686bb0f496e6bc419279126b687830823acc7827fe2",
+    "artifacts/controlled-binary-100000/test-evaluation/evaluation_gate.json": "53a1c4384f5d367d410ccf90a84b5a08f2ea59c53512ec4d050f1fa9de99b6a9",
+    "artifacts/sampler-binary-100000/test-evaluation/verification.json": "d4ac333d353fddae95a3db8d147d34e853235b513dbe0da0eecaca184ffb2fba",
+    "artifacts/novel-host-1000000/test-evaluation/verification.json": "85c1e86588a21a6f20d500d63d3945866f96bb35e73f7170718359cd662b1a13"
+  },
+  "model_class_rows": 450,
+  "ap": "sklearn non-interpolated average precision",
+  "pr_auc": "sklearn auc(recall,precision) on precision_recall_curve; trapezoidal interpolation",
+  "averaging": "one-versus-rest area for each binary class; unweighted mean over both classes for macro area; five seed means/SD",
+  "decisions": "no threshold selection, refitting or checkpoint changes"
+}

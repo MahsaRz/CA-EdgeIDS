@@ -1,0 +1,4 @@
+Fixed original pilot preprocessor/checkpoint across three flow sample sizes.
+Fresh process per condition; warm medians use three complete predictions.
+Whole-pipeline first prediction includes parse/transform/audits/graph/partition/load/inference/imports.
+Known resource failures retained. No raw data, model files, identities or per-flow predictions exported.

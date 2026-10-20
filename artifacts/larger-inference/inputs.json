@@ -1,0 +1,14 @@
+{
+  "ton": {
+    "checkpoint_sha256": "97a8fe98771c23f2e812f06a47f06f9a96eefd5c27b73984c3dcd29a8f1ba925",
+    "preprocessor_sha256": "da7d824a86a3ae1cb9461a4e87dcc654c86b4866cdcf2581c111bd1c5c56bfc0"
+  },
+  "cse": {
+    "checkpoint_sha256": "d6759b0d89a3c48e53e07f4777e97dfbbf077e6f8b559f53afec9d9adb2ab968",
+    "preprocessor_sha256": "8f0b67607a5775bbf2fda9b2a44af1339181e5bca664650b3478f941e446b281"
+  },
+  "bot": {
+    "checkpoint_sha256": "c755fb52a4c7cf4bf1054f17e40cc87c6ada5a3832b8c4917d72b9b83c3fcd3b",
+    "preprocessor_sha256": "1324e4c5d03f9ebfe4eb1c943da73fa383cc208c5eea3847628841a92a666008"
+  }
+}

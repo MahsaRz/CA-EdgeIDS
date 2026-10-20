@@ -1,0 +1,20 @@
+{
+  "models": 30,
+  "selection_sha256": "941fa887ab09d44d5c8bd6a02b14ca4a162de97dd4dc34ddf7495b9ee3243789",
+  "fit_source_commits": [
+    "5e4fb3a7e983832e9654f9788785a7d003d67a61",
+    "62d7f9f79e21cf75c55046150830d482eee7f242"
+  ],
+  "target_id_and_label_hashes": {
+    "ton": [
+      "cee5d5612886646a0748dab42d9a2ccd6b6c000ac2a3384f7e44678c2ab1efdb",
+      "a1c44ee94fdb3b0bfbaf48daf1e04b447b4edf241bde1a15979009c4f3551133"
+    ],
+    "cse": [
+      "3b2d99fa08fa621b29cf6588f646e371cadd7f5b0488f61b4fadf6c6be367a1d",
+      "a197d3590e6645463fb85e2ccf27f42dfe572fa031a81f4b93acce549c6a7270"
+    ]
+  },
+  "metrics_recomputed": true,
+  "retuned": false
+}

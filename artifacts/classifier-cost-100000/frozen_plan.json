@@ -1,0 +1,264 @@
+{
+  "datasets": [
+    "ton",
+    "cse",
+    "bot"
+  ],
+  "methods": [
+    "gnn_full",
+    "gnn_layerwise",
+    "mlp",
+    "rf"
+  ],
+  "blocks": [
+    1,
+    2,
+    3
+  ],
+  "model_seed": 7,
+  "query_batch_size": 2048,
+  "message_batch_size": 4096,
+  "warm_repeats": 3,
+  "order_seed": 20261024,
+  "threads": 1,
+  "worker_timeout_seconds": 120,
+  "scope": "same frozen seed-7 models from the five-seed classifier study; method-specific imports; no model or threshold selection",
+  "timing": "worker launch through first probabilities in memory; then three complete warm predictions; no graph cost charged to flow-only models",
+  "memory": "worker RSS sampled every 5 ms through imports, setup and predictions; not an allocator-exact or whole-system peak",
+  "source_commit": "83747d54919f6e6ad8baccb17bcf42cb9f22d31d",
+  "source_sha256": {
+    "src/ca_edgeids/batch_study.py": "db693747ff95216333abb7b82ca6069e105f3c083f18b4a7a0b92924ac7b47cc",
+    "src/ca_edgeids/cached.py": "e50255ac7905585b7036d0f68110ca74c793788ce442957a56f8bd67b8b1bfeb",
+    "src/ca_edgeids/classifier_study.py": "37e4468af85d20037425850aadc1a24166999e02efc3ed89700144de353c8b65",
+    "src/ca_edgeids/cli.py": "ba27e5e64e67349b5ca94831ee94e8b949d70c7fd24b10c9ea60a56c8b1472ba",
+    "src/ca_edgeids/controlled_training.py": "ef20f0d36109e51892737a0cc8cd14e7bb76d42be0d5af2cf83bd2d788561c7b",
+    "src/ca_edgeids/data.py": "8a96b142e3dac362b3d842ff61b51d35622ecb5241af5b9eacf7db7923abbab2",
+    "src/ca_edgeids/experiment.py": "afcd47ccea65a5d1174671a5ebafb5681c4061d826b3fec4255865f06e383c4f",
+    "src/ca_edgeids/graph.py": "221f120cece15d2daf41f1dfa927442decbd64d167a65b1672e876b4a963e0d6",
+    "src/ca_edgeids/metrics.py": "cccbee1bf74f8baf9e2b590bbc3975896dd1b1fbe54a3e34c8f45992e5e83bb7",
+    "src/ca_edgeids/model.py": "42cc4cbf25811bceb0e3bc84772a49943e130e93e17b7145ef9c2cb9bf2712e4",
+    "src/ca_edgeids/preflight.py": "e72ae9f71718935088b4028b5cbe2eba6b4e1b71dcbb98fb51a2b3e9f7c12b31",
+    "src/ca_edgeids/profile.py": "3919b8c27908b75a2426040f4e1543433dbc8dcc27343a521e4a24d696406221",
+    "src/ca_edgeids/report.py": "837e154c034cee66201cd5cfed420c88cd7e642991df6d1da4fd7100616c4243",
+    "src/ca_edgeids/runtime.py": "eee56cade0adc65a9d3dbd9d8749356d890d11973ceebcabc163266777e47cdb",
+    "src/ca_edgeids/sampler_controls.py": "2f99efb45b91deca1f0ff1b1c24bfbb35fc21b16f2e7cfe0e7cf44e0762cdaa6",
+    "src/ca_edgeids/statistics_backend.py": "f8234bb1f0901ab5a7adfdf958177ef7197e42895e694770b214a3cf3d305a97",
+    "src/ca_edgeids/worker.py": "d2dba28025b48f7a9d9e535995dc58933e5a32331a6c6ea71edc6333023a4e01",
+    "src/ca_edgeids/__init__.py": "2955632918691fa81a47b012ca187d49ad5587cbdfc1697d1f1422182ae207f7",
+    "src/ca_edgeids/__main__.py": "cf7390a2508a0fcad4777a4a629fc5212ab655cb45845975995f835676a834e3",
+    "configs/classifier_cost_100000.json": "9f3be2b1bb0be56c557df20c41fd8652718398daed25a68ad8bf07370365078e",
+    "scripts/run_classifier_cost.py": "cdc442a0f78b3e216d529e766f9b3a6e12e4f30eb7ac7264d9a6a7a534756692",
+    "scripts/larger_data.py": "ccd2c136504c4175671e58f4ba50b6dc6517408da67d1a6c1db8a1c1bf9dbdac",
+    "scripts/hardware_context.py": "a4157ea0dad82df2e349ac2d0544a629a59f151e997d583d92cab5df5ca07789"
+  },
+  "execution_order": [
+    {
+      "block": 2,
+      "dataset": "bot",
+      "method": "mlp"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "method": "rf"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "method": "gnn_full"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "method": "rf"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "method": "mlp"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "method": "gnn_full"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "method": "mlp"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "method": "mlp"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "method": "mlp"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "method": "rf"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "method": "mlp"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "method": "gnn_full"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "method": "rf"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "method": "rf"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 3,
+      "dataset": "cse",
+      "method": "mlp"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "method": "mlp"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "method": "mlp"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "method": "gnn_full"
+    },
+    {
+      "block": 2,
+      "dataset": "bot",
+      "method": "rf"
+    },
+    {
+      "block": 3,
+      "dataset": "bot",
+      "method": "gnn_full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "method": "gnn_full"
+    },
+    {
+      "block": 3,
+      "dataset": "ton",
+      "method": "rf"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "method": "gnn_full"
+    },
+    {
+      "block": 2,
+      "dataset": "ton",
+      "method": "gnn_full"
+    },
+    {
+      "block": 1,
+      "dataset": "ton",
+      "method": "gnn_layerwise"
+    },
+    {
+      "block": 2,
+      "dataset": "cse",
+      "method": "rf"
+    },
+    {
+      "block": 1,
+      "dataset": "cse",
+      "method": "gnn_full"
+    },
+    {
+      "block": 1,
+      "dataset": "bot",
+      "method": "rf"
+    }
+  ],
+  "model_root": "runs/controlled-binary-100000",
+  "model_selections_sha256": "608961ee9d2aeb707d8b24ffd517fc061e4efec3f14c10c7d8155dacf5981f43",
+  "environment": {
+    "python": "3.11.15",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "2.3.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0",
+      "torch": "2.9.0+cpu",
+      "joblib": "1.6.0"
+    },
+    "hardware": {
+      "cpu_model": "AMD Ryzen 7 PRO 7840U w/ Radeon 780M Graphics",
+      "logical_cpus": 16,
+      "linux_memory_kib": 14163612,
+      "linux_visible_memory_gib": 13.50747299194336,
+      "linux_swap_kib": 4194304,
+      "windows_mounted_workspace": true,
+      "thread_environment": {
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "scope": "Linux-visible VM/process context; not whole-host available memory or a deployment capacity bound"
+    }
+  }
+}

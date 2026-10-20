@@ -4,13 +4,17 @@ Repository: [MahsaRz/CA-EdgeIDS](https://github.com/MahsaRz/CA-EdgeIDS). The rep
 
 **Working title:** *Graph Context and Processing Cost in Flow-Level Intrusion Detection*.
 
-The [five-seed classifier and graph controls](docs/CONTROLLED_STUDY.md) and [five-procedure sampler comparison](docs/SAMPLER_COMPARISON.md) are complete. Results are mixed and do not establish a universal graph or METIS advantage. Larger uniform samples are verified; the [execution queue](docs/EXECUTION_QUEUE.md) tracks the new-host fits, larger fixed-model processing study and manuscript revision. Failed class-support and resource conditions remain part of the evidence.
+The declared experiments are complete: 225 selected-model evaluations (120 classifier/graph controls, 75 training-procedure controls and 30 new-host models), 36 matched classifier-cost conditions and 135 larger-workload requests. All 36 classifier-cost and 129 successful larger-workload conditions preserve class decisions within the declared probability tolerance; six CSE one-million-flow partition conditions time out. The current numerical package passes 71 Linux correctness tests. AP and trapezoidal PR-AUC are separately reported for all 225 models.
+
+Forest leads the original ToN/BoT classifier comparison and the full GNN leads CSE. Removing neighbor messages helps ToN/BoT. Layer-wise inference is the fastest tested GNN schedule in all nine larger workloads; exact partition processing is substantially slower. New-host detection is weak: CSE GNN attack recall is 1.8% despite weighted F1 of 0.9951. ToN/CSE attack test supports are only 12/22; BoT is infeasible. These results support a conditional empirical comparison, not reliable adaptation, causal diagnosis or a new partitioning algorithm.
+
+See [the completed execution record](docs/EXECUTION_QUEUE.md), [new-host results](docs/NOVEL_HOST_RESULTS.md), [larger inference](docs/LARGER_INFERENCE.md), [classifier costs](docs/CLASSIFIER_COST.md) and [contribution assessment](docs/CONTRIBUTION_ASSESSMENT.md).
 
 For the executed settings, read each frozen study plan and the individual model records together with [effective configurations](docs/EFFECTIVE_CONFIGURATIONS.md). Some historical dataset-base files retain unused pilot fields; they are preserved and explicitly distinguished from the actual study overrides.
 
 This branch rebuilds the original DC-RCA experiments as **flow/edge intrusion classification**. It does not claim causal root-cause identification, physical fault localization, distributed execution, or proven real-time operation. The six original notebooks and `Readme.txt` remain historical reference material; they are not the revised implementation.
 
-The new package is a tested starting point, **not a completed journal evaluation**. A successful synthetic demonstration is software evidence only. Publication requires real-data schema verification, complete experiments, scientific contribution assessment, and the gates in [the phased research plan](docs/RESEARCH_PLAN.md).
+The revised research draft and verified aggregate outputs are prepared for author review. Scientific limitations and failed feasibility gates remain explicit; completed experiments do not imply journal acceptance.
 
 ## What is implemented
 

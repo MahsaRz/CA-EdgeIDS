@@ -6,7 +6,7 @@ The new `effective_settings.json` sidecars bind explicit executed settings to ea
 
 For example, the earlier new-host source obtains its split by calling the frozen novel-host assignment function directly. Its inherited base field `split_protocol: conversation` does not control that call. The actual new-host test IDs are independently checked against the preflight hash. Its inherited `seeds: [7]` also does not control the dedicated five-seed loop. Likewise, the sampler cohort's dataset base rate is not the separately selected rate passed to each method. Benchmark repetition fields in these base files do not schedule the quality study's predictions.
 
-The current source will write the new-host split, source-audit path and complete model-seed list explicitly after the frozen historical experiment finishes. Historical experiments retain their source snapshots, original configurations and new explanatory sidecars. Table B and the manuscript describe the executed procedures, not every inherited base field.
+The current drivers now write the new-host split, source-audit path and complete model-seed lists explicitly. These metadata-only corrections followed completion of the frozen experiments. Historical experiments retain their source snapshots, original configurations and new explanatory sidecars. Table B and the manuscript describe the executed procedures, not every inherited base field.
 
 Generate sidecars only after all selected models exist:
 

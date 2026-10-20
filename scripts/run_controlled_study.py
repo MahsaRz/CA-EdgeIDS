@@ -55,7 +55,8 @@ def train_all():
     for dataset in plan['datasets']:
         _,cfg,data=common(dataset); folder=ROOT/dataset; folder.mkdir()
         cfg.update(learning_rate=plan['learning_rate'],epochs=plan['epochs'],patience=plan['patience'],hidden=plan['hidden'],
-            layers=plan['layers'],dropout=plan['dropout'],weight_decay=plan['weight_decay'],max_edges_per_batch=plan['batch_size'],threads=plan['threads'])
+            layers=plan['layers'],dropout=plan['dropout'],weight_decay=plan['weight_decay'],max_edges_per_batch=plan['batch_size'],threads=plan['threads'],
+            seeds=plan['model_seeds'],configuration_scope='dataset and shared model settings; dedicated study plan and per-model record govern execution')
         dump(folder/'dataset_manifest.json',data.manifest); dump(folder/'resolved_config.json',cfg)
         base={part:build_graph(data,part,cfg['bidirectional_messages']) for part in ['train','validation']}
         owner=partition_nodes(base['train'],cfg['train_partition_method'],cfg['train_parts'],plan['ownership_seed'])

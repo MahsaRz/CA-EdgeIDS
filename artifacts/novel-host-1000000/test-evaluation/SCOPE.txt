@@ -1,0 +1,4 @@
+New-host incident-flow classification; known infrastructure may be shared.
+Very small attack supports limit generalization evidence. BoT fails all-class feasibility and is not fitted.
+Five training seeds are not independent data splits or population confidence intervals.
+No raw flows, host identities, checkpoints or per-flow predictions exported.
